@@ -1,0 +1,28 @@
+.dungeon-body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+}
+.bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.choice-button {
+    background-color: purple;
+    color:black;
+    font-size: larger;
+}
+
+.map {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.dungeon-node {
+    justify-self: stretch;
+    outline: auto;
+}
