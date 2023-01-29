@@ -7,10 +7,6 @@ import Hometown from './Hometown';
 
 function App() {
   return (
-
-    
-        <CharacterUi></CharacterUi>
-
     <DungeonUI />
   );
 }
