@@ -1,4 +1,4 @@
-import { Grid, TableRow, TableCell, TableBody, Typography } from '@mui/material';
+import { Grid, Menu, MenuItem, Typography, Box } from '@mui/material';
 
 // Note: will probably make the equipment part graphical instead of just texts
 function createStat(ability = '', stat = 0) {
@@ -9,10 +9,37 @@ function createEquipment(part = '', name = '') {
     return {part, name}
 }
 
+let inventoryRows = [
+    createStat(
+        'French Fries',
+        20
+    ),
+    createStat(
+        'Whopper',
+        5
+    ),
+    createStat(
+        'Big Mac',
+        87
+    ),
+    createStat(
+        'Stick',
+        3
+    ),
+    createStat(
+        'Rock',
+        2
+    ),
+    createStat(
+        'Needles',
+        4
+    ),
+]
+
 let equipRows = [
     createEquipment(
         'Helmet',
-        'my head',
+        'My head',
     ),
     createEquipment(
         'Armor',
@@ -23,15 +50,15 @@ let equipRows = [
         'Barefoot',
     ),
     createEquipment(
-        'Left Hand',
+        'Weapon1',
         'My hand',
     ),
     createEquipment(
-        'Right Hand',
+        'Weapon2',
         'My hand',
     ),
     createEquipment(
-        'Accesory',
+        'Accessory',
         'Nothing',
     ),
 
@@ -83,98 +110,79 @@ let rows = [
         20,
     ),
     createStat(
-        'GOLD ',
+        'GOLD',
         10,
     ),
 
 ]
-const str = `     ,   ,
-    /////|
-   | S | |
-   | P | |
-   | E | |
-   | L | |
-  | L |/
- '---'
+const str = `      ,   ,
+     /////|
+    | S | |
+    | P | |
+    | E | |
+    | L | |
+    | L |/
+    '---'
 `;
 
-function characterUi() {
+function clickSpell() {
+    alert("This will be the spell book");
+  }
+
+function CharacterUi() {
 
     return(
     <>
-        <Grid container justifyContent="flex-start" alignItems="flex-start">
+        <Box m={2}>
+            <Typography variant="h4" fontWeight='bold'>VandySquirrel79</Typography>
+            <Typography variant="h5" fontStyle= 'italic'>Mage</Typography>
+        </Box>
 
-            <Grid item>
-                <Typography>Mage</Typography>
-            </Grid>
-            <Grid container alignItems="flex-start" rowSpacing={1} direction="column" columnSpacing={2}>
-            {statRows.map((row, ability) => (
-            
-                <Grid item rowSpacing={1}>
-
-                    
-                <Grid item display="inline">{row.ability}: </Grid>
-                
-                <Grid item display="inline"> {row.stat}</Grid>
-                
-
-                </Grid>
-            
-            ))}
-            </Grid>
-                
-            
-            <TableBody>
-                <TableCell align="center">
-                    YourName
-                </TableCell>
+        <Grid container alignItems="stretch">
+            <Box sx={{ border: 1, minWidth:"110px", width: "12vw", borderColor: 'secondary.main', m: 1}}>
+            <Typography variant="h6">Stats</Typography>
                 {rows.map((row, ability) => (
-                    <TableRow>
-                        <TableCell style={{borderBottom:"none"}}>
-                            {row.ability}
-                        </TableCell>          
-                        <TableCell style={{borderBottom:"none"}} align="right" >
-                            {row.stat}
-                        </TableCell>
-                    </TableRow>
-                    ))}
-                <TableRow>
-                    <pre>
-                        {str}
-                    </pre>
-                </TableRow>
-            </TableBody>
+                    <Grid container columns={2}>
+                        <Grid item xs={1}> {row.ability}: </Grid>
+                        <Grid item xs={1} textAlign="right"> {row.stat}</Grid>
+                    </Grid>
+                ))}
+                {statRows.map((row, ability) => (
+                    <Grid container columns={2}>
+                        <Grid item xs={1}> {row.ability}: </Grid>
+                        <Grid item xs={1} textAlign="right"> {row.stat}</Grid>
+                    </Grid>
+                ))}
+            </Box>
 
-            <TableBody>
-                <TableCell align="right"> 
-                    Equipments
-                </TableCell>
-                {equipRows.map((row, index) => (
-                    <TableRow>
-                        <TableCell style={{borderBottom:"none"}}>
-                            {row.part}
-                        </TableCell>
-                        <TableCell style={{borderBottom:"none"}} align="right" >
-                            {row.name}
-                        </TableCell>
-                    </TableRow>
-                     ))}            
-            </TableBody>
+            <Box sx={{ border: 1, minWidth:"150px", width: "15vw", borderColor: 'secondary.main', m: 1}}>
+            <Typography variant="h6">Equipments</Typography>
+                {equipRows.map((row, ability) => (
+                    <Grid container columns={2}>
+                        <Grid item xs={1}> {row.part}: </Grid>
+                        <Grid item xs={1} textAlign="right"> {row.name}</Grid>
+                    </Grid>
+                ))}
+                <pre onClick={clickSpell}>
+                    {str}
+                </pre>
+            </Box>
+
+
+            <Box minWidth="110px" width="25vw" m={1}>
+                <Typography variant="h6">INVENTORY</Typography>
+                <Grid container >
+                {inventoryRows.map((row, ability) => (
+                    <Grid container rowSpacing={10}>
+                        <Grid item sm={7}> {row.ability}: </Grid>
+                        <Grid item sm={1} textAlign="right"> {row.stat}</Grid>
+                        
+                    </Grid>
+                ))}
+                </Grid>
+            </Box>
+
         </Grid>
-
-        <Grid container justifyContent="flex-start">
-            <Typography>INVENTORY</Typography>
-            <Grid container item>
-                ilugiu
-            </Grid>
-            <Grid container item>
-                asdfasdf
-            </Grid>
-            <Grid container item>
-                adsgqrwhqrhqwrhqw
-            </Grid>
-        </Grid>
-
 
     </>
 
@@ -182,4 +190,4 @@ function characterUi() {
 
 }
 
-export default characterUi;
+export default CharacterUi;

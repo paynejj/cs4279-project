@@ -1,16 +1,20 @@
-import React from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CharacterUi from './character/CharacterUi';
-import logo from './logo.svg';
-import './App.css';
 import DungeonUI from './Dungeon/DungeonUI';
-
+import Hometown from './Hometown';
+import SideBar from "./SideBar/sidebar";
 function App() {
   return (
-
-    
-        <CharacterUi></CharacterUi>
-
-    <DungeonUI />
+    <BrowserRouter>
+    <>
+      <SideBar/>
+      <Routes>
+        <Route path="/character" element={<CharacterUi/>}/>
+        <Route path="/dungeon" element= {<DungeonUI />}/> 
+        <Route path="/hometown" element= {<Hometown />}/> 
+      </Routes>
+    </>
+    </BrowserRouter>
   );
 }
 
