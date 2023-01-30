@@ -3,20 +3,16 @@ import TableBody from "@mui/material/TableBody";
 import Typography from "@mui/material/Typography";
 
 
-export function characterUi(): React.ReactElement {
+function CharacterUi() {
 
-    return(
+    return (
+        <div>
 
-    <>
-        {<Typography>title</Typography>}
-          <TableBody>
-          </TableBody>
-    </>
-
-
-
+            <Typography>title</Typography>
+            <TableBody></TableBody>
+        </div>
     );
 
 }
 
-export default characterUi;
+export default CharacterUi;
