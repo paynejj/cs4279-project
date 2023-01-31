@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CharacterUi from './character/CharacterUi';
 import DungeonUI from './Dungeon/DungeonUI';
-import Hometown from './Hometown';
+import Hometown from './Hometown/Hometown';
 import SideBar from "./SideBar/sidebar";
 function App() {
   return (

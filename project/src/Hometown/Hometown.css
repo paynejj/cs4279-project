@@ -1,0 +1,14 @@
+
+img {
+  width: 200px;
+  height: 200px;
+  display: flex;
+}
+.backgroundImage {
+  display: flex;
+  background-image: 
+  url('../images/hometown_background.png');
+  background-size: 100% 100%;
+  margin-top: -70px;  
+  background-repeat:no-repeat; 
+}
