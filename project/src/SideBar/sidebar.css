@@ -1,5 +1,7 @@
 .sidebar {
     height: 100%;
+    outline: purple;
+    outline-style: solid;
 }
 
 ul {
@@ -16,6 +18,7 @@ li a, li a:visited {
 }
 
 li:hover {
+    margin: auto;
     background-color: purple;
     color: black;
 }

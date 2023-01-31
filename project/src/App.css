@@ -4,9 +4,10 @@
 }
 
 nav {
-  width: 20vw;
+  padding-right: 8px;
+  height: 100%;
 }
-
 main {
+  height: 100%;
   flex-grow: 1;
 }
