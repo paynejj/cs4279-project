@@ -1,0 +1,15 @@
+.shop-list {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+.node {
+    justify-self: stretch;
+    outline: auto;
+    white-space: pre-line;
+}
+ul {
+    white-space: pre-wrap;
+  }
