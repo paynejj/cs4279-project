@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import styled from "styled-components";
 import "./Hometown.css";
+import { useNavigate } from "react-router-dom";
 
 function Hometown() {
   const Button = styled.button`
@@ -13,9 +14,20 @@ function Hometown() {
     margin: 20px 0px;
     cursor: pointer;
   `;
-  function clickMe() {
-    alert("Change to a link");
+  let navigate = useNavigate(); 
+  const routeChange1 = () =>{ 
+    let path = `/shop`; 
+    navigate(path);
   }
+  const routeChange2 = () =>{ 
+    let path = `/rest`; 
+    navigate(path);
+  }
+  const routeChange3 = () =>{ 
+    let path = `/quest`; 
+    navigate(path);
+  }
+
   return (
       <div
         className="Hometown"
@@ -24,7 +36,7 @@ function Hometown() {
         <section
           className="section"
           style={{
-            paddingTop: "40px",
+            paddingTop: "60px",
             paddingBottom: "40px",
             flex: "1 0 auto",
           }}
@@ -66,7 +78,7 @@ function Hometown() {
                     }}
                   >
                     <img src={require("../images/store_icon.png")} />
-                    <Button onClick={clickMe}>Shop</Button>
+                    <Button onClick={routeChange1}>Shop</Button>
                   </div>
 
                   <div
@@ -78,7 +90,7 @@ function Hometown() {
                     }}
                   >
                     <img src={require("../images/quest_board_icon.png")} />
-                    <Button onClick={clickMe}>Quest Board</Button>
+                    <Button onClick={routeChange2}>Quest Board</Button>
                   </div>
 
                   <div
@@ -90,7 +102,7 @@ function Hometown() {
                     }}
                   >
                     <img src={require("../images/fireplace_icon.png")} />
-                    <Button onClick={clickMe}>Rest Area</Button>
+                    <Button onClick={routeChange3}>Rest Area</Button>
                   </div>
                 </div>
               </div>
