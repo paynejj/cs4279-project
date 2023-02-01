@@ -33,7 +33,7 @@ export class Dungeon {
             [1, 1, 1, 1, 1]]
         const plus = [[0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [1, 1, 1, 1, 1], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0]]
         const templates = [square, plus]
-        this.toDungeon(square)
+        this.toDungeon(templates[Math.round(Math.random())])
         return this._map
     }
 
