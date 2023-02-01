@@ -3,7 +3,7 @@ import Container from "react-bootstrap/esm/Container";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-function Shop() {
+function Rest() {
   const Button = styled.button`
     background-color: black;
     color: white;
@@ -39,7 +39,7 @@ function Shop() {
                   className="overall-heading"
                   style={{ fontSize: "3em", color: "white" }}
                 >
-                  Store
+                  Rest
                 </h2>
                 <div
                   className="underline mx-auto"
@@ -62,4 +62,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default Rest;
