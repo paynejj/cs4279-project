@@ -6,35 +6,23 @@ type Enemy = {
     damage: number
 }
 
-type Direction = {
-    north: boolean,
-    south: boolean,
-    east: boolean,
-    west: boolean,
 
-}
-
- interface DungeonNode {
+interface DungeonNode {
     treasure: Treasure,
     enemy: Enemy,
-    directions: Direction,
-    draw(): string
+    color: string
 }
 
-export default class DOmniTunnel implements DungeonNode {
+export default class DTunnel implements DungeonNode {
     readonly treasure
-    readonly enemy 
-    readonly directions
+    readonly enemy
+    readonly color 
 
     constructor() {
         this.treasure = undefined
         this.enemy = undefined
-        this.directions = {north: true, south: true, east: true, west: true}
+        this.color = "white"
     }
-    
-    public draw() {
-       return "BEANS"
 
-    }
 }
 

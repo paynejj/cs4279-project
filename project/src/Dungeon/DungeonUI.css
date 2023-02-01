@@ -4,6 +4,7 @@
     position: relative;
     height: 100%;
 }
+
 .bottom-bar {
     display: flex;
     align-items: center;
@@ -13,17 +14,17 @@
 
 .choice-button {
     background-color: purple;
-    color:black;
-    font-size: larger;
+    color: black;
+    font-size: xx-large;
 }
 
 .map {
+    outline: pink solid thick;
     flex-grow: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template: repeat(5, auto) / repeat(5, auto);
 }
+
 .dungeon-node {
-    justify-self: stretch;
-    outline: auto;
+    display: flex;
 }

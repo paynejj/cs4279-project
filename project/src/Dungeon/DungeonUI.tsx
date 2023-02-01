@@ -5,16 +5,19 @@ import "./DungeonUI.css"
 function DungeonMap() {
     const d = new Dungeon()
     return (
-    <div className="map">
-        {d.dungeon.flatMap(row => row.map(node => <div> {node.draw()} </div>))}        
-    </div>
+        <div className="map">
+            {d.dungeon.flatMap(row => row.map(node =>
+                <div className='dungeon-node'
+                    style={{ backgroundColor: node.color }}>
+                </div>))}
+        </div>
     )
 }
 function DungeonUI() {
     return (
         <div className="dungeon-body">
             <h1>Dungeon</h1>
-                <DungeonMap/>
+            <DungeonMap />
             <div className="bottom-bar">
                 <button className="choice-button"> Choice 1</button>
                 <button className="choice-button"> Choice 2</button>
