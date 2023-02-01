@@ -2,8 +2,10 @@ import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
+import './Shop.css';
 function Shop() {
+  let list: Array<string>;
+  list = ['HP Potion Stock: 3\n MP Potion Stock: 5 \n Dagger Stock: 6 \n Sword Stock: 3 \n Chestplate Stock: 2 \n Bag of Chips Stock: 2 ' ]
   const Button = styled.button`
     background-color: black;
     color: white;
@@ -21,44 +23,18 @@ function Shop() {
   return (
       <div
         className="Hometown"
-        style={{ display: "flex", flexDirection: "row", height: "100%" }}
+        style={{ flexDirection: "column", height: "100%" }}
       >
-        <section
-          className="section"
-          style={{
-            paddingTop: "40px",
-            paddingBottom: "40px",
-            flex: "1 0 auto",
-          }}
-        >
-        <div className="backgroundImage">
-          <Container>
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h2
-                  className="overall-heading"
-                  style={{ fontSize: "3em", color: "white" }}
-                >
-                  Store
-                </h2>
-                <div
-                  className="underline mx-auto"
-                  style={{
-                    height: "10px",
-                    width: "8rem",
-                    marginTop: "10px",
-                    marginBottom: "20px",
-                    backgroundColor: "#cfae70",
-                  }}
-                />
-                
-              </div>
-            </div>
             <Button onClick={routeChange}>Back</Button>
-          </Container>
-          </div>
-        </section>
+
+            <div className="shop-list">
+            <h1>Shop</h1>
+            <div className = "node">
+                <h3>{list} </h3>
+                </div>
+        </div>
       </div>
+      
   );
 }
 
