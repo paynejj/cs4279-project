@@ -2,6 +2,8 @@ import React from 'react';
 import { Grid, Tooltip, Typography, Box, Menu, MenuItem, Button, Modal } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import Info from './Info'
+import SpellBook from './SpellBook'
+import QuestList from './QuestList'
 import './Character.css';
 
 // Note: will probably make the equipment part graphical instead of just texts
@@ -39,157 +41,82 @@ let inventoryRows = [
         4
     ),
     createStat(
-        'French Fries',
+        'German Fries',
         20
     ),
     createStat(
-        'Whopper',
+        'Chips Ahoy Crunchy',
         5
     ),
     createStat(
-        'Big Mac',
+        'Fillet-O-Fish',
         87
     ),
     createStat(
-        'Stick',
+        'McNuggets',
         3
     ),
     createStat(
-        'Rock',
+        'British Muffin',
         2
     ),
     createStat(
-        'Needles',
+        'CHEETOS Crunchy FLAMIN\’ HOT',
         4
-    ), createStat(
-        'French Fries',
+    ),
+    createStat(
+        'British Fries',
         20
     ),
     createStat(
-        'Whopper',
+        'Dutch Fries',
         5
     ),
     createStat(
-        'Big Mac',
+        'Italian Fries',
         87
     ),
     createStat(
-        'Stick',
+        'Spanish Fries',
         3
     ),
     createStat(
-        'Rock',
+        'Italian Meatball',
         2
     ),
     createStat(
-        'Needles',
+        'Hawaiian Pizza',
         4
     ),
     createStat(
-        'French Fries',
+        'Shaq-a-Roni',
         20
     ),
     createStat(
-        'Whopper',
+        'MAC Lipstick',
         5
     ),
     createStat(
-        'Big Mac',
+        'Chanel Lipstick',
         87
     ),
     createStat(
-        'Stick',
+        'YSL Lipstick',
         3
     ),
     createStat(
-        'Rock',
+        'Dior Lipstick',
         2
-    ),
-    createStat(
-        'Needles',
-        4
-    ),
-    createStat(
-        'French Fries',
-        20
-    ),
-    createStat(
-        'Whopper',
-        5
-    ),
-    createStat(
-        'Big Mac',
-        87
-    ),
-    createStat(
-        'Stick',
-        3
-    ),
-    createStat(
-        'Rock',
-        2
-    ),
-    createStat(
-        'Needles',
-        4
-    ),
-    createStat(
-        'French Fries',
-        20
-    ),
-    createStat(
-        'Whopper',
-        5
-    ),
-    createStat(
-        'Big Mac',
-        87
-    ),
-    createStat(
-        'Stick',
-        3
-    ),
-    createStat(
-        'Rock',
-        2
-    ),
-    createStat(
-        'Needles',
-        4
-    ),
-    createStat(
-        'French Fries',
-        20
-    ),
-    createStat(
-        'Whopper',
-        5
-    ),
-    createStat(
-        'Big Mac',
-        87
-    ),
-    createStat(
-        'Stick',
-        3
-    ),
-    createStat(
-        'Rock',
-        2
-    ),
-    createStat(
-        'Needles',
-        4
     ),
 ]
 
 let equipRows = [
     createEquipment(
         'Helmet',
-        'My head',
+        'Vandy Boy Cap',
     ),
     createEquipment(
-        'Armor',
+        'Chestplate',
         'Rags',
     ),
     createEquipment(
@@ -197,16 +124,24 @@ let equipRows = [
         'Barefoot',
     ),
     createEquipment(
-        'Weapon1',
-        'My hand',
+        'Chausses',
+        'Calvin Klein Boxers',
     ),
     createEquipment(
-        'Weapon2',
-        'My hand',
+        'Weapon',
+        'My hands',
     ),
     createEquipment(
-        'Accessory',
-        'Nothing',
+        'Ring1',
+        'My Wedding Ring',
+    ),
+    createEquipment(
+        'Ring2',
+        'Ring from My Affair',
+    ),
+    createEquipment(
+        'Amulet',
+        'Thx Grandma',
     ),
 
 ]
@@ -262,37 +197,10 @@ let generalStatRows = [
     ),
 
 ]
-const spellASCII = `      ,   ,
-     /////|
-    | S | |
-    | P | |
-    | E | |
-    | L | |
-    | L |/
-    '---'
-`;
-
-const questASCII = `    ,   ,
-   /////|
-  | Q | |
-  | U | |
-  | E | |
-  | S | |
-  | T |/
-  '---'
-`;
-
 let statDescription = `This is the stat description.
 This will tell you about what each of the ability does
 and what each of them affects`
 
-function clickSpell() {
-    alert("The spell book");
-}
-
-function clickQuest() {
-    alert("The quest list");
-}
 
 function CharacterUi() {
     const [anchorElItem, setAnchorElItem] = React.useState<null | HTMLElement>(null);
@@ -317,8 +225,8 @@ function CharacterUi() {
     return (
         <>
             <Box m={2}>
-                <Typography variant="h4" fontWeight='bold'>VandySquirrel79</Typography>
-                <Typography variant="h5" fontStyle='italic'>Mage</Typography>
+                <Typography variant="h4" fontWeight='bold'>VandySquirrel59</Typography>
+                <Typography variant="h5" fontStyle='italic'>Sorcerer</Typography>
             </Box>
 
             <Grid container alignItems="stretch">
@@ -326,7 +234,7 @@ function CharacterUi() {
                     <Typography variant="h6">Stats</Typography>
                     {generalStatRows.map((row, ability) => (
                         <Tooltip title={statDescription} disableInteractive>
-                            <Grid container columns={2}>
+                            <Grid container columns={2} >
                                 <Grid item xs={1}> {row.ability}: </Grid>
                                 <Grid item xs={1} textAlign="right"> {row.stat}</Grid>
                             </Grid>
@@ -340,21 +248,30 @@ function CharacterUi() {
                             </Grid>
                         </Tooltip>
                     ))}
+                    <Grid container>
+                        <Grid item>
+                            <SpellBook />
+                        </Grid>
+                        <Grid item>
+                            <QuestList />
+                        </Grid>
+                    </Grid>
                 </Box>
 
                 <Box sx={{ border: 1, minWidth: "180px", width: "18vw", borderColor: 'secondary.main', m: 1 }}>
                     <Typography variant="h6">Equipments</Typography>
                     {equipRows.map((row, ability) => (
-                        <Grid container columns={2}>
-                            <Grid item xs={1}> {row.part}: </Grid>
-                            <Grid item xs={1} textAlign="right">
+                        <Grid container>
+                            <Grid item xs={4}> {row.part}: </Grid>
+                            <Grid item xs={8} textAlign="center">
                                 <Button
                                     id="equip-button"
                                     aria-controls={openEquip ? 'equip-menu' : undefined}
                                     aria-haspopup="true"
                                     aria-expanded={openEquip ? 'true' : undefined}
                                     onClick={handleClickEquip}
-                                    sx={{ color: "pink" }}
+                                    style={{ justifyContent: "flex-start" }}
+                                    sx={{ color: "pink", marginLeft: 'auto' }}
                                 >
                                     {row.name}
                                 </Button>
@@ -376,7 +293,7 @@ function CharacterUi() {
                             >
                                 <MenuItem
                                     onClick={handleCloseEquip}>
-                                    <Button sx={{ color: "white" }}>Use</Button>
+                                    <Button sx={{ color: "white" }}>Unequip</Button>
                                 </MenuItem>
                                 <MenuItem>
                                     <Info />
@@ -387,22 +304,11 @@ function CharacterUi() {
 
                         </Grid>
                     ))}
-                    <Grid container columns={2}>
-                        <Grid item xs={1}>
-                            <pre onClick={clickSpell}>
-                                {spellASCII}
-                            </pre>
-                        </Grid>
-                        <Grid item xs={1} textAlign="left">
-                            <pre onClick={clickQuest}>
-                                {questASCII}
-                            </pre>
-                        </Grid>
-                    </Grid>
+
                 </Box>
 
-                <Box minWidth="200px" width="20vw" m={1}>
-                    <Typography variant="h6">INVENTORY</Typography>
+                <Box minWidth="200px" width="25vw" m={1}>
+                    <Typography variant="h6">&nbsp;INVENTORY</Typography>
                     <Grid container height="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
                         {inventoryRows.map((row, ability) => (
                             <Grid container>

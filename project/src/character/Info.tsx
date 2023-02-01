@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { textAlign } from '@mui/system';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -17,14 +16,14 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
+export default function InfoModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button sx={{color:"white", textAlign:"left"}} onClick={handleOpen}>Info</Button>
+      <Button sx={{ color: "white", textAlign: "left" }} onClick={handleOpen}>Info</Button>
       <Modal
         open={open}
         onClose={handleClose}
