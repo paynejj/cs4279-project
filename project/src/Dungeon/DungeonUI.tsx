@@ -8,8 +8,8 @@ function DungeonMap() {
     console.log(dungeonMap)
     return (
         <div className="dungeon-map">
-            {dungeonMap.flatMap(row => row.map(node =>
-                <div className='dungeon-node'
+            {dungeonMap.flatMap((row,i) => row.map((node, j) =>
+                <div className='dungeon-node' key={(i*dungeon.rows) + j}
                     style={{ backgroundColor: node.color }}>
                 </div>))}
         </div>

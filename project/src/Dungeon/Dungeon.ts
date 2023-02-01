@@ -9,7 +9,15 @@ export class Dungeon {
     readonly cols: number
 
     constructor(rows = SIZE, cols = SIZE) {
-        this._map = [...Array(rows)].fill(new Array(cols).fill(new DVoid()))
+        this._map = []
+        for( let i = 0; i < rows; i++) {
+            let row = new Array()
+            for(let j = 0; j < cols; j++) {
+                row.push(new DVoid())
+            }
+            this._map.push(row)
+        }
+
         this.rows = rows
         this.cols = cols
     }
@@ -17,7 +25,12 @@ export class Dungeon {
         return this._map
     }
     public generate() {
-        const square = [[1, 1, 2, 1, 1], [1, 0, 2, 0, 1], [1, 0, 0, 0, 1], [1, 0, 0, 0, 1], [1, 1, 1, 1, 1]]
+        const square = [
+            [1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1]]
         const plus = [[0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [1, 1, 1, 1, 1], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0]]
         const templates = [square, plus]
         this.toDungeon(square)
@@ -30,10 +43,13 @@ export class Dungeon {
             for (let j = 0; j < this.cols; j++) {
                 const n: number = template[i][j]
                 console.log(`${i}, ${j}, ${n}`)
-                if (n === DNodes.DVoid)
+                if (n === DNodes.DVoid) {
+                    console.log(n)
                     this._map[i][j] = new DVoid();
+                }
                 else if (n === DNodes.DTunnel) {
                     this._map[i][j] = new DTunnel();
+                    console.log(n)
                 }
                 else this._map[i][j] = new DVoid()
             }
