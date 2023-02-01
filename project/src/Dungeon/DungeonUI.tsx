@@ -1,12 +1,14 @@
-import React from "react";
+import { useState } from "react";
 import { Dungeon } from "./Dungeon";
 import "./DungeonUI.css"
 
 function DungeonMap() {
-    const d = new Dungeon()
+    const [dungeon, setDungeon] = useState(new Dungeon())
+    const [dungeonMap, setDungeonMap] = useState(dungeon.generate())
+    console.log(dungeonMap)
     return (
-        <div className="map">
-            {d.dungeon.flatMap(row => row.map(node =>
+        <div className="dungeon-map">
+            {dungeonMap.flatMap(row => row.map(node =>
                 <div className='dungeon-node'
                     style={{ backgroundColor: node.color }}>
                 </div>))}
