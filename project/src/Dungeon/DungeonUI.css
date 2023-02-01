@@ -18,7 +18,10 @@
     font-size: xx-large;
 }
 
-.map {
+.dungeon-map {
+    height:fit-content;
+    width: fit-content;
+    aspect-ratio: 1;
     outline: pink solid thick;
     flex-grow: 1;
     display: grid;
@@ -26,5 +29,5 @@
 }
 
 .dungeon-node {
-    display: flex;
+    aspect-ratio: 1;
 }
