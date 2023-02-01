@@ -1,13 +1,17 @@
-import DOmniTunnel from "./DungeonNode";
+import DTunnel from "./DungeonNode";
 import DungeonNode from "./DungeonNode";
 
 const SIZE = 5 as const;
-const ENTRANCE = [0,0] as const;
 
 
 export class Dungeon {
     readonly dungeon: DungeonNode[][]
     constructor() {
-        this.dungeon = Array(SIZE).map(i => Array<DOmniTunnel>(SIZE))
+        this.dungeon = []
+        for (let i = 0; i < SIZE; i++) {
+            this.dungeon.push([])
+            for (let j = 0; j < SIZE; j++)
+                this.dungeon[i].push(new DTunnel())
+        }
     }
 }
