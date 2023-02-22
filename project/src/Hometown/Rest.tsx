@@ -31,13 +31,13 @@ function Rest() {
             flex: "1 0 auto",
           }}
         >
-        <div className="backgroundImage">
+        <div className="backgroundImage2">
           <Container>
             <div className="row">
               <div className="col-md-12 text-center">
                 <h2
                   className="overall-heading"
-                  style={{ fontSize: "3em", color: "white" }}
+                  style={{ fontSize: "3em", color: "black" }}
                 >
                   Rest
                 </h2>

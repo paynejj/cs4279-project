@@ -13,6 +13,7 @@ function Hometown() {
     border-radius: 10px;
     margin: 20px 0px;
     cursor: pointer;
+    justify-content: center;
   `;
   let navigate = useNavigate(); 
   const routeChange1 = () =>{ 
@@ -20,11 +21,11 @@ function Hometown() {
     navigate(path);
   }
   const routeChange2 = () =>{ 
-    let path = `/rest`; 
+    let path = `/quest`; 
     navigate(path);
   }
   const routeChange3 = () =>{ 
-    let path = `/quest`; 
+    let path = `/rest`; 
     navigate(path);
   }
 

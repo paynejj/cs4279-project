@@ -5,14 +5,38 @@ import { useNavigate } from "react-router-dom";
 
 function Quest() {
   const Button = styled.button`
-    background-color: black;
-    color: white;
-    font-size: 20px;
-    padding: 10px 60px;
-    border-radius: 10px;
-    margin: 20px 0px;
-    cursor: pointer;
-  `;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 10px;
+  margin: 20px 0px;
+  cursor: pointer;
+`;
+const Button2 = styled.button`
+background-color: black;
+color: white;
+font-size: 10px;
+padding: 10px 60px;
+border-radius: 10px;
+margin: 5px 0px;
+cursor: pointer;
+textAlign: 'right'
+`;
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'space-between'
+};
+const myObjArray = [{id: 1, name: "Tutorial Quest", stock: 'Very Easy\n', newline: '\n' }, {id: 2, name: "Slime Hunting", stock: 'Easy',  newline: '\n'}, {id: 3, name: "Equiping a Weapon", stock: 'Easy', newline: '\n'}, {id: 4, name: "Fight 5 Monsters in a row", stock: 'Medium', newline: '\n'}, {id: 5, name: "Stay in Rest area for 5 hours", stock: 'Easy', newline: '\n'}];
+  function displayArrayInRow(objArray) {
+    return (
+      <div>
+        {objArray.map((obj) => (
+          <span key={obj.id} style={containerStyle}>Shop Item: {obj.name} || Difficulty: {obj.stock} <Button2>Start</Button2> {obj.newline}</span>
+        ))}
+      </div>
+    );
+  }
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
     let path = `/hometown`; 
@@ -21,44 +45,18 @@ function Quest() {
   return (
       <div
         className="Hometown"
-        style={{ display: "flex", flexDirection: "row", height: "100%" }}
+        style={{ flexDirection: "column", height: "100%" }}
       >
-        <section
-          className="section"
-          style={{
-            paddingTop: "40px",
-            paddingBottom: "40px",
-            flex: "1 0 auto",
-          }}
-        >
-        <div className="backgroundImage">
-          <Container>
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h2
-                  className="overall-heading"
-                  style={{ fontSize: "3em", color: "white" }}
-                >
-                  Rest
-                </h2>
-                <div
-                  className="underline mx-auto"
-                  style={{
-                    height: "10px",
-                    width: "8rem",
-                    marginTop: "10px",
-                    marginBottom: "20px",
-                    backgroundColor: "#cfae70",
-                  }}
-                />
-                
-              </div>
-            </div>
             <Button onClick={routeChange}>Back</Button>
-          </Container>
-          </div>
-        </section>
+
+            <div className="shop-list">
+            <h1>Shop</h1>
+            <div className = "node">
+                {displayArrayInRow(myObjArray)}
+                </div>
+        </div>
       </div>
+      
   );
 }
 
