@@ -1,12 +1,10 @@
 import React from 'react';
-import { Grid, Tooltip, Typography, Box, Menu, MenuItem, Button, Modal } from '@mui/material';
-import ClearIcon from '@mui/icons-material/Clear';
-import Info from './Info'
-import SpellBook from './SpellBook'
-import QuestList from './QuestList'
+import { Grid, Tooltip, Typography, Box, Menu, MenuItem, Button } from '@mui/material';
+import Info from './Info';
+import SpellBook from './SpellBook';
+import QuestList from './QuestList';
 import './Character.css';
 
-// Note: will probably make the equipment part graphical instead of just texts
 function createStat(ability = '', stat = 0) {
     return { ability, stat }
 }
@@ -18,7 +16,7 @@ function createEquipment(part = '', name = '') {
 let inventoryRows = [
     createStat(
         'French Fries',
-        20
+        1
     ),
     createStat(
         'Whopper',
@@ -61,7 +59,7 @@ let inventoryRows = [
         2
     ),
     createStat(
-        'CHEETOS Crunchy FLAMIN\’ HOT',
+        'CHEETOS Crunchy FLAMIN` HOT',
         4
     ),
     createStat(
@@ -121,7 +119,7 @@ let equipRows = [
     ),
     createEquipment(
         'Boots',
-        'Barefoot',
+        'Yeezy 450 Dark Sulfur',
     ),
     createEquipment(
         'Chausses',
@@ -129,7 +127,7 @@ let equipRows = [
     ),
     createEquipment(
         'Weapon',
-        'My hands',
+        'Working Gloves',
     ),
     createEquipment(
         'Ring1',
@@ -143,7 +141,6 @@ let equipRows = [
         'Amulet',
         'Thx Grandma',
     ),
-
 ]
 
 let abilityStatRows = [
@@ -171,7 +168,6 @@ let abilityStatRows = [
         'Agility',
         6,
     ),
-
 ]
 
 let generalStatRows = [
@@ -195,32 +191,55 @@ let generalStatRows = [
         'GOLD',
         10,
     ),
-
 ]
 let statDescription = `This is the stat description.
 This will tell you about what each of the ability does
-and what each of them affects`
+and what each of them affects`;
 
 
 function CharacterUi() {
+    const [equipments, setEquipments] = React.useState(equipRows);
+    const [inventories, setInvertories] = React.useState(inventoryRows);
     const [anchorElItem, setAnchorElItem] = React.useState<null | HTMLElement>(null);
+    const [anchorElEquip, setAnchorElEquip] = React.useState<null | HTMLElement>(null);
+    const [itemMenuIdx, setItemMenuIdx] = React.useState(0);
+    const [equipMenuIdx, setEquipMenuIdx] = React.useState(0);
     const openItem = Boolean(anchorElItem);
-    const handleClickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const openEquip = Boolean(anchorElEquip);
+
+    const handleClickItem = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
+        setItemMenuIdx(idx);
         setAnchorElItem(event.currentTarget);
     };
     const handleCloseItem = () => {
         setAnchorElItem(null);
     };
 
-    const [anchorElEquip, setAnchorElEquip] = React.useState<null | HTMLElement>(null);
-    const openEquip = Boolean(anchorElEquip);
-    const handleClickEquip = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleUseItem = () => {
+        let newInventories = inventories;
+        newInventories[itemMenuIdx].stat -= 1;
+        setInvertories(newInventories);
+        setAnchorElItem(null);
+    };
+
+    const handleUnequip = () => {
+        let newEquipments = equipments;
+        newEquipments[equipMenuIdx].name = "NOTHING";
+        setEquipments(newEquipments);
+        setAnchorElEquip(null);
+    };
+
+    const handleEquip = () => {
+        
+    };
+
+    const handleClickEquip = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
+        setEquipMenuIdx(idx);
         setAnchorElEquip(event.currentTarget);
     };
     const handleCloseEquip = () => {
         setAnchorElEquip(null);
     };
-
 
     return (
         <>
@@ -232,16 +251,16 @@ function CharacterUi() {
             <Grid container alignItems="stretch">
                 <Box sx={{ border: 1, minWidth: "110px", width: "12vw", borderColor: 'secondary.main', m: 1 }}>
                     <Typography variant="h6">Stats</Typography>
-                    {generalStatRows.map((row, ability) => (
-                        <Tooltip title={statDescription} disableInteractive>
-                            <Grid container columns={2} >
+                    {generalStatRows.map((row, idx) => (
+                        <Tooltip key={row.ability} title={statDescription} disableInteractive>
+                            <Grid container columns={2}>
                                 <Grid item xs={1}> {row.ability}: </Grid>
                                 <Grid item xs={1} textAlign="right"> {row.stat}</Grid>
                             </Grid>
                         </Tooltip>
                     ))}
                     {abilityStatRows.map((row, ability) => (
-                        <Tooltip title={statDescription} disableInteractive>
+                        <Tooltip key={row.ability} title={statDescription} disableInteractive>
                             <Grid container columns={2}>
                                 <Grid item xs={1}> {row.ability}: </Grid>
                                 <Grid item xs={1} textAlign="right"> {row.stat}</Grid>
@@ -260,8 +279,9 @@ function CharacterUi() {
 
                 <Box sx={{ border: 1, minWidth: "180px", width: "18vw", borderColor: 'secondary.main', m: 1 }}>
                     <Typography variant="h6">Equipments</Typography>
-                    {equipRows.map((row, ability) => (
-                        <Grid container>
+                    {equipRows.map((row, idx) => (
+
+                        <Grid container key={row.part}>
                             <Grid item xs={4}> {row.part}: </Grid>
                             <Grid item xs={8} textAlign="center">
                                 <Button
@@ -269,13 +289,20 @@ function CharacterUi() {
                                     aria-controls={openEquip ? 'equip-menu' : undefined}
                                     aria-haspopup="true"
                                     aria-expanded={openEquip ? 'true' : undefined}
-                                    onClick={handleClickEquip}
+                                    onClick={(e) => handleClickEquip(e, idx)}
                                     style={{ justifyContent: "flex-start" }}
-                                    sx={{ color: "pink", marginLeft: 'auto' }}
+                                    sx={{
+                                        color: "pink", marginLeft: 'auto',
+                                        ':hover': {
+                                            bgcolor: 'purple',
+                                            color: 'black',
+                                        },
+                                    }}
                                 >
                                     {row.name}
                                 </Button>
                             </Grid>
+
                             <Menu
                                 id="equip-menu"
                                 anchorEl={anchorElEquip}
@@ -291,70 +318,84 @@ function CharacterUi() {
                                     }
                                 }}
                             >
-                                <MenuItem
-                                    onClick={handleCloseEquip}>
-                                    <Button sx={{ color: "white" }}>Unequip</Button>
-                                </MenuItem>
+                                {equipments[equipMenuIdx].name === "NOTHING" ?
+                                    <MenuItem
+                                        onClick={handleEquip}
+                                    >
+                                        <Button sx={{ color: "white" }}>Equip</Button>
+                                    </MenuItem> :
+                                    <MenuItem
+                                        onClick={handleUnequip}
+                                    >
+                                        <Button sx={{ color: "white" }}>Unequip</Button>
+                                    </MenuItem>
+                                }
                                 <MenuItem>
                                     <Info />
                                 </MenuItem>
                             </Menu>
-
-
-
                         </Grid>
                     ))}
-
                 </Box>
 
                 <Box minWidth="200px" width="25vw" m={1}>
                     <Typography variant="h6">&nbsp;INVENTORY</Typography>
                     <Grid container height="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
-                        {inventoryRows.map((row, ability) => (
-                            <Grid container>
-                                <Grid item sm={11}>
-                                    <Button
-                                        id="item-button"
-                                        aria-controls={openItem ? 'item-menu' : undefined}
-                                        aria-haspopup="true"
-                                        aria-expanded={openItem ? 'true' : undefined}
-                                        onClick={handleClickItem}
-                                        sx={{ color: "pink" }}
+                        {inventoryRows.map((row, idx) => (
+                            row.stat > 0 ?
+                                <Grid container key={row.ability}>
+                                    <Grid item sm={11}>
+                                        <Button
+                                            aria-controls={openItem ? 'item-menu' : undefined}
+                                            aria-haspopup="true"
+                                            aria-expanded={openItem ? 'true' : undefined}
+                                            onClick={(e) => handleClickItem(e, idx)}
+                                            sx={{
+                                                color: "pink",
+                                                ':hover': {
+                                                    bgcolor: 'purple',
+                                                    color: 'black',
+                                                },
+                                            }}
+                                        >
+                                            {row.ability}
+                                        </Button>
+                                    </Grid>
+                                    <Menu
+                                        id="item-menu"
+                                        anchorEl={anchorElItem}
+                                        open={openItem}
+                                        onClose={handleCloseItem}
+                                        MenuListProps={{
+                                            'aria-labelledby': 'item-button',
+                                        }}
+                                        PaperProps={{
+                                            sx: {
+                                                background: "#45103E", color: "white",
+                                                border: "1px", borderColor: "purple"
+                                            }
+                                        }}
                                     >
-                                        {row.ability}:
-                                    </Button>
+                                        <MenuItem
+                                            onClick={handleUseItem}
+                                        >
+                                            <Button
+                                                sx={{ color: "white" }}
+                                            >Use</Button>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <Info />
+                                        </MenuItem>
+                                        <MenuItem
+                                            onClick={handleUseItem}
+                                        >
+                                            <Button sx={{ color: "white" }}>Destroy</Button>
+                                        </MenuItem>
+                                    </Menu>
+
+                                    <Grid item sm={1} textAlign="right"> {row.stat}</Grid>
                                 </Grid>
-                                <Menu
-                                    id="item-menu"
-                                    anchorEl={anchorElItem}
-                                    open={openItem}
-                                    onClose={handleCloseItem}
-                                    MenuListProps={{
-                                        'aria-labelledby': 'item-button',
-                                    }}
-                                    PaperProps={{
-                                        sx: {
-                                            background: "#45103E", color: "white",
-                                            border: "1px", borderColor: "purple"
-                                        }
-                                    }}
-                                >
-                                    <MenuItem
-                                        onClick={handleCloseItem}>
-                                        <Button sx={{ color: "white" }}>Use</Button>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <Info />
-                                    </MenuItem>
-                                    <MenuItem
-                                        onClick={handleCloseItem}>
-                                        <Button sx={{ color: "white" }}>Destroy</Button>
-                                    </MenuItem>
-                                </Menu>
-
-                                <Grid item sm={1} textAlign="right"> {row.stat}</Grid>
-                            </Grid>
-
+                                : <div></div>
                         ))}
 
                     </Grid>
