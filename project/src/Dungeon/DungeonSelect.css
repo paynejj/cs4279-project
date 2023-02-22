@@ -1,0 +1,26 @@
+.dungeon-select-body {
+    height: 100%;
+}
+.dungeon-select {
+    height: 50%; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+}
+
+.dungeon-select-card {
+    color: purple;
+    width: 100%;
+    text-decoration: none;
+    display:block;
+    font-size: xx-large;
+    text-align: center;
+    
+}
+
+.dungeon-select-card:hover {
+    background-color: purple;
+    color: black;
+    
+}
