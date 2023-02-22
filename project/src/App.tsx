@@ -7,6 +7,7 @@ import SideBar from "./SideBar/SideBarUI";
 import Shop from "./Hometown/Shop";
 import Rest from "./Hometown/Rest";
 import Quest from "./Hometown/Quest";
+import DungeonSelect from "./Dungeon/DungeonSelect";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/character" element={<CharacterUi />} />
+            <Route path="/dungeon-select" element={<DungeonSelect/>}/>
             <Route path="/dungeon" element={<DungeonUI />} />
             <Route path="/hometown" element={<Hometown />} />
             <Route path="/shop" element={<Shop />} />
