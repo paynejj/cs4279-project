@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Grid, Box, Button, Typography, Modal } from '@mui/material';
 
-
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -32,7 +31,11 @@ export default function SpellBookModal() {
     return (
         <div>
             <Button
-                sx={{ color: "pink", textAlign: "left" }}
+                sx={{ color: "pink", textAlign: "left",
+                ':hover': {
+                    bgcolor: 'purple',
+                    color: 'black',
+                },}}
                 onClick={handleOpen}
                 style={{
                     maxWidth: '60px', maxHeight: '110px',
@@ -56,9 +59,26 @@ export default function SpellBookModal() {
                         </Typography>
                     </Box>
 
-
-                    <Box sx={{}}>
-                        <Grid container sx={{ mt: 2 }}>
+                    <Box sx={{overflowY:'auto'}}>
+                        <Grid container sx={{ mt: 2, maxHeight: "300px" }}>
+                            <Grid item xs={12}>
+                                <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Fireball</Typography>
+                                <Typography sx={{ fontFamily: 'sans-serif' }}>Fireball burns your enemies!</Typography>
+                                <Typography sx={{ fontFamily: 'sans-serif' }}>
+                                    Level: 10; Intelligence: 8
+                                    <br />
+                                    MP: 7; Damage: 8 - 14
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} sx={{ mt: 1 }}>
+                                <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Teleport</Typography>
+                                <Typography sx={{ fontFamily: 'sans-serif' }}>Teleport back to the Hometown</Typography>
+                                <Typography sx={{ fontFamily: 'sans-serif' }}>
+                                    Level: 12; Intelligence: 13
+                                    <br />
+                                    MP: 15; Damage: N/A
+                                </Typography>
+                            </Grid>
                             <Grid item xs={12}>
                                 <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Fireball</Typography>
                                 <Typography sx={{ fontFamily: 'sans-serif' }}>Fireball burns your enemies!</Typography>
@@ -80,7 +100,6 @@ export default function SpellBookModal() {
                         </Grid>
 
                     </Box>
-
                 </Box>
             </Modal>
         </div>
