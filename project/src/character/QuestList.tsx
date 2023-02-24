@@ -14,6 +14,31 @@ const style = {
     p: 4,
 };
 
+function createQuest(name = '', description = '') {
+    return { name, description }
+}
+
+const questRow = [
+    createQuest(
+        'Get Some French Fries',
+        `You may be wondering what the quest is about... welllllll it is nott about anything really that is worth mentioning. \
+        This is what the quest is about:\nGo get some french fries from \n BurgerQueen.\n`
+    ),
+    createQuest(
+        'Look under the table',
+        'Just get your knees down there mate...'
+    ),
+    createQuest(
+        'One Bite Big Mac',
+        'As title.'
+    ),
+    createQuest(
+        'Stick Your Head OUT',
+        'Stick your head out of the window in the basement. As simple as it is.'
+    ),
+]
+
+
 const spellASCII = `
   /////|
  | Q | |
