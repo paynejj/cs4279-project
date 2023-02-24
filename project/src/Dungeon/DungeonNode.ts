@@ -23,7 +23,7 @@ export class DTunnel implements DungeonNode {
     constructor() {
         this.treasure = undefined
         this.enemy = undefined
-        this.color = "pink"
+        this.color = "purple"
         this.isVoid = false
     }
 

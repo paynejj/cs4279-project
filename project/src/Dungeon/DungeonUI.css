@@ -20,10 +20,12 @@
 }
 
 .dungeon-map {
+    box-sizing: border-box;
+    margin: auto;
     height:fit-content;
     width: fit-content;
     aspect-ratio: 1;
-    outline: pink solid thick;
+    outline: purple solid thick;
     flex-grow: 1;
     display: grid;
     grid-template: repeat(5, auto) / repeat(5, auto);

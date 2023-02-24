@@ -1,26 +1,61 @@
-.dungeon-select-body {
-    height: 100%;
-}
 .dungeon-select {
-    height: 50%; 
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
+    height: 90%;
+    display:flex;
+    flex-direction: column;
 }
 
-.dungeon-select-card {
-    color: purple;
+.difficulty {
+    all: unset;
+    box-sizing: border-box; 
     width: 100%;
-    text-decoration: none;
-    display:block;
+    color: purple;
     font-size: xx-large;
     text-align: center;
-    
+    border: purple solid 2px;
+    margin-top: 2px;
 }
 
-.dungeon-select-card:hover {
+.difficulty:hover {
     background-color: purple;
     color: black;
-    
+}
+
+@keyframes levels {
+    0% {
+        transform: scaleY(0)
+    }
+
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+.levels {
+    display: flex;
+    flex-direction: column;
+    transform-origin: center top;
+    animation: levels 1s cubic-bezier(0, 1, 0, 1);
+    overflow: auto;
+    flex-grow: 1;
+}
+.active {
+    background-color: purple;
+    color:black;
+}
+.levels::-webkit-scrollbar {
+    display:none;
+}
+
+.level {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: x-large;
+    text-align: center;
+    color: purple;
+}
+
+.level:hover {
+    background-color: purple;
+    color: black;
 }
