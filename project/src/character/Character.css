@@ -2,3 +2,12 @@
 .element { -ms-overflow-style: none; }
 .element { overflow: -moz-scrollbars-none; }
 
+uiButton:hover {
+    margin: auto;
+    background-color: purple;
+    color: black;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
