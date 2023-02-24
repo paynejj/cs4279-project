@@ -59,7 +59,7 @@ export default function QuestListModal() {
         for (let i = 0; i < questRow.length; ++i) {
             let element = document.getElementById("quest" + questRow[i].name);
             if (element !== null) {
-                if (questRow[i].name != id) {
+                if (questRow[i].name !== id) {
                     element.style.color = "pink";
                     element.style.backgroundColor = "black";
                 } else {
@@ -69,11 +69,7 @@ export default function QuestListModal() {
                 }
 
             }
-
-
         }
-
-
 
     }
 
@@ -112,7 +108,7 @@ export default function QuestListModal() {
                         <Grid item sx={{ mt: 2, height: '100%' }} xs={12}>
 
                             <Grid container columns={12} sx={{ height: '100%' }}>
-                                <Grid item xs={4} columns={12} sx={{ height: '100%', overflowY: 'auto' }}>
+                                <Grid item xs={4} columns={12} sx={{ width: '90%', height: '100%', overflowY: 'auto' }}>
                                     {questRow.map((row, idx) => (
                                         <Grid item xs={12} key={row.name}>
                                             <Typography
@@ -136,7 +132,7 @@ export default function QuestListModal() {
                                         </Grid>
                                     ))}
                                 </Grid>
-                                <Grid item xs={7} sx={{ height: '100%', overflowY: 'auto' }}>
+                                <Grid item xs={7.5} sx={{ marginLeft: "10px", height: '100%', overflowY: 'auto' }}>
                                     {(questDescription.split(/\n/)).map((row, idx) => (
                                         <Typography
                                             key={idx}

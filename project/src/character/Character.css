@@ -7,3 +7,7 @@ uiButton:hover {
     background-color: purple;
     color: black;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
