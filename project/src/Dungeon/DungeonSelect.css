@@ -1,18 +1,18 @@
 .dungeon-select {
     height: 90%;
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
 .difficulty {
     all: unset;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     width: 100%;
     color: purple;
     font-size: xx-large;
     text-align: center;
     border: purple solid 2px;
-    margin-top: 2px;
+    margin-bottom: -2px;
 }
 
 .difficulty:hover {
@@ -38,12 +38,14 @@
     overflow: auto;
     flex-grow: 1;
 }
+
+.levels::-webkit-scrollbar {
+    display: none;
+}
+
 .active {
     background-color: purple;
-    color:black;
-}
-.levels::-webkit-scrollbar {
-    display:none;
+    color: black;
 }
 
 .level {
