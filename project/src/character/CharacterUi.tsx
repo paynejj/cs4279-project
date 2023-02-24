@@ -1,5 +1,7 @@
 import React from 'react';
 import { Grid, Tooltip, Typography, Box, Menu, MenuItem, Button } from '@mui/material';
+import SortIcon from '@mui/icons-material/Sort';
+import ShieldIcon from '@mui/icons-material/Shield';
 import Info from './Info';
 import SpellBook from './SpellBook';
 import QuestList from './QuestList';
@@ -9,101 +11,56 @@ function createStat(ability = '', stat = 0) {
     return { ability, stat }
 }
 
+function createItem(name = '', stat = 0) {
+    return { name, stat }
+}
+
 function createEquipment(part = '', name = '') {
     return { part, name }
 }
 
+let equipInventoryRows = [
+    createEquipment(
+        'Helmet',
+        'Bike Helmet for 12',
+    ),
+    createEquipment(
+        'Chestplate',
+        'Vandy Tshirt',
+    ),
+    createEquipment(
+        'Boots',
+        'Airforce 2',
+    ),
+    createEquipment(
+        'Weapon',
+        'Apple Pencil 1',
+    ),
+]
+
 let inventoryRows = [
-    createStat(
+    createItem(
         'French Fries',
         1
     ),
-    createStat(
+    createItem(
         'Whopper',
         5
     ),
-    createStat(
-        'Big Mac',
-        87
-    ),
-    createStat(
-        'Stick',
-        3
-    ),
-    createStat(
-        'Rock',
-        2
-    ),
-    createStat(
-        'Needles',
-        4
-    ),
-    createStat(
-        'German Fries',
-        20
-    ),
-    createStat(
+    createItem(
         'Chips Ahoy Crunchy',
-        5
+        1
     ),
-    createStat(
+    createItem(
         'Fillet-O-Fish',
         87
     ),
-    createStat(
+    createItem(
         'McNuggets',
         3
     ),
-    createStat(
+    createItem(
         'British Muffin',
-        2
-    ),
-    createStat(
-        'CHEETOS Crunchy FLAMIN` HOT',
-        4
-    ),
-    createStat(
-        'British Fries',
-        20
-    ),
-    createStat(
-        'Dutch Fries',
-        5
-    ),
-    createStat(
-        'Italian Fries',
-        87
-    ),
-    createStat(
-        'Spanish Fries',
-        3
-    ),
-    createStat(
-        'Italian Meatball',
-        2
-    ),
-    createStat(
-        'Hawaiian Pizza',
-        4
-    ),
-    createStat(
-        'Shaq-a-Roni',
-        20
-    ),
-    createStat(
-        'MAC Lipstick',
-        5
-    ),
-    createStat(
-        'Chanel Lipstick',
-        87
-    ),
-    createStat(
-        'YSL Lipstick',
-        3
-    ),
-    createStat(
-        'Dior Lipstick',
         2
     ),
 ]
@@ -196,15 +153,22 @@ let statDescription = `This is the stat description.
 This will tell you about what each of the ability does
 and what each of them affects`;
 
+let sortDescription = `Sort the inventory by ascending alphabetical order`
+
 
 function CharacterUi() {
     const [equipments, setEquipments] = React.useState(equipRows);
-    const [inventories, setInvertories] = React.useState(inventoryRows);
+    const [inventory, setInvertories] = React.useState(inventoryRows);
+    const [equipInventory, setEquipInvertories] = React.useState(equipInventoryRows);
     const [anchorElItem, setAnchorElItem] = React.useState<null | HTMLElement>(null);
     const [anchorElEquip, setAnchorElEquip] = React.useState<null | HTMLElement>(null);
+    const [anchorElEquipItem, setAnchorElEquipItem] = React.useState<null | HTMLElement>(null);
     const [itemMenuIdx, setItemMenuIdx] = React.useState(0);
+    const [equipInventoryMenuIdx, setEquipInventoryMenuIdx] = React.useState(0);
     const [equipMenuIdx, setEquipMenuIdx] = React.useState(0);
+    const [inventoryCount, setInventoryCount] = React.useState(equipInventory.length + inventory.length);
     const openItem = Boolean(anchorElItem);
+    const openEquipItem = Boolean(anchorElEquipItem);
     const openEquip = Boolean(anchorElEquip);
 
     const handleClickItem = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
@@ -216,22 +180,119 @@ function CharacterUi() {
     };
 
     const handleUseItem = () => {
-        let newInventories = inventories;
-        newInventories[itemMenuIdx].stat -= 1;
-        setInvertories(newInventories);
+        let newInventory = inventory;
+        newInventory[itemMenuIdx].stat -= 1;
+        if (newInventory[itemMenuIdx].stat === 0) {
+            setInventoryCount(inventoryCount - 1);
+        }
+        setInvertories(newInventory);
         setAnchorElItem(null);
+    };
+
+    const handleClickEquipItem = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
+        setEquipInventoryMenuIdx(idx);
+        setAnchorElEquipItem(event.currentTarget);
+    };
+    const handleCloseEquipItem = () => {
+        setAnchorElEquipItem(null);
+    };
+
+    const handleEquipItem = () => {
+        let newEquipments = equipments;
+        let newEquipInventory = equipInventory;
+
+        let num = -1;
+
+        if(equipInventory[equipInventoryMenuIdx].part === "Helmet"){
+            num = 0;
+        }
+        if(equipInventory[equipInventoryMenuIdx].part === "Chestplate"){
+            num = 1;
+        }
+        if(equipInventory[equipInventoryMenuIdx].part === "Boots"){
+            num = 2;
+        }
+        if(equipInventory[equipInventoryMenuIdx].part === "Chausses"){
+            num = 3;
+        }
+        if(equipInventory[equipInventoryMenuIdx].part === "Weapon"){
+            num = 4;
+        }
+        if(equipInventory[equipInventoryMenuIdx].part === "Ring1"){
+            num = 5;
+        }
+        if(equipInventory[equipInventoryMenuIdx].part === "Ring2"){
+            num = 6;
+        }
+        if(equipInventory[equipInventoryMenuIdx].part === "Amulet"){
+            num = 7;
+        }
+
+        console.log(num);
+        let temp = equipments[num].name;
+        equipments[num].name = equipInventory[equipInventoryMenuIdx].name;
+        equipInventory[equipInventoryMenuIdx].name = temp;
+
+        if(equipInventory[equipInventoryMenuIdx].name === "NOTHING"){
+            newEquipInventory.splice(equipInventoryMenuIdx, 1);
+            setInventoryCount(inventoryCount - 1);
+        }
+        
+        setEquipments(newEquipments);
+        setEquipInvertories(newEquipInventory);
+        setAnchorElEquipItem(null);
+    };
+
+    const handleDestroyEquipment = () => {
+        let newEquipInventory = equipInventory;
+        newEquipInventory.splice(equipInventoryMenuIdx, 1);
+        console.log(newEquipInventory);
+        setEquipInvertories(newEquipInventory);
+        setInventoryCount(inventoryCount - 1);
+        setAnchorElEquipItem(null);
     };
 
     const handleUnequip = () => {
         let newEquipments = equipments;
+        let newEquipInventory = equipInventory;
+        newEquipInventory.unshift(createEquipment(
+            equipments[equipMenuIdx].part,
+            equipments[equipMenuIdx].name,
+        ));
         newEquipments[equipMenuIdx].name = "NOTHING";
         setEquipments(newEquipments);
+        setEquipInvertories(newEquipInventory);
+        setInventoryCount(inventoryCount + 1);
         setAnchorElEquip(null);
     };
 
-    const handleEquip = () => {
-        
+    const alphabeticalSort = (a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+
+        return 0;
     };
+
+    const handleSort = () => {
+        let newInventory = inventory;
+        let newEquipInventory = equipInventory;
+        newInventory.sort(alphabeticalSort);
+        newEquipInventory.sort(alphabeticalSort);
+        setEquipInvertories(newEquipInventory);
+        setInvertories(newInventory);
+        if (itemMenuIdx === -1) {
+            setItemMenuIdx(0);
+        } else {
+            setItemMenuIdx(-1);
+        }
+    };
+
 
     const handleClickEquip = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
         setEquipMenuIdx(idx);
@@ -280,7 +341,6 @@ function CharacterUi() {
                 <Box sx={{ border: 1, minWidth: "180px", width: "18vw", borderColor: 'secondary.main', m: 1 }}>
                     <Typography variant="h6">Equipments</Typography>
                     {equipRows.map((row, idx) => (
-
                         <Grid container key={row.part}>
                             <Grid item xs={4}> {row.part}: </Grid>
                             <Grid item xs={8} textAlign="center">
@@ -302,7 +362,8 @@ function CharacterUi() {
                                     {row.name}
                                 </Button>
                             </Grid>
-
+                            {equipments[equipMenuIdx].name === "NOTHING" ?
+                                    <div></div> :
                             <Menu
                                 id="equip-menu"
                                 anchorEl={anchorElEquip}
@@ -318,32 +379,97 @@ function CharacterUi() {
                                     }
                                 }}
                             >
-                                {equipments[equipMenuIdx].name === "NOTHING" ?
-                                    <MenuItem
-                                        onClick={handleEquip}
-                                    >
-                                        <Button sx={{ color: "white" }}>Equip</Button>
-                                    </MenuItem> :
+
                                     <MenuItem
                                         onClick={handleUnequip}
                                     >
                                         <Button sx={{ color: "white" }}>Unequip</Button>
                                     </MenuItem>
-                                }
                                 <MenuItem>
                                     <Info />
                                 </MenuItem>
                             </Menu>
+                            }
                         </Grid>
                     ))}
                 </Box>
 
                 <Box minWidth="200px" width="25vw" m={1}>
-                    <Typography variant="h6">&nbsp;INVENTORY</Typography>
+                    <Grid container>
+                        <Grid item xs={6}>
+                            <Typography variant="h6">&nbsp;INVENTORY</Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <Typography >{inventoryCount}/20</Typography>
+                        </Grid>
+                        <Grid item xs={0.5} >
+                            <Tooltip title={sortDescription} disableInteractive>
+                                <Button color="inherit" size='small' onClick={handleSort}><SortIcon /></Button>
+                            </Tooltip>
+                        </Grid>
+
+
+                    </ Grid>
+
+
                     <Grid container height="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
+                        <Grid item>
+                            {equipInventoryRows.map((row, idx) => (
+                                <Grid container key={row.name}>
+                                    <Grid item sm={12}>
+                                        <Button
+                                            aria-controls={openEquipItem ? 'item-menu' : undefined}
+                                            aria-haspopup="true"
+                                            aria-expanded={openEquipItem ? 'true' : undefined}
+                                            onClick={(e) => handleClickEquipItem(e, idx)}
+                                            sx={{
+                                                color: "pink",
+                                                ':hover': {
+                                                    bgcolor: 'purple',
+                                                    color: 'black',
+                                                },
+                                            }}
+                                        >
+                                            <ShieldIcon />{row.name}
+                                        </Button>
+                                    </Grid>
+                                    <Menu
+                                        id="equipItem-menu"
+                                        anchorEl={anchorElEquipItem}
+                                        open={openEquipItem}
+                                        onClose={handleCloseEquipItem}
+                                        MenuListProps={{
+                                            'aria-labelledby': 'euipItem-button',
+                                        }}
+                                        PaperProps={{
+                                            sx: {
+                                                background: "#45103E", color: "white",
+                                                border: "1px", borderColor: "purple"
+                                            }
+                                        }}
+                                    >
+                                        <MenuItem
+                                            onClick={handleEquipItem}
+                                        >
+                                            <Button
+                                                sx={{ color: "white" }}
+                                            >Equip</Button>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <Info />
+                                        </MenuItem>
+                                        <MenuItem
+                                            onClick={handleDestroyEquipment}
+                                        >
+                                            <Button sx={{ color: "white" }}>Destroy</Button>
+                                        </MenuItem>
+                                    </Menu>
+                                </Grid>
+                            ))}
+                        </Grid>
                         {inventoryRows.map((row, idx) => (
                             row.stat > 0 ?
-                                <Grid container key={row.ability}>
+                                <Grid container key={row.name}>
                                     <Grid item sm={11}>
                                         <Button
                                             aria-controls={openItem ? 'item-menu' : undefined}
@@ -358,7 +484,7 @@ function CharacterUi() {
                                                 },
                                             }}
                                         >
-                                            {row.ability}
+                                            {row.name}
                                         </Button>
                                     </Grid>
                                     <Menu
