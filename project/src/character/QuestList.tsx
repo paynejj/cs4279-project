@@ -8,8 +8,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: '50%',
     height: '50%',
-    width: '50%',
-    height: '50%',
     bgcolor: 'black',
     border: '2px solid purple',
     boxShadow: 24,
@@ -51,34 +49,8 @@ const questRow = [
 ]
 
 
-function createQuest(name = '', description = '') {
-    return { name, description }
-}
-
-const questRow = [
-    createQuest(
-        'Get Some French Fries',
-        `You may be wondering what the quest is about... welllllll it is nott about anything really that is worth mentioning. \
-        This is what the quest is about:\nGo get some french fries from \n BurgerQueen.\n`
-    ),
-    createQuest(
-        'Look under the table',
-        'Just get your knees down there mate...'
-    ),
-    createQuest(
-        'One Bite Big Mac',
-        'As title.'
-    ),
-    createQuest(
-        'Stick Your Head OUT',
-        'Stick your head out of the window in the basement. As simple as it is.'
-    ),
-]
-
-
 export default function QuestListModal() {
     const [open, setOpen] = React.useState(false);
-    const [questDescription, setQuestDescription] = React.useState(questRow[0].description);
     const [questDescription, setQuestDescription] = React.useState(questRow[0].description);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -109,11 +81,6 @@ export default function QuestListModal() {
                     bgcolor: 'purple',
                     color: 'black',
                 }, }}
-                sx={{ color: "pink", textAlign: "left",
-                ':hover': {
-                    bgcolor: 'purple',
-                    color: 'black',
-                }, }}
                 onClick={handleOpen}
                 style={{
                     maxWidth: '60px', maxHeight: '110px',
@@ -130,7 +97,6 @@ export default function QuestListModal() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Grid container sx={{ height: '80%' }}>
                     <Grid container sx={{ height: '80%' }}>
                         <Grid item xs={12}>
                             <Typography id="modal-modal-title" variant="h6" component="h2"
