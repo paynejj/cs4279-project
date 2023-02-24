@@ -53,7 +53,7 @@ let inventoryRows = [
     ),
     createItem(
         'Fillet-O-Fish',
-        87
+        3
     ),
     createItem(
         'McNuggets',
@@ -153,7 +153,7 @@ let statDescription = `This is the stat description.
 This will tell you about what each of the ability does
 and what each of them affects`;
 
-let sortDescription = `Sort the inventory by ascending alphabetical order`
+let sortDescription = `Sort the inventory by ascending alphabetical order`;
 
 
 function CharacterUi() {
@@ -203,41 +203,40 @@ function CharacterUi() {
 
         let num = -1;
 
-        if(equipInventory[equipInventoryMenuIdx].part === "Helmet"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Helmet") {
             num = 0;
         }
-        if(equipInventory[equipInventoryMenuIdx].part === "Chestplate"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Chestplate") {
             num = 1;
         }
-        if(equipInventory[equipInventoryMenuIdx].part === "Boots"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Boots") {
             num = 2;
         }
-        if(equipInventory[equipInventoryMenuIdx].part === "Chausses"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Chausses") {
             num = 3;
         }
-        if(equipInventory[equipInventoryMenuIdx].part === "Weapon"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Weapon") {
             num = 4;
         }
-        if(equipInventory[equipInventoryMenuIdx].part === "Ring1"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Ring1") {
             num = 5;
         }
-        if(equipInventory[equipInventoryMenuIdx].part === "Ring2"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Ring2") {
             num = 6;
         }
-        if(equipInventory[equipInventoryMenuIdx].part === "Amulet"){
+        if (equipInventory[equipInventoryMenuIdx].part === "Amulet") {
             num = 7;
         }
 
-        console.log(num);
         let temp = equipments[num].name;
         equipments[num].name = equipInventory[equipInventoryMenuIdx].name;
         equipInventory[equipInventoryMenuIdx].name = temp;
 
-        if(equipInventory[equipInventoryMenuIdx].name === "NOTHING"){
+        if (equipInventory[equipInventoryMenuIdx].name === "NOTHING") {
             newEquipInventory.splice(equipInventoryMenuIdx, 1);
             setInventoryCount(inventoryCount - 1);
         }
-        
+
         setEquipments(newEquipments);
         setEquipInvertories(newEquipInventory);
         setAnchorElEquipItem(null);
@@ -357,38 +356,33 @@ function CharacterUi() {
                                             bgcolor: 'purple',
                                             color: 'black',
                                         },
-                                    }}
-                                >
+                                    }}>
                                     {row.name}
                                 </Button>
                             </Grid>
                             {equipments[equipMenuIdx].name === "NOTHING" ?
-                                    <div></div> :
-                            <Menu
-                                id="equip-menu"
-                                anchorEl={anchorElEquip}
-                                open={openEquip}
-                                onClose={handleCloseEquip}
-                                MenuListProps={{
-                                    'aria-labelledby': 'equip-button',
-                                }}
-                                PaperProps={{
-                                    sx: {
-                                        background: "#45103E", color: "white",
-                                        border: "1px", borderColor: "purple"
-                                    }
-                                }}
-                            >
-
-                                    <MenuItem
-                                        onClick={handleUnequip}
-                                    >
+                                <div></div> :
+                                <Menu
+                                    id="equip-menu"
+                                    anchorEl={anchorElEquip}
+                                    open={openEquip}
+                                    onClose={handleCloseEquip}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'equip-button',
+                                    }}
+                                    PaperProps={{
+                                        sx: {
+                                            background: "#45103E", color: "white",
+                                            border: "1px", borderColor: "purple"
+                                        }
+                                    }}>
+                                    <MenuItem onClick={handleUnequip}>
                                         <Button sx={{ color: "white" }}>Unequip</Button>
                                     </MenuItem>
-                                <MenuItem>
-                                    <Info />
-                                </MenuItem>
-                            </Menu>
+                                    <MenuItem>
+                                        <Info />
+                                    </MenuItem>
+                                </Menu>
                             }
                         </Grid>
                     ))}
@@ -396,21 +390,18 @@ function CharacterUi() {
 
                 <Box minWidth="200px" width="25vw" m={1}>
                     <Grid container>
-                        <Grid item xs={6}>
+                        <Grid item xs={8}>
                             <Typography variant="h6">&nbsp;INVENTORY</Typography>
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={2}>
                             <Typography >{inventoryCount}/20</Typography>
                         </Grid>
-                        <Grid item xs={0.5} >
+                        <Grid item xs={1} >
                             <Tooltip title={sortDescription} disableInteractive>
                                 <Button color="inherit" size='small' onClick={handleSort}><SortIcon /></Button>
                             </Tooltip>
                         </Grid>
-
-
                     </ Grid>
-
 
                     <Grid container height="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
                         <Grid item>
@@ -428,8 +419,7 @@ function CharacterUi() {
                                                     bgcolor: 'purple',
                                                     color: 'black',
                                                 },
-                                            }}
-                                        >
+                                            }}>
                                             <ShieldIcon />{row.name}
                                         </Button>
                                     </Grid>
@@ -446,21 +436,14 @@ function CharacterUi() {
                                                 background: "#45103E", color: "white",
                                                 border: "1px", borderColor: "purple"
                                             }
-                                        }}
-                                    >
-                                        <MenuItem
-                                            onClick={handleEquipItem}
-                                        >
-                                            <Button
-                                                sx={{ color: "white" }}
-                                            >Equip</Button>
+                                        }}>
+                                        <MenuItem onClick={handleEquipItem}>
+                                            <Button sx={{ color: "white" }}>Equip</Button>
                                         </MenuItem>
                                         <MenuItem>
                                             <Info />
                                         </MenuItem>
-                                        <MenuItem
-                                            onClick={handleDestroyEquipment}
-                                        >
+                                        <MenuItem onClick={handleDestroyEquipment}>
                                             <Button sx={{ color: "white" }}>Destroy</Button>
                                         </MenuItem>
                                     </Menu>
@@ -482,8 +465,7 @@ function CharacterUi() {
                                                     bgcolor: 'purple',
                                                     color: 'black',
                                                 },
-                                            }}
-                                        >
+                                            }}>
                                             {row.name}
                                         </Button>
                                     </Grid>
@@ -500,25 +482,17 @@ function CharacterUi() {
                                                 background: "#45103E", color: "white",
                                                 border: "1px", borderColor: "purple"
                                             }
-                                        }}
-                                    >
-                                        <MenuItem
-                                            onClick={handleUseItem}
-                                        >
-                                            <Button
-                                                sx={{ color: "white" }}
-                                            >Use</Button>
+                                        }}>
+                                        <MenuItem onClick={handleUseItem}>
+                                            <Button sx={{ color: "white" }}>Use</Button>
                                         </MenuItem>
                                         <MenuItem>
                                             <Info />
                                         </MenuItem>
-                                        <MenuItem
-                                            onClick={handleUseItem}
-                                        >
+                                        <MenuItem onClick={handleUseItem}>
                                             <Button sx={{ color: "white" }}>Destroy</Button>
                                         </MenuItem>
                                     </Menu>
-
                                     <Grid item sm={1} textAlign="right"> {row.stat}</Grid>
                                 </Grid>
                                 : <div></div>
