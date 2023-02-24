@@ -19,6 +19,7 @@ function createEquipment(part = '', name = '') {
     return { part, name }
 }
 
+//Dummy Equipments in the inventory
 let equipInventoryRows = [
     createEquipment(
         'Helmet',
@@ -38,6 +39,7 @@ let equipInventoryRows = [
     ),
 ]
 
+//Dummy Items in the inventory
 let inventoryRows = [
     createItem(
         'French Fries',
@@ -53,7 +55,7 @@ let inventoryRows = [
     ),
     createItem(
         'Fillet-O-Fish',
-        3
+        87
     ),
     createItem(
         'McNuggets',
@@ -65,6 +67,7 @@ let inventoryRows = [
     ),
 ]
 
+//Dummy equipments currently wearing
 let equipRows = [
     createEquipment(
         'Helmet',
@@ -100,6 +103,7 @@ let equipRows = [
     ),
 ]
 
+// Dummy ability stats
 let abilityStatRows = [
     createStat(
         'Strength',
@@ -127,6 +131,7 @@ let abilityStatRows = [
     ),
 ]
 
+//Dummy general stats
 let generalStatRows = [
     createStat(
         'Level',
@@ -149,12 +154,14 @@ let generalStatRows = [
         10,
     ),
 ]
+
+//Description of stat for stat's tooltip
 let statDescription = `This is the stat description.
 This will tell you about what each of the ability does
 and what each of them affects`;
 
-let sortDescription = `Sort the inventory by ascending alphabetical order`;
-
+//Description for the sort button's tooltip
+let sortDescription = `Sort the inventory by ascending alphabetical order`
 
 function CharacterUi() {
     const [equipments, setEquipments] = React.useState(equipRows);
@@ -171,14 +178,18 @@ function CharacterUi() {
     const openEquipItem = Boolean(anchorElEquipItem);
     const openEquip = Boolean(anchorElEquip);
 
+    // open a dropdown menu when clicking an item in the inventory
     const handleClickItem = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
         setItemMenuIdx(idx);
         setAnchorElItem(event.currentTarget);
     };
+
+    // close the dropdown menu of an item when click outside ofthe menu or clicked one of the menuitems
     const handleCloseItem = () => {
         setAnchorElItem(null);
     };
 
+    // handle "USE" clicked in an item's menu
     const handleUseItem = () => {
         let newInventory = inventory;
         newInventory[itemMenuIdx].stat -= 1;
@@ -189,42 +200,45 @@ function CharacterUi() {
         setAnchorElItem(null);
     };
 
+    // open the dropdown menu for an equipment in the inventory
     const handleClickEquipItem = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
         setEquipInventoryMenuIdx(idx);
         setAnchorElEquipItem(event.currentTarget);
     };
+
+    // close the dropdown menu for an equipment in the inventory
     const handleCloseEquipItem = () => {
         setAnchorElEquipItem(null);
     };
 
+    // handle "EQUIP" clicked in an equipment in the inventory
     const handleEquipItem = () => {
         let newEquipments = equipments;
         let newEquipInventory = equipInventory;
-
         let num = -1;
 
-        if (equipInventory[equipInventoryMenuIdx].part === "Helmet") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Helmet"){
             num = 0;
         }
-        if (equipInventory[equipInventoryMenuIdx].part === "Chestplate") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Chestplate"){
             num = 1;
         }
-        if (equipInventory[equipInventoryMenuIdx].part === "Boots") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Boots"){
             num = 2;
         }
-        if (equipInventory[equipInventoryMenuIdx].part === "Chausses") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Chausses"){
             num = 3;
         }
-        if (equipInventory[equipInventoryMenuIdx].part === "Weapon") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Weapon"){
             num = 4;
         }
-        if (equipInventory[equipInventoryMenuIdx].part === "Ring1") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Ring1"){
             num = 5;
         }
-        if (equipInventory[equipInventoryMenuIdx].part === "Ring2") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Ring2"){
             num = 6;
         }
-        if (equipInventory[equipInventoryMenuIdx].part === "Amulet") {
+        if(equipInventory[equipInventoryMenuIdx].part === "Amulet"){
             num = 7;
         }
 
@@ -232,16 +246,17 @@ function CharacterUi() {
         equipments[num].name = equipInventory[equipInventoryMenuIdx].name;
         equipInventory[equipInventoryMenuIdx].name = temp;
 
-        if (equipInventory[equipInventoryMenuIdx].name === "NOTHING") {
+        if(equipInventory[equipInventoryMenuIdx].name === "NOTHING"){
             newEquipInventory.splice(equipInventoryMenuIdx, 1);
             setInventoryCount(inventoryCount - 1);
         }
-
+        
         setEquipments(newEquipments);
         setEquipInvertories(newEquipInventory);
         setAnchorElEquipItem(null);
     };
 
+    // handle "DESTROY" of an equipment in the inventory
     const handleDestroyEquipment = () => {
         let newEquipInventory = equipInventory;
         newEquipInventory.splice(equipInventoryMenuIdx, 1);
@@ -251,6 +266,7 @@ function CharacterUi() {
         setAnchorElEquipItem(null);
     };
 
+    // handle "UNEQUIP" of a currently wearing equipment
     const handleUnequip = () => {
         let newEquipments = equipments;
         let newEquipInventory = equipInventory;
@@ -265,6 +281,7 @@ function CharacterUi() {
         setAnchorElEquip(null);
     };
 
+    // Sort logic by ascending alphabetical order
     const alphabeticalSort = (a, b) => {
         const nameA = a.name.toUpperCase();
         const nameB = b.name.toUpperCase();
@@ -274,10 +291,10 @@ function CharacterUi() {
         if (nameA > nameB) {
             return 1;
         }
-
         return 0;
     };
 
+    // handle sort icon clicked in the inventory
     const handleSort = () => {
         let newInventory = inventory;
         let newEquipInventory = equipInventory;
@@ -292,11 +309,12 @@ function CharacterUi() {
         }
     };
 
-
+    // handle clicking on a currently wearing equipment. It opens a dropdown menu
     const handleClickEquip = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
         setEquipMenuIdx(idx);
         setAnchorElEquip(event.currentTarget);
     };
+    // Close the dropdown menu for a currently wearing equipment
     const handleCloseEquip = () => {
         setAnchorElEquip(null);
     };
@@ -361,28 +379,28 @@ function CharacterUi() {
                                 </Button>
                             </Grid>
                             {equipments[equipMenuIdx].name === "NOTHING" ?
-                                <div></div> :
-                                <Menu
-                                    id="equip-menu"
-                                    anchorEl={anchorElEquip}
-                                    open={openEquip}
-                                    onClose={handleCloseEquip}
-                                    MenuListProps={{
-                                        'aria-labelledby': 'equip-button',
-                                    }}
-                                    PaperProps={{
-                                        sx: {
-                                            background: "#45103E", color: "white",
-                                            border: "1px", borderColor: "purple"
-                                        }
-                                    }}>
+                                    <div></div> :
+                            <Menu
+                                id="equip-menu"
+                                anchorEl={anchorElEquip}
+                                open={openEquip}
+                                onClose={handleCloseEquip}
+                                MenuListProps={{
+                                    'aria-labelledby': 'equip-button',
+                                }}
+                                PaperProps={{
+                                    sx: {
+                                        background: "#45103E", color: "white",
+                                        border: "1px", borderColor: "purple"
+                                    }
+                                }}>
                                     <MenuItem onClick={handleUnequip}>
                                         <Button sx={{ color: "white" }}>Unequip</Button>
                                     </MenuItem>
-                                    <MenuItem>
-                                        <Info />
-                                    </MenuItem>
-                                </Menu>
+                                <MenuItem>
+                                    <Info />
+                                </MenuItem>
+                            </Menu>
                             }
                         </Grid>
                     ))}
@@ -396,7 +414,7 @@ function CharacterUi() {
                         <Grid item xs={2}>
                             <Typography >{inventoryCount}/20</Typography>
                         </Grid>
-                        <Grid item xs={1} >
+                        <Grid item xs={1}>
                             <Tooltip title={sortDescription} disableInteractive>
                                 <Button color="inherit" size='small' onClick={handleSort}><SortIcon /></Button>
                             </Tooltip>
@@ -438,7 +456,9 @@ function CharacterUi() {
                                             }
                                         }}>
                                         <MenuItem onClick={handleEquipItem}>
-                                            <Button sx={{ color: "white" }}>Equip</Button>
+                                            <Button
+                                                sx={{ color: "white" }}
+                                            >Equip</Button>
                                         </MenuItem>
                                         <MenuItem>
                                             <Info />
@@ -497,16 +517,11 @@ function CharacterUi() {
                                 </Grid>
                                 : <div></div>
                         ))}
-
                     </Grid>
                 </Box>
-
             </Grid>
-
         </>
-
     );
-
 }
 
 export default CharacterUi;
