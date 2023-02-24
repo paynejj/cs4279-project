@@ -4,7 +4,9 @@
     position: relative;
     height: 100%;
 }
+
 .bottom-bar {
+    visibility: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,17 +15,20 @@
 
 .choice-button {
     background-color: purple;
-    color:black;
-    font-size: larger;
+    color: black;
+    font-size: xx-large;
 }
 
-.map {
+.dungeon-map {
+    height:fit-content;
+    width: fit-content;
+    aspect-ratio: 1;
+    outline: pink solid thick;
     flex-grow: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template: repeat(5, auto) / repeat(5, auto);
 }
+
 .dungeon-node {
-    justify-self: stretch;
-    outline: auto;
+    aspect-ratio: 1;
 }

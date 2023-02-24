@@ -1,8 +1,9 @@
 
 img {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   display: flex;
+  justify-content: center;
 }
 .backgroundImage {
   display: flex;
@@ -11,4 +12,19 @@ img {
   background-size: 100% 100%;
   margin-top: -70px;  
   background-repeat:no-repeat; 
+  justify-content: center;
+  height: auto;
 }
+
+.backgroundImage2 {
+  display: flex;
+  background-image: 
+  url('../images/campfire.png');
+  background-size: 100% 120%;
+  margin-top: 70px;  
+  background-repeat:no-repeat; 
+  justify-content: center;
+  height: auto;
+}
+
+
