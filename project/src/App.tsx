@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import CharacterUi from './Character/CharacterUi';
-import DungeonUI from './Dungeon/DungeonUI';
+import DungeonUI from './Dungeon/UI/DungeonUI';
 import Hometown from './Hometown/Hometown';
 import SideBar from "./SideBar/SideBarUI";
 import Shop from "./Hometown/Shop";
 import Rest from "./Hometown/Rest";
 import Quest from "./Hometown/Quest";
-import DungeonSelect from "./Dungeon/DungeonSelect";
+import DungeonSelect from "./Dungeon/UI/DungeonSelect";
 
 function App() {
   return (

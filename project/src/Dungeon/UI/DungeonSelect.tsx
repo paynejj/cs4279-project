@@ -43,8 +43,6 @@ function DungeonSelect() {
                         {new Array(25).fill(undefined).map((_, idx) =>
                             <a className="level" href="/dungeon-select">PlaceHolder{`${idx + 1}`}</a>)}
                     </div>)}
-
-
             </div>
         </>
     )

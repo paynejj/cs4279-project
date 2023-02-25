@@ -11,20 +11,18 @@ export interface DungeonNode {
     treasure: Treasure,
     enemy: Enemy,
     color: string,
-    isVoid: boolean,
+    isVoid?: boolean,
 }
 
 export class DTunnel implements DungeonNode {
     readonly treasure
     readonly enemy
     readonly color
-    readonly isVoid
 
     constructor() {
         this.treasure = undefined
         this.enemy = undefined
         this.color = "purple"
-        this.isVoid = false
     }
 
 }
