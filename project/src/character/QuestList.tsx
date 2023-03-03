@@ -71,17 +71,18 @@ export default function QuestListModal() {
 
             }
         }
-
     }
 
     return (
         <div>
             <Button
-                sx={{ color: "pink", textAlign: "left",
-                ':hover': {
-                    bgcolor: 'purple',
-                    color: 'black',
-                }, }}
+                sx={{
+                    color: "pink", textAlign: "left",
+                    ':hover': {
+                        bgcolor: 'purple',
+                        color: 'black',
+                    },
+                }}
                 onClick={handleOpen}
                 style={{
                     maxWidth: '60px', maxHeight: '110px',
@@ -95,8 +96,7 @@ export default function QuestListModal() {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
+                aria-describedby="modal-modal-description">
                 <Box sx={style}>
                     <Grid container sx={{ height: '80%' }}>
                         <Grid item xs={12}>
@@ -107,7 +107,6 @@ export default function QuestListModal() {
                         </Grid>
 
                         <Grid item sx={{ mt: 2, height: '100%' }} xs={12}>
-
                             <Grid container columns={12} sx={{ height: '100%' }}>
                                 <Grid item xs={4} columns={12} sx={{ width: '90%', height: '100%', overflowY: 'auto' }}>
                                     {questRow.map((row, idx) => (
@@ -126,8 +125,7 @@ export default function QuestListModal() {
                                                         bgcolor: 'purple',
                                                         color: 'black',
                                                     },
-                                                }}
-                                            >
+                                                }}>
                                                 {row.name}
                                             </Typography>
                                         </Grid>
@@ -141,15 +139,11 @@ export default function QuestListModal() {
                                             sx={{ overflowX: 'hidden', }}>
                                             {row}
                                         </Typography>
-
-
                                     ))}
                                 </Grid>
                             </Grid>
-
                         </Grid>
                     </Grid>
-
                 </Box>
             </Modal>
         </div>

@@ -31,11 +31,13 @@ export default function SpellBookModal() {
     return (
         <div>
             <Button
-                sx={{ color: "pink", textAlign: "left",
-                ':hover': {
-                    bgcolor: 'purple',
-                    color: 'black',
-                },}}
+                sx={{
+                    color: "pink", textAlign: "left",
+                    ':hover': {
+                        bgcolor: 'purple',
+                        color: 'black',
+                    },
+                }}
                 onClick={handleOpen}
                 style={{
                     maxWidth: '60px', maxHeight: '110px',
@@ -49,8 +51,7 @@ export default function SpellBookModal() {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
+                aria-describedby="modal-modal-description">
                 <Box sx={style}>
                     <Box sx={{}} m="10">
                         <Typography id="modal-modal-title" variant="h6" component="h2"
@@ -59,7 +60,7 @@ export default function SpellBookModal() {
                         </Typography>
                     </Box>
 
-                    <Box sx={{overflowY:'auto'}}>
+                    <Box sx={{ overflowY: 'auto' }}>
                         <Grid container sx={{ mt: 2, maxHeight: "300px" }}>
                             <Grid item xs={12}>
                                 <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Fireball</Typography>
