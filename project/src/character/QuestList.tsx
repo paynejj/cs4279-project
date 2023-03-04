@@ -50,7 +50,7 @@ export default function QuestListModal() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    function clickQuest(id, idx) {
+    function clickQuest(id: string, idx: number) {
         for (let i = 0; i < questRow.length; ++i) {
             let element = document.getElementById("quest" + questRow[i][0]);
             if (element !== null) {
