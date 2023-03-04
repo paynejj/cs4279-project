@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Grid, Box, Button, Typography, Modal } from '@mui/material';
 
 const style = {
@@ -23,6 +23,16 @@ const spellASCII = `
  '---'
 `;
 
+type Spell = [spellName: string, spellDescription: string,
+    spellStat1: string, spellStat2: string];
+
+const spellRow: Spell[] = [
+    ["Fireball", "Fireball burns your enemies!",
+        "Level: 10; Intelligence: 8", "MP: 7; Damage: 8 - 14"],
+    ["Teleport", "Teleport back to the Hometown",
+        "Level: 12; Intelligence: 13", "MP: 15; Damage: N/A"]
+]
+
 export default function SpellBookModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -46,7 +56,6 @@ export default function SpellBookModal() {
                 }}>
                 <pre>{spellASCII}</pre>
             </Button>
-
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -59,45 +68,25 @@ export default function SpellBookModal() {
                             SPELLBOOK
                         </Typography>
                     </Box>
-
                     <Box sx={{ overflowY: 'auto' }}>
                         <Grid container sx={{ mt: 2, maxHeight: "300px" }}>
-                            <Grid item xs={12}>
-                                <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Fireball</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>Fireball burns your enemies!</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>
-                                    Level: 10; Intelligence: 8
-                                    <br />
-                                    MP: 7; Damage: 8 - 14
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12} sx={{ mt: 1 }}>
-                                <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Teleport</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>Teleport back to the Hometown</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>
-                                    Level: 12; Intelligence: 13
-                                    <br />
-                                    MP: 15; Damage: N/A
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Fireball</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>Fireball burns your enemies!</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>
-                                    Level: 10; Intelligence: 8
-                                    <br />
-                                    MP: 7; Damage: 8 - 14
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12} sx={{ mt: 1 }}>
-                                <Typography sx={{ fontFamily: 'fantasy', fontStyle: 'italic', fontSize: '24px' }}>Teleport</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>Teleport back to the Hometown</Typography>
-                                <Typography sx={{ fontFamily: 'sans-serif' }}>
-                                    Level: 12; Intelligence: 13
-                                    <br />
-                                    MP: 15; Damage: N/A
-                                </Typography>
-                            </Grid>
+                            {spellRow.map((row) => (
+                                <Grid item xs={12} sx={{ mt: 1 }} key={row[0]}>
+                                    <Typography sx={{
+                                        fontFamily: 'fantasy',
+                                        fontStyle: 'italic',
+                                        fontSize: '24px'
+                                    }}>{row[0]}</Typography>
+                                    <Typography sx={{ fontFamily: 'sans-serif' }}>
+                                        {row[1]}
+                                    </Typography>
+                                    <Typography sx={{ fontFamily: 'sans-serif' }}>
+                                        {row[2]}
+                                        <br />
+                                        {row[3]}
+                                    </Typography>
+                                </Grid>
+                            ))}
                         </Grid>
 
                     </Box>

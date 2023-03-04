@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Grid, Box, Button, Typography, Modal } from '@mui/material';
 
 const style = {
@@ -14,32 +14,26 @@ const style = {
     p: 4,
 };
 
-function createQuest(name = '', description = '') {
-    return { name, description }
-}
+type Quest = [questName: string, questDescription: string];
 
-const questRow = [
-    createQuest(
-        'Get Some French Fries',
+const questRow: Quest[] = [
+    ['Get Some French Fries',
         `You may be wondering what the quest is about... welllllll it is nott about anything really that is worth mentioning. \
-        This is what the quest is about:\nGo get some french fries from \n BurgerQueen.\n`
-    ),
-    createQuest(
-        'Look under the table',
-        'Just get your knees down there mate...'
-    ),
-    createQuest(
-        'One Bite Big Mac',
-        'As title.'
-    ),
-    createQuest(
-        'Stick Your Head OUT',
-        'Stick your head out of the window in the basement. As simple as it is.'
-    ),
+        This is what the quest is about:\nGo get some french fries from \n BurgerQueen.\n`],
+
+    ['Look under the table',
+        'Just get your knees down there mate...'],
+
+    ['One Bite Big Mac',
+        'As title.'],
+
+    ['Stick Your Head OUT',
+        'Stick your head out of the window in the basement. As simple as it is.'],
+
 ]
 
 
-const spellASCII = `
+const questASCII = `
   /////|
  | Q | |
  | U | |
@@ -52,23 +46,22 @@ const spellASCII = `
 
 export default function QuestListModal() {
     const [open, setOpen] = React.useState(false);
-    const [questDescription, setQuestDescription] = React.useState(questRow[0].description);
+    const [questDescription, setQuestDescription] = React.useState(questRow[0][1]);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     function clickQuest(id, idx) {
         for (let i = 0; i < questRow.length; ++i) {
-            let element = document.getElementById("quest" + questRow[i].name);
+            let element = document.getElementById("quest" + questRow[i][0]);
             if (element !== null) {
-                if (questRow[i].name !== id) {
+                if (questRow[i][0] !== id) {
                     element.style.color = "pink";
                     element.style.backgroundColor = "black";
                 } else {
                     element.style.color = "black";
                     element.style.backgroundColor = "purple";
-                    setQuestDescription(questRow[idx].description);
+                    setQuestDescription(questRow[idx][1]);
                 }
-
             }
         }
     }
@@ -89,7 +82,7 @@ export default function QuestListModal() {
                     minWidth: '60px', minHeight: '110px',
                     fontSize: '9px'
                 }}>
-                <pre>{spellASCII}</pre>
+                <pre>{questASCII}</pre>
             </Button>
 
             <Modal
@@ -105,20 +98,20 @@ export default function QuestListModal() {
                                 QUEST LIST
                             </Typography>
                         </Grid>
-
                         <Grid item sx={{ mt: 2, height: '100%' }} xs={12}>
                             <Grid container columns={12} sx={{ height: '100%' }}>
-                                <Grid item xs={4} columns={12} sx={{ width: '90%', height: '100%', overflowY: 'auto' }}>
+                                <Grid item xs={4} columns={12}
+                                    sx={{ width: '90%', height: '100%', overflowY: 'auto' }}>
                                     {questRow.map((row, idx) => (
-                                        <Grid item xs={12} key={row.name}>
+                                        <Grid item xs={12} key={row[0]}>
                                             <Typography
-                                                id={"quest" + row.name}
+                                                id={"quest" + row[0]}
                                                 variant="h6"
                                                 lineHeight="2.5"
                                                 fontSize="18px"
                                                 fontStyle="italic"
                                                 width="90%"
-                                                onClick={() => clickQuest(row.name, idx)}
+                                                onClick={() => clickQuest(row[0], idx)}
                                                 sx={{
                                                     color: "pink",
                                                     ':hover': {
@@ -126,12 +119,13 @@ export default function QuestListModal() {
                                                         color: 'black',
                                                     },
                                                 }}>
-                                                {row.name}
+                                                {row[0]}
                                             </Typography>
                                         </Grid>
                                     ))}
                                 </Grid>
-                                <Grid item xs={7.5} sx={{ marginLeft: "10px", height: '100%', overflowY: 'auto' }}>
+                                <Grid item xs={7.5}
+                                    sx={{ marginLeft: "10px", height: '100%', overflowY: 'auto' }}>
                                     {(questDescription.split(/\n/)).map((row, idx) => (
                                         <Typography
                                             key={idx}
