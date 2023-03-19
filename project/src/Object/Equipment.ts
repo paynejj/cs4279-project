@@ -1,11 +1,25 @@
-import { Stats } from "./Stats";
-type Helmet = [string, Stats];
-type Chestplate = [string, Stats];
-type Boots = [string, Stats];
-type Chausses = [string, Stats];
-type Ring1 = [string, Stats];
-type Ring2 = [string, Stats];
-type Amulet = [string, Stats];
-type Weapon = [string, Stats];
+type EquipmentStats = {
+    equipmentType: EquipmentType;
+    MaxHP?: number;
+    MaxMP?: number;
+    Strength?: number;
+    Dexerity?: number;
+    Luck?: number;
+    Intellegence?: number;
+    Vitality?: number;
+    Agility?: number;
+};
 
-export type Equipment = [Helmet, Chestplate, Boots, Chausses, Ring1, Ring2, Amulet, Weapon]
+export enum EquipmentType {
+    Helmet = "Helmet",
+    Chestplate = "Chestplate",
+    Boots = "Boots", 
+    Chausses = "Chausses",
+    Ring1 = "Ring1",
+    Ring2 = "Ring2",
+    Amulet = "Amulet",
+    Weapon = "Weapon",
+}
+
+// the string here is the name of the equipment
+export type Equipment = [string, EquipmentStats];
