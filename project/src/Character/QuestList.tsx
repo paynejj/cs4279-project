@@ -3,6 +3,7 @@ import { Grid, Box, Button, Typography, Modal } from '@mui/material';
 import { useQuests } from '../Object/QuestData';
 import { PlayerDataContext } from '../Player/PlayerDataContext';
 import { QuestType } from '../Object/Quest';
+import './Character.css';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -56,7 +57,7 @@ export default function QuestListModal() {
             let element = document.getElementById(acceptedQuests[i].name);
             if (element !== null) {
                 if (acceptedQuests[i].name !== id) {
-                    element.style.color = "pink";
+                    element.style.color = "purple";
                     element.style.backgroundColor = "black";
                 } else {
                     element.style.color = "black";
@@ -113,13 +114,7 @@ export default function QuestListModal() {
                                                 fontStyle="italic"
                                                 width="90%"
                                                 onClick={() => clickQuest(row.name, idx)}
-                                                sx={{
-                                                    color: "pink",
-                                                    ':hover': {
-                                                        bgcolor: 'purple',
-                                                        color: 'black',
-                                                    },
-                                                }}>
+                                                className="quest-notselected">
                                                 {row.name}
                                             </Typography>
                                         </Grid>

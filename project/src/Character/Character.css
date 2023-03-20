@@ -19,3 +19,14 @@ uiButton:hover {
     background-color: purple;
     color: black;
 }
+
+.quest-notselected {
+    margin: auto;
+    background-color: black;
+    color: purple;
+}
+.quest-notselected:hover {
+    margin: auto;
+    background-color: purple;
+    color: black;
+}

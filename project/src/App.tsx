@@ -19,7 +19,6 @@ function App() {
 
   const [playerData, setPlayerData] = useState<Player>(defaultPlayerData);
 
-
   return (
     <PlayerDataContext.Provider value={{ playerData, setPlayerData }}>
       <QuestsProvider>
@@ -39,7 +38,6 @@ function App() {
                 <Route path="/quest" element={<Quest />} />
                 <Route path="/" element={<CharacterCreation />} />
               </Routes>
-
             </main>
           </div>
         </BrowserRouter>
