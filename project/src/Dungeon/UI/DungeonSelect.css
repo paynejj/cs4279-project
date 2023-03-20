@@ -1,7 +1,8 @@
 .dungeon-select {
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .difficulty {
@@ -12,7 +13,7 @@
     font-size: xx-large;
     text-align: center;
     border: purple solid 2px;
-    margin-bottom: -2px;
+    margin: 4px;
 }
 
 .difficulty:hover {
@@ -20,23 +21,19 @@
     color: black;
 }
 
-@keyframes levels {
-    0% {
-        transform: scaleY(0)
-    }
-
-    100% {
-        transform: scaleY(1)
-    }
-}
 
 .levels {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 33%;
+    height: 100%;
+    transition: height 1s ease-in-out;
     transform-origin: center top;
-    animation: levels 1s cubic-bezier(0, 1, 0, 1);
     overflow: auto;
-    flex-grow: 1;
+}
+
+.levels.hidden {
+    height: 0;
 }
 
 .levels::-webkit-scrollbar {
