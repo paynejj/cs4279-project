@@ -36,7 +36,6 @@ export default function QuestListModal() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
-
     function handleComplete() {
         let newPlayerData = { ...playerData };
         if (selectedQuest) {
@@ -45,7 +44,7 @@ export default function QuestListModal() {
             completeQuest(selectedQuest);
         }
         if (acceptedQuests[1]) {
-            let newSelectedQuest = {...acceptedQuests[1]};
+            let newSelectedQuest = { ...acceptedQuests[1] };
             setSelectedQuest(newSelectedQuest);
         } else {
             setSelectedQuest(null);

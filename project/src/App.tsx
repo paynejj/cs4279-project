@@ -21,14 +21,14 @@ function App() {
 
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <nav>
-          <SideBar />
-        </nav>
-        <main>
-          <PlayerDataContext.Provider value={{ playerData, setPlayerData }}>
-            <QuestsProvider>
+    <PlayerDataContext.Provider value={{ playerData, setPlayerData }}>
+      <QuestsProvider>
+        <BrowserRouter>
+          <div className="App">
+            <nav>
+              <SideBar />
+            </nav>
+            <main>
               <Routes>
                 <Route path="/character" element={<CharacterUi />} />
                 <Route path="/dungeon-select" element={<DungeonSelect />} />
@@ -39,12 +39,12 @@ function App() {
                 <Route path="/quest" element={<Quest />} />
                 <Route path="/" element={<CharacterCreation />} />
               </Routes>
-            </QuestsProvider>
-          </PlayerDataContext.Provider>
-        </main>
-      </div>
-    </BrowserRouter>
 
+            </main>
+          </div>
+        </BrowserRouter>
+      </QuestsProvider>
+    </PlayerDataContext.Provider>
   );
 }
 

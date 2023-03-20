@@ -3,6 +3,7 @@ import {
     Button, Radio, RadioGroup, FormControlLabel,
     FormControl, Typography
 } from "@mui/material";
+import "./CreationForm.css"
 
 type CreationFormProps = {
     onSubmit: (name: string, characterClass: string) => void;
@@ -23,20 +24,20 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
 
     return (
         <div>
-
             <Typography id="creation-form-title" variant="h6" component="h2"
                 sx={{ fontFamily: 'serif', fontSize: '36px' }}> Character Creation</Typography>
-            <form onSubmit={handleSubmit}>
-
-                <label htmlFor="name">Enter your character's name:<br /></label>
+            <form
+                id="creation-form"
+                onSubmit={handleSubmit}>
+                <h4>Enter your character's name:</h4>
                 <input
                     type="text"
                     id="name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
-                /><br /><br />
+                /><br />
                 <FormControl>
-                    <label id="character-class" color="pink">Pick your character's class:</label>
+                    <h4>Pick your character's class:</h4>
                     <RadioGroup
                         row
                         aria-labelledby="character-class"
@@ -54,13 +55,16 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
                     </RadioGroup>
                 </FormControl>
                 <br />
-                <Button type="submit" sx={{
-                    color: "pink", marginLeft: 'auto',
-                    ':hover': {
-                        bgcolor: 'purple',
-                        color: 'black',
-                    },
-                }}>Submit</Button>
+                <Button type="submit"
+                    color="secondary"
+                    sx={{
+                        ':hover': {
+                            bgcolor: 'purple',
+                            color: 'black',
+                        },
+                    }}>
+                    <Typography fontSize="large">Submit</Typography>
+                </Button>
             </form>
         </div>
     );

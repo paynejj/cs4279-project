@@ -34,6 +34,7 @@ interface QuestsContextValue {
     newQuest: (quest: QuestType) => void;
     acceptQuest: (quest: QuestType) => void;
     completeQuest: (quest: QuestType) => void;
+    setAcceptedQuestlist: (quest: QuestType[]) => void;
 }
 
 const QuestsContext = createContext<QuestsContextValue>({
@@ -42,6 +43,7 @@ const QuestsContext = createContext<QuestsContextValue>({
     newQuest: () => { },
     acceptQuest: () => { },
     completeQuest: () => { },
+    setAcceptedQuestlist: () => { },
 });
 
 export function useQuests() {
@@ -75,12 +77,17 @@ export function QuestsProvider({ children }: QuestsProviderProps) {
         setAcceptedQuests(prevAcceptedQuests => prevAcceptedQuests.filter(q => q.name !== quest.name));
     }
 
+    function setAcceptedQuestlist(questList: QuestType[]) {
+        setAcceptedQuests(questList);
+    }
+
     const value: QuestsContextValue = {
         questBoardList,
         acceptedQuests,
         acceptQuest,
         newQuest,
         completeQuest,
+        setAcceptedQuestlist,
     };
 
     return <QuestsContext.Provider value={value}>{children}</QuestsContext.Provider>;
