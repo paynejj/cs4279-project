@@ -1,5 +1,8 @@
 import React from 'react';
 import { Grid, Box, Button, Typography, Modal } from '@mui/material';
+import { useQuests } from '../Object/QuestData';
+import { PlayerDataContext } from '../Player/PlayerDataContext';
+import { QuestType } from '../Object/Quest';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -14,24 +17,6 @@ const style = {
     p: 4,
 };
 
-type Quest = [questName: string, questDescription: string];
-
-const questRow: Quest[] = [
-    ['Get Some French Fries',
-        `You may be wondering what the quest is about... welllllll it is nott about anything really that is worth mentioning. \
-        This is what the quest is about:\nGo get some french fries from \n BurgerQueen.\n`],
-
-    ['Look under the table',
-        'Just get your knees down there mate...'],
-
-    ['One Bite Big Mac',
-        'As title.'],
-
-    ['Stick Your Head OUT',
-        'Stick your head out of the window in the basement. As simple as it is.'],
-
-]
-
 
 const questASCII = `
   /////|
@@ -45,22 +30,39 @@ const questASCII = `
 
 
 export default function QuestListModal() {
+    const { acceptedQuests, completeQuest } = useQuests();
     const [open, setOpen] = React.useState(false);
-    const [questDescription, setQuestDescription] = React.useState(questRow[0][1]);
+    const [selectedQuest, setSelectedQuest] = React.useState<QuestType | null>(acceptedQuests[0]);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
+
+    function handleComplete() {
+        let newPlayerData = { ...playerData };
+        if (selectedQuest) {
+            newPlayerData.gold += selectedQuest.reward;
+            setPlayerData(newPlayerData);
+            completeQuest(selectedQuest);
+        }
+        if (acceptedQuests[1]) {
+            let newSelectedQuest = {...acceptedQuests[1]};
+            setSelectedQuest(newSelectedQuest);
+        } else {
+            setSelectedQuest(null);
+        }
+    };
 
     function clickQuest(id: string, idx: number) {
-        for (let i = 0; i < questRow.length; ++i) {
-            let element = document.getElementById("quest" + questRow[i][0]);
+        for (let i = 0; i < acceptedQuests.length; ++i) {
+            let element = document.getElementById(acceptedQuests[i].name);
             if (element !== null) {
-                if (questRow[i][0] !== id) {
+                if (acceptedQuests[i].name !== id) {
                     element.style.color = "pink";
                     element.style.backgroundColor = "black";
                 } else {
                     element.style.color = "black";
                     element.style.backgroundColor = "purple";
-                    setQuestDescription(questRow[idx][1]);
+                    setSelectedQuest(acceptedQuests[i]);
                 }
             }
         }
@@ -102,16 +104,16 @@ export default function QuestListModal() {
                             <Grid container columns={12} sx={{ height: '100%' }}>
                                 <Grid item xs={4} columns={12}
                                     sx={{ width: '90%', height: '100%', overflowY: 'auto' }}>
-                                    {questRow.map((row, idx) => (
-                                        <Grid item xs={12} key={row[0]}>
+                                    {acceptedQuests.map((row, idx) => (
+                                        <Grid item xs={12} key={row.name}>
                                             <Typography
-                                                id={"quest" + row[0]}
+                                                id={row.name}
                                                 variant="h6"
                                                 lineHeight="2.5"
                                                 fontSize="18px"
                                                 fontStyle="italic"
                                                 width="90%"
-                                                onClick={() => clickQuest(row[0], idx)}
+                                                onClick={() => clickQuest(row.name, idx)}
                                                 sx={{
                                                     color: "pink",
                                                     ':hover': {
@@ -119,21 +121,46 @@ export default function QuestListModal() {
                                                         color: 'black',
                                                     },
                                                 }}>
-                                                {row[0]}
+                                                {row.name}
                                             </Typography>
                                         </Grid>
                                     ))}
                                 </Grid>
                                 <Grid item xs={7.5}
                                     sx={{ marginLeft: "10px", height: '100%', overflowY: 'auto' }}>
-                                    {(questDescription.split(/\n/)).map((row, idx) => (
-                                        <Typography
-                                            key={idx}
-                                            text-align='justify'
-                                            sx={{ overflowX: 'hidden', }}>
-                                            {row}
-                                        </Typography>
-                                    ))}
+                                    {selectedQuest !== null && acceptedQuests.length > 0 ?
+                                        <div>
+                                            <Typography
+                                                key="selectedQuest"
+                                                text-align='justify'
+                                                sx={{ overflowX: 'hidden', }}>
+                                                {selectedQuest?.description} <br />
+                                                <br />
+                                                Reward: {selectedQuest?.reward} gold<br />
+                                                <br />
+                                                Progress: {selectedQuest?.itemCollected
+                                                    ?? selectedQuest?.monsterKilled}&nbsp;
+                                                / &nbsp;{selectedQuest?.itemToCollect
+                                                    ?? selectedQuest?.monsterToKill}
+                                            </Typography>
+                                            <div>
+                                                {selectedQuest?.itemCollected
+                                                    ?? selectedQuest?.monsterKilled
+                                                    ===
+                                                    selectedQuest?.itemToCollect
+                                                    ?? selectedQuest?.monsterToKill
+                                                    ? <div>
+                                                        <br />
+                                                        <Button
+                                                            onClick={handleComplete}
+                                                            color='secondary'>
+                                                            Complete
+                                                        </Button>
+                                                    </div>
+                                                    : <div></div>}
+                                            </div>
+                                        </div>
+                                        : <div></div>}
                                 </Grid>
                             </Grid>
                         </Grid>

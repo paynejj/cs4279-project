@@ -69,7 +69,7 @@ export default function CharacterUi() {
 
     // handle "USE" clicked in an potion's menu
     const handleUsePotion = () => {
-        let newPlayerData = {...playerData};
+        let newPlayerData = { ...playerData };
         let potionToUse = newPlayerData.inventory.get(inventory[PotionMenuIdx][0]);
         if (potionToUse && typeof potionToUse.item_type[1] === "number" && potionToUse.amount > 0) {
             potionToUse.amount -= 1;
@@ -101,7 +101,7 @@ export default function CharacterUi() {
 
     // handle "EQUIP" clicked in an equipment in the inventory
     const handleEquipItem = () => {
-        let newPlayerData = {...playerData};
+        let newPlayerData = { ...playerData };
         let equipmentToEquip = newPlayerData.inventory.get(
             equipInventory[equipInventoryMenuIdx][0]);
         if (equipmentToEquip && typeof equipmentToEquip.item_type[1] !== "number") {
@@ -122,7 +122,7 @@ export default function CharacterUi() {
                         newPlayerData.inventory.set(oldEquipment[0], oldEquipmentItem);
                     }
                     for (const key in oldEquipment[1]) {
-                        if (typeof oldEquipment[1][key] === "number"){
+                        if (typeof oldEquipment[1][key] === "number") {
                             newPlayerData.stats[key] -= oldEquipment[1][key];
                         }
                     }
@@ -131,9 +131,9 @@ export default function CharacterUi() {
             }
             newPlayerData.equipments.set(equipmentToEquip.item_type[1].equipmentType,
                 [equipmentToEquip.name, equipmentToEquip.item_type[1]]);
-            
+
             for (const key in equipmentToEquip.item_type[1]) {
-                if (typeof equipmentToEquip.item_type[1][key] === "number"){
+                if (typeof equipmentToEquip.item_type[1][key] === "number") {
                     newPlayerData.stats[key] += equipmentToEquip.item_type[1][key];
                 }
             }
@@ -143,17 +143,15 @@ export default function CharacterUi() {
             } else {
                 newPlayerData.inventory.set(equipmentToEquip.name, equipmentToEquip);
             }
-            
-            
         }
-
+        setEquipInventoryMenuIdx(-1);
         setPlayerData(newPlayerData);
         setAnchorElEquipItem(null);
     };
 
     // handle "DESTROY" of an equipment in the inventory
     const handleDestroyEquipment = () => {
-        let newPlayerData = {...playerData};
+        let newPlayerData = { ...playerData };
         let equipmentToDestroy = newPlayerData.inventory.get(
             equipInventory[equipInventoryMenuIdx][0]);
         if (equipmentToDestroy && typeof equipmentToDestroy.item_type[1] !== "number") {
@@ -170,7 +168,7 @@ export default function CharacterUi() {
 
     // handle "UNEQUIP" of a currently wearing equipment
     const handleUnequip = () => {
-        let newPlayerData = {...playerData};
+        let newPlayerData = { ...playerData };
         let toUnequip = newPlayerData.equipments.get(
             equipments[equipMenuIdx][0]);
         if (toUnequip) {
@@ -197,18 +195,17 @@ export default function CharacterUi() {
                 newPlayerData.inventory.set(toUnequip[0], oldEquipmentItem);
             }
             for (const key in toUnequip[1]) {
-                if (typeof toUnequip[1][key] === "number"){
+                if (typeof toUnequip[1][key] === "number") {
                     newPlayerData.stats[key] -= toUnequip[1][key];
                 }
             }
-            newPlayerData.equipments.set(toUnequip[1].equipmentType, 
-                ['NOTHING', {equipmentType: toUnequip[1].equipmentType}]);
+            newPlayerData.equipments.set(toUnequip[1].equipmentType,
+                ['NOTHING', { equipmentType: toUnequip[1].equipmentType }]);
         }
 
         setPlayerData(newPlayerData);
         setAnchorElEquip(null);
     };
-
 
     // handle clicking on a currently wearing equipment. It opens a dropdown menu
     const handleClickEquip = (event: React.MouseEvent<HTMLButtonElement>, idx) => {
@@ -277,7 +274,9 @@ export default function CharacterUi() {
                                                 <Button sx={{ color: "white" }}>Unequip</Button>
                                             </MenuItem>
                                             <MenuItem>
-                                                <Info />
+                                                <Info
+                                                    name={equipments[equipMenuIdx][1][0]}
+                                                    description={equipments[equipMenuIdx][1]} />
                                             </MenuItem>
                                         </Menu>
                                     </div>
@@ -295,11 +294,6 @@ export default function CharacterUi() {
                             <Typography >{inventoryCount}/20</Typography>
                         </Grid>
                         <Grid item xs={1}>
-                            {/* <Tooltip title={sortDescription} disableInteractive>
-                                <Button color="inherit" size='small' onClick={handleSort}>
-                                    <SortIcon />
-                                </Button>
-                            </Tooltip> */}
                         </Grid>
                     </ Grid>
                     <Grid container height="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
@@ -341,7 +335,13 @@ export default function CharacterUi() {
                                         >Equip</Button>
                                     </MenuItem>
                                     <MenuItem>
-                                        <Info />
+                                        {equipInventory[equipInventoryMenuIdx] !== undefined ?
+                                            <Info
+                                                name=
+                                                {equipInventory[equipInventoryMenuIdx][1].name}
+                                                description=
+                                                {equipInventory[equipInventoryMenuIdx][1].item_type} /> :
+                                            <div></div>}
                                     </MenuItem>
                                     <MenuItem onClick={handleDestroyEquipment}>
                                         <Button sx={{ color: "white" }}>Destroy</Button>
@@ -388,7 +388,9 @@ export default function CharacterUi() {
                                             <Button sx={{ color: "white" }}>Use</Button>
                                         </MenuItem>
                                         <MenuItem>
-                                            <Info />
+                                            <Info
+                                                name={inventory[PotionMenuIdx][1].name}
+                                                description={inventory[PotionMenuIdx][1].item_type} />
                                         </MenuItem>
                                     </Menu>
                                     <Grid item sm={1} textAlign="right"> {row[1].amount}</Grid>

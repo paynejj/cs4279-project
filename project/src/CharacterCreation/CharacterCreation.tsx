@@ -32,7 +32,7 @@ function CharacterCreation() {
     return (
         <div>
             <CreationForm onSubmit={handleCharacterCreation} />
-            <UploadIcon />
+            {/* <UploadIcon /> */}
         </div>
     );
 }
