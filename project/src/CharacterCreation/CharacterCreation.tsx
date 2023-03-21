@@ -40,13 +40,14 @@ function CharacterCreation() {
 
         if(characterClass === 'Warrior') {
             newPlayerData.stats.MaxHP += 10;
+            newPlayerData.stats.Vitality  += 3;
             newPlayerData.stats.Strength += 3;
         } else if (characterClass === 'Mage') {
             newPlayerData.stats.MaxMP += 10;
-            newPlayerData.stats.Intellegence += 3;
+            newPlayerData.stats.Intellegence += 5;
         } else if (characterClass === 'Ranger') {
             newPlayerData.stats.Agility += 2;
-            newPlayerData.stats.Dexerity += 2;
+            newPlayerData.stats.Dexterity += 2;
             newPlayerData.stats.Luck += 2;
         }
         

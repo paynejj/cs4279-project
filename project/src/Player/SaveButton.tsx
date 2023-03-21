@@ -16,7 +16,6 @@ export const SaveButton = () => {
         Array.from(playerData.inventory.entries()).map(([name, item]) =>
             ([name, item]));
 
-
     const equipmentArray =
         Array.from(playerData.equipments.entries()).map(([equipType, equipment]) =>
             ([equipType, equipment]));
@@ -35,10 +34,8 @@ export const SaveButton = () => {
 
 
     const downloadData = () => {
-
         // Convert playerData and quests to JSON
         const saveStr = JSON.stringify(gameData);
-
 
         // Save the JSON strings to state
         setSaveJson(saveStr);

@@ -42,7 +42,7 @@ export const defaultPlayerData: Player = {
         MP: 10,
         MaxMP: 10,
         Strength: 1,
-        Dexerity: 1,
+        Dexterity: 1,
         Luck: 1,
         Intellegence: 1,
         Vitality: 1,
