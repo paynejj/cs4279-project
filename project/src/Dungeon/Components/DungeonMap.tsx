@@ -1,4 +1,4 @@
-import DungeonNodeHTML from "./DungeonNodeHTML"
+import DungeonNodeDisplay from "./DungeonNodeDisplay"
 import { Dungeon } from "../Scripts/Dungeon"
 import { KeyboardEvent, useState } from "react"
 
@@ -6,6 +6,7 @@ interface DungeonMapProps {
     dungeon: Dungeon
 }
 function DungeonMap({ dungeon }: DungeonMapProps) {
+
     /**enables re-render when player playerition changes */ 
     const [player, setPlayer] = useState(dungeon.player)
     /**
@@ -55,7 +56,7 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
                 .flat()
                 //create DungeonNode components for every internal dungeon node
                 .map((node, idx) =>
-                    <DungeonNodeHTML node={node} key={idx} hasPlayer={hasPlayer(idx)} />)}
+                    <DungeonNodeDisplay node={node} key={idx} hasPlayer={hasPlayer(idx)} />)}
         </div>
     )
 }

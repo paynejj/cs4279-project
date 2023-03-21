@@ -46,6 +46,12 @@ export class Dungeon {
             this._player = [row, col]
         return this._player
     }
+
+    public setMap(map: DungeonNode[][]) {
+        if (this.rows == map.length && this.cols == map[0].length)
+            this._map = map
+    
+    }
     /**
      * Instantiate DungeonNodes from level array
      */
