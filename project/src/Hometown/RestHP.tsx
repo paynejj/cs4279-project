@@ -28,6 +28,7 @@ function HpBar() {
                     backgroundColor: "red",
                     height: "20px",
                     width: "100%",
+                    outline: "3px solid black",
                 }}
             >
                 <div
@@ -39,7 +40,7 @@ function HpBar() {
                     }}
                 />
             </div>
-            <div>{currentHp}/{maxHp} HP</div>
+            <h3 style={{color: "black", backgroundColor: "white"}}>{currentHp}/{maxHp} HP</h3>
         </div>
     );
 }
