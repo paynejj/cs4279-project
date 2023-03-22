@@ -51,6 +51,7 @@ function CharacterCreation() {
             newPlayerData.stats.Luck += 2;
         }
         
+        
         setPlayerData(newPlayerData);
         navigate('/hometown');
       };
