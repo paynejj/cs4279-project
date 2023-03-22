@@ -62,6 +62,7 @@ export const SaveButton = () => {
             {/* <SaveIcon /> */}
             <Typography
                 fontSize="x-large"
+                textAlign='right'
             >
                 Save
             </Typography>

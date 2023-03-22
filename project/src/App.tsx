@@ -47,9 +47,9 @@ function App() {
               </main>
             </div>
           </BrowserRouter>
-        </PythonProvider>
-      </QuestsProvider>
-    </PlayerDataContext.Provider>
+        </QuestsProvider>
+      </PlayerDataContext.Provider>
+    </PythonProvider>
   );
 }
 
