@@ -1,4 +1,6 @@
 import "./SideBarUI.css"
+import { Link } from 'react-router-dom';
+import { SaveButton } from "../Player/SaveButton";
 function SideBar() {
     return (
         <div className="sidebar">
@@ -8,6 +10,7 @@ function SideBar() {
                 <li><a href="/character">Character</a></li>
                 <li><a href="/text-editor">Text</a></li>
                 <li><a href="?"> Create Level </a></li>
+                <li><SaveButton/></li>
             </ul>
         </div>
     );
