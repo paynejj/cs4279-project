@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import DungeonNodeDisplay from '../Components/DungeonNodeDisplay'
+import DungeonMap from '../Components/DungeonMap'
 import { Dungeon } from '../Scripts/Dungeon'
-import { DNodes } from '../Scripts/DungeonNode'
-
+import './LevelCreator.css'
 
 function LevelCreator() {
     const dungeon = new Dungeon()
@@ -12,22 +11,30 @@ function LevelCreator() {
         tunnel: false
     }
     const [selected, setSelected] = useState(defaultSelected)
-    const handleClick = (e?: Event) => {
-        if(e ===undefined) return
+    const handleClick = (e?) => {
+        window.api.writeFile("./test.txt", "chicken mcnuggets")
+        let readres = window.api.readFile("./test.txt")
+        console.log(readres)
 
+    }
 
+    const toggleSelected = (tile: string) => {
+
+        switch (tile) {
+            case "void":
+                setSelected({ ...defaultSelected, void: true })
+                break;
+            case "tunnel":
+                setSelected({ ...defaultSelected, tunnel: true })
+        }
     }
     return (
         <>
-            <div className="dungeon-map" >
-                {map
-                    //flatten 2d array to 1d
-                    .flat()
-                    //create DungeonNode components for every internal dungeon node
-                    .map((node, idx) =>
-                        <DungeonNodeDisplay node={node} key={idx} onClick={handleClick}/>)}
-            </div>
-            
+            <button className={`tile ${selected.void ? "active" : ""}`}
+                onClick={() => toggleSelected("void")}> Void </button>
+            <button className={`tile ${selected.tunnel ? "active" : ""}`}
+                onClick={() => toggleSelected("tunnel")}> Tunnel </button>
+            <button onClick={(e) => handleClick(e)}> Save Dungeon</button>
         </>
     )
 }

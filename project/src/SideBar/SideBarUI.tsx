@@ -7,6 +7,7 @@ function SideBar() {
                 <li><a href="/hometown">HomeTown</a></li>
                 <li><a href="/character">Character</a></li>
                 <li><a href="/text-editor">Text</a></li>
+                <li><a href="?"> Create Level </a></li>
             </ul>
         </div>
     );

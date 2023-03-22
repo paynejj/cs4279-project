@@ -1,0 +1,20 @@
+.tile {
+    all: unset;
+    box-sizing: border-box;
+    background-color: purple;
+    color: black;
+    font-size: xx-large;
+    text-align: center;
+    border: purple solid 2px;
+    margin: 4px;
+}
+
+.active {
+    color: purple;
+    background-color: black;
+}
+
+.dungeon-map {
+    outline: purple;
+}
+

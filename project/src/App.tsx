@@ -29,7 +29,7 @@ function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/rest" element={<Rest />} />
               <Route path="/quest" element={<Quest />} />
-            <Route path="/create-level" element={<LevelCreator />} />
+            <Route path="/level-creator" element={<LevelCreator />} />
               <Route path="/text-editor" element={<TextEditor />} />
               <Route path="/" />
             </Routes>

@@ -5,15 +5,28 @@ process.once("loaded", () => {
 
     contextBridge.exposeInMainWorld(
         "api", {
-        currentDirectory: () => {
+        /**
+         * prints the current directory
+         * @returns 
+         */
+        pwd: () => {
             return process.cwd()
         },
-        saveFile: (filename) => {
-            console.log(__dirname)
-            fs.writeFileSync(path.join(__dirname, filename), "Hey Did This Work")
+        /**
+         * write a file 
+         * @param {string} path 
+         * @param {string} text 
+         */
+        writeFile: (path, text) => {
+            fs.writeFileSync(path, text)
         },
-        readFile: (filename) => {
-            return fs.readFileSync(path.join(__dirname, filename))
+        /**
+         * Read a file
+         * @param {string} path 
+         * @returns file contents
+         */
+        readFile: (path) => {
+            return fs.readFileSync(path)
         }
     }
     )
