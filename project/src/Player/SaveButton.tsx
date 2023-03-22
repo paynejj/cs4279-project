@@ -3,7 +3,8 @@ import Button from '@mui/material/Button';
 import { PlayerDataContext } from "./PlayerDataContext";
 import { useQuests } from "../Object/QuestData";
 import { useContext, useState } from 'react';
-import Typography from '@mui/material/Typography';
+import "../SideBar/SideBarUI.css"
+
 
 export const SaveButton = () => {
     const { playerData } = useContext(PlayerDataContext);
@@ -55,17 +56,10 @@ export const SaveButton = () => {
     };
 
     return (
-        <Button
-            color='inherit'
-            onClick={downloadData}
-        >
-            {/* <SaveIcon /> */}
-            <Typography
-                fontSize="x-large"
-                textAlign='right'
-            >
+        <li onClick={downloadData}>
+            <a>
                 Save
-            </Typography>
-        </Button>
+            </a>
+        </li>
     );
 };

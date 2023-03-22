@@ -5,12 +5,12 @@ function SideBar() {
     return (
         <div className="sidebar">
             <ul>
-                <li><Link to="/dungeon-select">Dungeon</Link></li>
-                <li><Link to="/hometown">HomeTown</Link></li>
-                <li><Link to="/character">Character</Link></li>
-                <li><Link to="/text-editor">Text</Link></li>
-                <li><Link to="?"> Create Level </Link></li>
-                <li><SaveButton/></li>
+                <li><Link draggable="false" to="/dungeon-select">Dungeon</Link></li>
+                <li><Link draggable="false" to="/hometown">HomeTown</Link></li>
+                <li><Link draggable="false" to="/character">Character</Link></li>
+                <li><Link draggable="false" to="/text-editor">Text</Link></li>
+                <li><Link draggable="false" to="?"> Create Level </Link></li>
+                <SaveButton/>
             </ul>
         </div>
     );
