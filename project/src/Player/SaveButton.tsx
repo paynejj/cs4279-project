@@ -59,7 +59,7 @@ export const SaveButton = () => {
             color='inherit'
             onClick={downloadData}
         >
-            <SaveIcon />
+            {/* <SaveIcon /> */}
             <Typography
                 fontSize="x-large"
             >
