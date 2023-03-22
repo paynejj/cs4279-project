@@ -3,7 +3,7 @@ type EquipmentStats = {
     MaxHP?: number;
     MaxMP?: number;
     Strength?: number;
-    Dexerity?: number;
+    Dexterity?: number;
     Luck?: number;
     Intellegence?: number;
     Vitality?: number;

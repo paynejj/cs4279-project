@@ -51,7 +51,7 @@ const id5: Item = {
     item_type: ["Iron Dagger", {
         equipmentType: EquipmentType.Weapon,
         Agility: 1,
-        Dexerity: 1,
+        Dexterity: 1,
     }]
 };
 
