@@ -6,6 +6,7 @@ function SideBar() {
                 <li><a href="/dungeon-select">Dungeon</a></li>
                 <li><a href="/hometown">HomeTown</a></li>
                 <li><a href="/character">Character</a></li>
+                <li><a href="/text-editor">Text</a></li>
             </ul>
         </div>
     );
