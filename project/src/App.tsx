@@ -8,28 +8,33 @@ import Shop from "./Hometown/Shop";
 import Rest from "./Hometown/Rest";
 import Quest from "./Hometown/Quest";
 import DungeonSelect from "./Dungeon/UI/DungeonSelect";
+import TextEditor from "./TextEditor";
+import { PythonProvider } from 'react-py';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <nav>
-          <SideBar />
-        </nav>
-        <main>
-          <Routes>
-            <Route path="/character" element={<CharacterUi />} />
-            <Route path="/dungeon-select" element={<DungeonSelect/>}/>
-            <Route path="/dungeon" element={<DungeonUI />} />
-            <Route path="/hometown" element={<Hometown />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/rest" element={<Rest />} />
-            <Route path="/quest" element={<Quest />} />
-            <Route path="/" />
-          </Routes>
-        </main>
-      </div>
-    </BrowserRouter>
+    <PythonProvider>
+      <BrowserRouter>
+        <div className="App">
+          <nav>
+            <SideBar />
+          </nav>
+          <main>
+            <Routes>
+              <Route path="/character" element={<CharacterUi />} />
+              <Route path="/dungeon-select" element={<DungeonSelect/>}/>
+              <Route path="/dungeon" element={<DungeonUI />} />
+              <Route path="/hometown" element={<Hometown />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/rest" element={<Rest />} />
+              <Route path="/quest" element={<Quest />} />
+              <Route path="/text-editor" element={<TextEditor />} />
+              <Route path="/" />
+            </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
+    </PythonProvider>
   );
 }
 
