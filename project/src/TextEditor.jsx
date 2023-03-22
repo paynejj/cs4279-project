@@ -24,15 +24,22 @@ function TextEditor() {
       reader.readAsText(files[0]);
 
   }
+  function handle(){
+    console.log(window.api.readFile("./sample.txt"))
+    setInput(window.api.readFile("./sample.txt"))
+  }
   useEffect(() => {
     console.log(input);
   }, [input]);
   return (
     <>
     {isLoading ? <p>Loading...</p> : <p>Ready!</p>}
+    <span style= {{display: "flex"}}>
     <ReactFileReader handleFiles={handleFiles} fileTypes={'.txt'}>
-    <button className='btn'>load</button>
+    <button className='btn'>select load</button>
     </ReactFileReader>
+    <button className='btn' onClick={handle}>preload</button>
+    </span>
     <form>
       <CodeMirror
         value={input}
@@ -45,6 +52,7 @@ function TextEditor() {
           setInput(input);
         }}
       />
+      <span style= {{display: "flex"}}>
       <input
         type="submit"
         value={!isRunning ? 'Run' : 'Running...'}
@@ -52,9 +60,10 @@ function TextEditor() {
         onClick={(e) => {
           e.preventDefault()
           runPython(input)
-          saveFile()
         }}
       />
+      <button className='btn' onClick={saveFile}>save</button>
+      </span>
     </form>
     <p>Output</p>
     <pre>
