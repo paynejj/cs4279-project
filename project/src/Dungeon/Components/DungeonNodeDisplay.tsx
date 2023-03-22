@@ -1,9 +1,10 @@
 import { DungeonNode } from "../Scripts/DungeonNode"
 interface DungeonNodeProps {
     node: DungeonNode
-    hasPlayer: boolean
+    hasPlayer?: boolean
+    onClick?: (e?: Event) => void
 }
-function DungeonNodeHTML({ node, hasPlayer }: DungeonNodeProps) {
+function DungeonNodeDisplay({ node, hasPlayer, onClick }: DungeonNodeProps) {
     return (
         <div className='dungeon-node'
             style={{
@@ -13,4 +14,4 @@ function DungeonNodeHTML({ node, hasPlayer }: DungeonNodeProps) {
     )
 }
 
-export default DungeonNodeHTML
+export default DungeonNodeDisplay

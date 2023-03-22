@@ -9,6 +9,7 @@ import Shop from "./Hometown/Shop";
 import Rest from "./Hometown/Rest";
 import Quest from "./Hometown/Quest";
 import DungeonSelect from "./Dungeon/UI/DungeonSelect";
+import LevelCreator from "./Dungeon/Levels/LevelCreator";
 import CharacterCreation from "./CharacterCreation/CharacterCreation";
 import { PlayerDataContext } from './Player/PlayerDataContext';
 import { Player } from "./Object/Player";
@@ -30,12 +31,13 @@ function App() {
             <main>
               <Routes>
                 <Route path="/character" element={<CharacterUi />} />
-                <Route path="/dungeon-select" element={<DungeonSelect />} />
+                <Route path="/dungeon-select" element={<DungeonSelect  />}  />
                 <Route path="/dungeon" element={<DungeonUI />} />
                 <Route path="/hometown" element={<Hometown />} />
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/rest" element={<Rest />} />
                 <Route path="/quest" element={<Quest />} />
+                <Route path="/create-level" element={<LevelCreator />} />
                 <Route path="/" element={<CharacterCreation />} />
               </Routes>
             </main>
