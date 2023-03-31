@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { QuestType } from "./Quest";
 
+// default quests on the quest board
 const defaultQuests: QuestType[] = [
     {
         name: "Slime Hunting", description: "Kill 5 Slimes",
@@ -20,6 +21,7 @@ const defaultQuests: QuestType[] = [
     },
 ];
 
+// default already accepted quests
 const defaultQuests2: QuestType[] = [
     {
         name: 'French Fries',

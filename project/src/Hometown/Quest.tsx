@@ -32,6 +32,25 @@ textAlign: 'right'
     justifyContent: 'space-between'
   };
 
+  // randomly get two of all quests from questBoardList and put them in a new array
+  function getTwoQuests() {
+    let newQuests: QuestType[] = [];
+    // number of quests to be displayed on the quest board
+    let i = 0;
+    while (i < 2) {
+      let randomIndex = Math.floor(Math.random() * questBoardList.length);
+      let randomQuest = questBoardList[randomIndex];
+      if (!newQuests.includes(randomQuest)) {
+        newQuests.push(randomQuest);
+        ++i;
+      }
+    }
+    return newQuests;
+  }
+
+  let selectedQuested = getTwoQuests();
+
+
   function displayArrayInRow(questList: QuestType[]) {
 
     return (
@@ -61,7 +80,7 @@ textAlign: 'right'
       <div className="shop-list">
         <h1>QuestBoard</h1>
         <div className="node">
-          {displayArrayInRow(questBoardList)}
+          {displayArrayInRow(selectedQuested)}
         </div>
       </div>
     </div>

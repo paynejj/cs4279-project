@@ -7,11 +7,9 @@ import { PlayerDataContext } from "../Player/PlayerDataContext"
 import { shopData } from "./ShopHelper"
 
 
-
 import './Shop.css';
 function Shop() {
-  let list: Array<string>;
-  let list2: Array<string>;
+
   const Button = styled.button`
   background-color: black;
   color: white;
@@ -36,24 +34,32 @@ textAlign: 'right'
     justifyContent: 'space-between'
   };
 
+  function getRandomShopItem() {
+    let selectedShopItems: ShopData = [];
+    // number of item to be displayed in the shop
+    let i = 2
+    let selectedIndices : Number[] = [];
+    while ( selectedIndices.length < i) {
+      let randomIndex = Math.floor(Math.random() * shopData.length);
 
+      if (!selectedIndices.includes(randomIndex)) {
+        
+        selectedIndices.push(randomIndex);
+        let randomQuest = shopData[randomIndex];
+        // make a hard copy
+        selectedShopItems.push(JSON.parse(JSON.stringify(randomQuest)));
+      }
+    }
+    return selectedShopItems;
+  }
 
+  
 
-  list = ['HP Potion Stock: 3\n MP Potion Stock: 5 \n Dagger Stock: 6 \n Sword Stock: 3 \n Chestplate Stock: 2 \n Bag of Chips Stock: 2 ']
-  list2 = ['HP Potion', 'Stock: 3', 'MP Potion', 'Stock: 5', 'Dagger', 'Stock: 6', 'Sword', 'Stock: 3', 'Chestplate', 'Stock: 2', 'Bag of Chips', 'Stock: 2 ']
-
-  const myObjArray = [{ id: 0, name: "HP Potion", stock: '5', newline: '\n' },
-  { id: 1, name: "MP Potion", stock: '2', newline: '\n' },
-  { id: 2, name: "Sword", stock: '2', newline: '\n' },
-  { id: 3, name: "Bag of Chips", stock: '3', newline: '\n' },
-  { id: 4, name: "Mithril Chestplate", stock: '1', newline: '\n' },
-  { id: 5, name: "Iron Dagger", stock: '10', newline: '\n' },
-  { id: 6, name: "Amber Necklace", stock: '3', newline: '\n' }];
-
-  const [shopStockArray, setShopStockArray] = React.useState<ShopData>(shopData);
-
-
+  let selectedShopItems = getRandomShopItem();
+  
+  const [shopStockArray, setShopStockArray] = React.useState<ShopData>(selectedShopItems);
   const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
+
   function buyItem(item: Item, amount: number) {
     const newPlayerData = { ...playerData };
     if (newPlayerData) {
@@ -79,12 +85,8 @@ textAlign: 'right'
           setPlayerData(newPlayerData);
 
         }
-
-
       }
-
     }
-
   }
 
   function displayArrayInRow(objArray: ShopData) {
