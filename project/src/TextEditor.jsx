@@ -25,11 +25,11 @@ function TextEditor() {
 
   }
   function handle(){
-    console.log(window.api.readFile("./sample.txt"))
+    // console.log(window.api.readFile("./sample.txt"))
     setInput(window.api.readFile("./sample.txt"))
   }
   useEffect(() => {
-    console.log(input);
+    // console.log(input);
   }, [input]);
   return (
     <>

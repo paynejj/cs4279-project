@@ -1,5 +1,4 @@
 import React from "react";
-import UploadBotton from "./UploadButton";
 import { CreationForm } from "./CreationForm";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
 import { useNavigate } from "react-router-dom";
@@ -11,19 +10,19 @@ import "./CreationForm.css"
 
 
 function CharacterCreation() {
-    const navigate = useNavigate();
-    const {playerData, setPlayerData} = React.useContext(PlayerDataContext);
+    const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
     const { setAcceptedQuestlist } = useQuests();
+    const [loadedSave, setLoadedSave] = React.useState('');
+    const navigate = useNavigate();
 
-    const handleUpload = (uploadedPlayerData, questData : QuestType[]) => {
+    const handleLoad = (uploadedPlayerData, questData: QuestType[]) => {
 
-        const newInventory : Map<string, Item> = new Map(uploadedPlayerData.inventory);
-        const newEquipments : Map<EquipmentType, Equipment> = new Map(uploadedPlayerData.equipments);
-        console.log(newEquipments);
+        const newInventory: Map<string, Item> = new Map(uploadedPlayerData.inventory);
+        const newEquipments: Map<EquipmentType, Equipment> = new Map(uploadedPlayerData.equipments);
         const newPlayerData = {
             name: uploadedPlayerData.name,
             class: uploadedPlayerData.class,
-            inventory:  newInventory,
+            inventory: newInventory,
             stats: uploadedPlayerData.stats,
             gold: uploadedPlayerData.gold,
             equipments: newEquipments,
@@ -31,16 +30,33 @@ function CharacterCreation() {
 
         setPlayerData(newPlayerData);
         setAcceptedQuestlist(questData);
-      };
+    };
+
+    React.useEffect(() => {
+        try {
+            // trying to read the file
+            setLoadedSave(window.api.readFile("./save.json"));
+        } catch (error) {
+            console.log('Creating character and the save file')
+        }
+        if (loadedSave) {
+            if (typeof loadedSave === "string") {
+                const data = JSON.parse(loadedSave);
+                handleLoad(data.player, data.quests);
+            }
+            console.log("Save loaded");
+            navigate('/hometown');
+        }
+    }, [loadedSave, handleLoad, navigate]);
 
     const handleCharacterCreation = (name: string, characterClass: string) => {
-        const newPlayerData = {...playerData};
+        const newPlayerData = { ...playerData };
         newPlayerData.name = name;
         newPlayerData.class = characterClass;
 
-        if(characterClass === 'Warrior') {
+        if (characterClass === 'Warrior') {
             newPlayerData.stats.MaxHP += 10;
-            newPlayerData.stats.Vitality  += 3;
+            newPlayerData.stats.Vitality += 3;
             newPlayerData.stats.Strength += 3;
         } else if (characterClass === 'Mage') {
             newPlayerData.stats.MaxMP += 10;
@@ -50,16 +66,14 @@ function CharacterCreation() {
             newPlayerData.stats.Dexterity += 2;
             newPlayerData.stats.Luck += 2;
         }
-        
-        
+
         setPlayerData(newPlayerData);
         navigate('/hometown');
-      };
-      
+    };
+
     return (
         <div>
             <CreationForm onSubmit={handleCharacterCreation} />
-            <UploadBotton onUpload={handleUpload}/>
         </div>
     );
 }

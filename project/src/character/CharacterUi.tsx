@@ -48,7 +48,6 @@ export default function CharacterUi() {
 
                 }
             );
-            console.log(playerData);
             setEquipments(tempEquipRows);
             setInvertory(tempInventoryRows);
             setEquipInvertory(tempEquipInventoryRows);
