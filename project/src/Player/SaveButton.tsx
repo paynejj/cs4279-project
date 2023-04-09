@@ -8,6 +8,7 @@ export const SaveButton = () => {
     const { playerData } = useContext(PlayerDataContext);
     const { acceptedQuests } = useQuests();
     const [saveJson, setSaveJson] = useState<string>();
+    let insecurityQuest = acceptedQuests.find((quest) => quest.name === "Insecurity");
 
     // Convert the inventory map to an array of objects
     const inventoryArray =
@@ -31,6 +32,15 @@ export const SaveButton = () => {
     };
 
     const saveData = () => {
+
+        if (insecurityQuest && 
+            typeof insecurityQuest.itemCollected === 'number' &&
+            insecurityQuest.itemToCollect &&
+            insecurityQuest.itemCollected < insecurityQuest.itemToCollect){
+            ++insecurityQuest.itemCollected;
+            console.log("Saved", insecurityQuest.itemCollected, "times");
+        }
+
         // Convert playerData and quests to JSON
         const saveStr = JSON.stringify(gameData);
 
@@ -45,7 +55,7 @@ export const SaveButton = () => {
 
     return (
         <li onClick={saveData}>
-            <a>
+            <a className="not-selectable-pointer">
                 Save
             </a>
         </li>

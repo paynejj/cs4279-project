@@ -60,7 +60,7 @@ export default function QuestListModal() {
                     element.style.color = "purple";
                     element.style.backgroundColor = "black";
                 } else {
-                    element.style.color = "black";
+                    element.style.color = "pink";
                     element.style.backgroundColor = "purple";
                     setSelectedQuest(acceptedQuests[i]);
                 }
@@ -115,7 +115,7 @@ export default function QuestListModal() {
                                                 width="90%"
                                                 onClick={() => clickQuest(row.name, idx)}
                                                 className="quest-notselected">
-                                                {row.name}
+                                                &nbsp;&#8226;&nbsp;{row.name}
                                             </Typography>
                                         </Grid>
                                     ))}
@@ -132,17 +132,13 @@ export default function QuestListModal() {
                                                 <br />
                                                 Reward: {selectedQuest?.reward} gold<br />
                                                 <br />
-                                                Progress: {selectedQuest?.itemCollected
-                                                    ?? selectedQuest?.monsterKilled}&nbsp;
-                                                / &nbsp;{selectedQuest?.itemToCollect
-                                                    ?? selectedQuest?.monsterToKill}
+                                                Progress: {selectedQuest?.itemCollected}&nbsp;
+                                                / &nbsp;{selectedQuest?.itemToCollect}
                                             </Typography>
                                             <div>
                                                 {selectedQuest?.itemCollected
-                                                    ?? selectedQuest?.monsterKilled
                                                     ===
                                                     selectedQuest?.itemToCollect
-                                                    ?? selectedQuest?.monsterToKill
                                                     ? <div>
                                                         <br />
                                                         <Button

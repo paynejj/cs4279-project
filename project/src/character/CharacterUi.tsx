@@ -8,9 +8,12 @@ import { PlayerDataContext } from '../Player/PlayerDataContext';
 import './Character.css';
 import { Equipment, EquipmentType } from '../Object/Equipment';
 import { Item } from '../Object/Item';
+import { useQuests } from '../Object/QuestData';
 
 export default function CharacterUi() {
     const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
+
+    const { acceptedQuests } = useQuests();
 
     let equipRows: [EquipmentType, Equipment][] = [];
     let inventoryRows: [string, Item][] = [];
@@ -31,6 +34,7 @@ export default function CharacterUi() {
     const openEquip = Boolean(anchorElEquip);
 
     React.useEffect(() => {
+        let weaponQuest = acceptedQuests.find((quest) => quest.name === "WEAPON");
         let tempInventoryRows: [string, Item][] = [];
         let tempEquipInventoryRows: [string, Item][] = [];
         let tempEquipRows: [EquipmentType, Equipment][] = [];
@@ -38,6 +42,18 @@ export default function CharacterUi() {
             playerData.equipments.forEach(
                 (equipment, equipmentType) => { tempEquipRows.push([equipmentType, equipment]) }
             );
+
+            // for the WEAPON quest, if the player is equipping a weapon, 
+            // set the itemCollected to 1
+            if (weaponQuest &&
+                typeof weaponQuest.itemCollected === "number" &&
+                weaponQuest.itemCollected < 1) {
+                let currentWeapon = playerData.equipments.get(EquipmentType.Weapon)
+                if (currentWeapon && currentWeapon[0] !== "NOTHING") {
+                    weaponQuest.itemCollected = 1;
+                }
+            }
+
             playerData.inventory.forEach(
                 (item, itemName) => {
                     if (typeof item.item_type[1] === 'number') {
@@ -250,6 +266,7 @@ export default function CharacterUi() {
                                             bgcolor: 'purple',
                                             color: 'black',
                                         },
+                                        cursor: "pointer",
                                     }}>
                                     {row[1][0]}
                                 </Button>
@@ -285,18 +302,16 @@ export default function CharacterUi() {
                         </Grid>
                     ))}
                 </Box>
-                <Box minWidth="200px" width="25vw" m={1}>
-                    <Grid container>
-                        <Grid item xs={8}>
-                            <Typography variant="h6">&nbsp;INVENTORY</Typography>
+                <Box minWidth="200px" width="25vw" maxWidth="270px" m={1}>
+                    <Grid container alignItems="center">
+                        <Grid item xs={10}>
+                            <Typography variant="h6">&nbsp;&nbsp;INVENTORY</Typography>
                         </Grid>
-                        <Grid item xs={2}>
-                            <Typography >{inventoryCount}/20</Typography>
-                        </Grid>
-                        <Grid item xs={1}>
+                        <Grid item xs={2} textAlign="right">
+                            <Typography fontSize={15}>{inventoryCount}/20</Typography>
                         </Grid>
                     </ Grid>
-                    <Grid container height="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
+                    <Grid container maxHeight="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
                         {equipInventory.map((row, idx) => (
                             <Grid container key={row[1].name}>
                                 <Grid item sm={11}>

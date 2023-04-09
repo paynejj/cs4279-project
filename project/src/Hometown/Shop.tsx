@@ -5,6 +5,8 @@ import { ShopData } from "../Object/Shop";
 import { Item } from "../Object/Item"
 import { PlayerDataContext } from "../Player/PlayerDataContext"
 import { shopData } from "./ShopHelper"
+import InfoTooltip from './InfoTooltip';
+import './Shop.css';
 
 
 import './Shop.css';
@@ -38,12 +40,12 @@ textAlign: 'right'
     let selectedShopItems: ShopData = [];
     // number of item to be displayed in the shop
     let i = 2
-    let selectedIndices : Number[] = [];
-    while ( selectedIndices.length < i) {
+    let selectedIndices: Number[] = [];
+    while (selectedIndices.length < i) {
       let randomIndex = Math.floor(Math.random() * shopData.length);
 
       if (!selectedIndices.includes(randomIndex)) {
-        
+
         selectedIndices.push(randomIndex);
         let randomQuest = shopData[randomIndex];
         // make a hard copy
@@ -53,10 +55,10 @@ textAlign: 'right'
     return selectedShopItems;
   }
 
-  
+
 
   let selectedShopItems = getRandomShopItem();
-  
+
   const [shopStockArray, setShopStockArray] = React.useState<ShopData>(selectedShopItems);
   const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
 
@@ -94,7 +96,13 @@ textAlign: 'right'
     return (
       <div>
         {objArray.map((obj) => (
-          <span key={obj.name} style={containerStyle}>Shop Item: {obj.name} -- Stock: {obj.amount}
+          <span key={obj.name} style={containerStyle}>
+              <strong>&nbsp;{obj.name}&nbsp;</strong>
+              --  Stock: {obj.amount}  --  ${obj.value}
+              <InfoTooltip
+                name={obj.name}
+                description={obj.item_type}
+              />
             {obj.amount > 0 ?
               <Button2
                 onClick={() => buyItem(obj, 1)}

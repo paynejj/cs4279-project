@@ -28,5 +28,5 @@ uiButton:hover {
 .quest-notselected:hover {
     margin: auto;
     background-color: purple;
-    color: black;
+    color: pink;
 }

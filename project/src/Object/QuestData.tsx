@@ -4,20 +4,44 @@ import { QuestType } from "./Quest";
 // default quests on the quest board
 const defaultQuests: QuestType[] = [
     {
-        name: "Slime Hunting", description: "Kill 5 Slimes",
-        reward: 100, monsterKilled: 0, monsterToKill: 10
+        name: "SlimeHunting", description: "Kill 10 Slimes",
+        reward: 100, itemCollected: 0, itemToCollect: 10
     },
     {
         name: "WEAPON", description: "Equip a weapon",
         reward: 50, itemCollected: 0, itemToCollect: 1
     },
     {
-        name: "Fighting Streak", description: "Fight 5 Monsters in a row",
-        reward: 150, monsterKilled: 0, monsterToKill: 5
+        name: "FingerSnapping", description: "Fight 20 Monsters",
+        reward: 150, itemCollected: 0, itemToCollect: 20
     },
     {
-        name: "Rest Time", description: "Stay in Rest area for 5 hours",
-        reward: 50, itemCollected: 0, itemToCollect: 5
+        name: "WARM", description: "Stay in the rest area for 30 seconds",
+        reward: 10, itemCollected: 0, itemToCollect: 30
+    },
+    {
+        name: "Bezos", description: "Sell 30 items",
+        reward: 200, itemCollected: 0, itemToCollect: 30
+    },
+    {
+        name: "Beginner", description: "Complete 1 dungeon",
+        reward: 30, itemCollected: 0, itemToCollect: 1
+    },
+    {
+        name: "MrDungeon", description: "Complete 20 HARD dungeons",
+        reward: 200, itemCollected: 0, itemToCollect: 20
+    },
+    {
+        name: "CHATGPT", description: "Write 10 scripts",
+        reward: 200, itemCollected: 0, itemToCollect: 10
+    },
+    {
+        name: "Insecurity", description: "Save 100 times",
+        reward: 50, itemCollected: 0, itemToCollect: 100
+    },
+    {
+        name: "Persistency", description: "Preload script outputs [0, 1, 2, 3, 4, 5]",
+        reward: 500, itemCollected: 0, itemToCollect: 1
     },
 ];
 

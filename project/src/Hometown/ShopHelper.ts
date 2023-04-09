@@ -1,68 +1,128 @@
 import { ShopData } from "../Object/Shop";
-import { Item } from "../Object/Item";
 import { EquipmentType } from "../Object/Equipment"
 
-const id0: Item = {
-    name: 'HP Potion',
-    value: 2,
-    amount: 5,
-    item_type: ["HP", 5],
-};
-
-const id1: Item = {
-    name: 'MP Potion',
-    value: 2,
-    amount: 2,
-    item_type: ["MP", 5],
-};
-
-const id2: Item = {
-    name: 'Sword',
-    value: 10,
-    amount: 2,
-    item_type: ["Sword", {
-        equipmentType: EquipmentType.Weapon,
-        Strength: 3,
-    }]
-};
-
-const id3: Item = {
-    name: 'Bag of Chips',
-    value: 2,
-    amount: 3,
-    item_type: ["HP", 2],
-};
-
-const id4: Item = {
-    name: 'Mithril Chestplate',
-    value: 50,
-    amount: 1,
-    item_type: ["Mithril Chestplate", {
-        equipmentType: EquipmentType.Chestplate,
-        Strength: 3,
-        MaxHP: 10,
-    }]
-};
-
-const id5: Item = {
-    name: 'Iron Dagger',
-    value: 6,
-    amount: 10,
-    item_type: ["Iron Dagger", {
-        equipmentType: EquipmentType.Weapon,
-        Agility: 1,
-        Dexterity: 1,
-    }]
-};
-
-const id6: Item = {
-    name: 'Amber Necklace',
-    value: 30,
-    amount: 10,
-    item_type: ["Amber Necklace", {
-        equipmentType: EquipmentType.Amulet,
-        Luck: 5,
-    }]
-};
-
-export const shopData: ShopData = [id0, id1, id2, id3, id4, id5, id6];
+export const shopData: ShopData = [
+    {
+        name: 'HP Potion',
+        value: 10,
+        amount: 5,
+        item_type: ["HP", 5],
+    },
+    {
+        name: 'Bag of Chips',
+        value: 3,
+        amount: 3,
+        item_type: ["HP", 2],
+    },
+    {
+        name: 'MP Potion',
+        value: 5,
+        amount: 2,
+        item_type: ["MP", 5],
+    },
+    {
+        name: 'Sword',
+        value: 45,
+        amount: 1,
+        item_type: ["Sword", {
+            equipmentType: EquipmentType.Weapon,
+            Strength: 3,
+        }]
+    },
+    {
+        name: 'Dagger',
+        value: 30,
+        amount: 2,
+        item_type: ["Dagger", {
+            equipmentType: EquipmentType.Weapon,
+            Agility: 1,
+            Dexterity: 1,
+        }]
+    },
+    {
+        name: 'Chopsticks',
+        value: 10,
+        amount: 2,
+        item_type: ["Chopsticks", {
+            equipmentType: EquipmentType.Weapon,
+            Agility: 1,
+            Dexterity: 1,
+            Intellegence: 5,
+            Luck: -3,
+            MaxMP: 15,
+        }]
+    },
+    {
+        name: 'Mithril Coat',
+        value: 130,
+        amount: 1,
+        item_type: ["Mithril Coat", {
+            equipmentType: EquipmentType.Chestplate,
+            Strength: 3,
+            MaxHP: 10,
+        }]
+    },
+    {
+        name: 'AmberNecklace',
+        value: 50,
+        amount: 2,
+        item_type: ["AmberNecklace", {
+            equipmentType: EquipmentType.Amulet,
+            Luck: 5,
+        }]
+    },
+    {
+        name: 'Greaves',
+        value: 180,
+        amount: 1,
+        item_type: ["Greaves", {
+            equipmentType: EquipmentType.Boots,
+            MaxHP: 18,
+            Agility: 9,
+        }]
+    },
+    {
+        name: 'Chain Boots',
+        value: 80,
+        amount: 2,
+        item_type: ["Chain Boots", {
+            equipmentType: EquipmentType.Boots,
+            MaxHP: 2,
+            Agility: 4,
+        }]
+    },
+    {
+        name: 'Scale Chausses',
+        value: 100,
+        amount: 1,
+        item_type: ["Scale Chausses", {
+            equipmentType: EquipmentType.Chausses,
+            MaxHP: 7,
+            Dexterity: 1,
+            Vitality: 2,
+            Agility: -1,
+        }]
+    },
+    {
+        name: 'Ring (R)',
+        value: 70,
+        amount: 1,
+        item_type: ["Ring (R)", {
+            equipmentType: EquipmentType.Ring1,
+            MaxMP: 5,
+            Luck: 3,
+            Vitality: -1,
+        }]
+    },
+    {
+        name: 'Ring (L)',
+        value: 30,
+        amount: 1,
+        item_type: ["Ring (L)", {
+            equipmentType: EquipmentType.Ring2,
+            MaxMP: 2,
+            Luck: 1,
+            Vitality: 1,
+        }]
+    },
+];
