@@ -41,7 +41,7 @@ const defaultQuests: QuestType[] = [
     },
     {
         name: "Persistency", description: "Preload script outputs [0, 1, 2, 3, 4, 5]",
-        reward: 500, itemCollected: 0, itemToCollect: 1
+        reward: 100, itemCollected: 0, itemToCollect: 1
     },
 ];
 

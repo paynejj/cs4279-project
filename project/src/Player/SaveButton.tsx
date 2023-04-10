@@ -46,6 +46,7 @@ export const SaveButton = () => {
         if (saveJson) {
             window.api.writeFile("./save.json", saveJson);
             console.log('Successfully saved');
+            window.alert('Successfully saved');
         }
     };
 

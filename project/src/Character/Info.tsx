@@ -43,7 +43,7 @@ export default function InfoModal({ name, description, value }: InfoProps) {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {value && <div>Value: {value}</div>}
-            {typeof description[1] === "number" ? (<div>{description[0]}: {description[1]}</div>)
+            {typeof description[1] === "number" ? (<span>{description[0]}: {description[1]}</span>)
               :
               <div>
                 {Object.keys(description[1]).map((key) => (
