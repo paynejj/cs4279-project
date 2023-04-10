@@ -4,6 +4,4 @@ export type QuestType = {
     reward: number;
     itemCollected?: number;
     itemToCollect?: number;
-    monsterKilled?: number;
-    monsterToKill?: number;
 }

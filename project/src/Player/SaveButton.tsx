@@ -6,7 +6,7 @@ import "../SideBar/SideBarUI.css"
 
 export const SaveButton = () => {
     const { playerData } = useContext(PlayerDataContext);
-    const { acceptedQuests } = useQuests();
+    const { acceptedQuests, progressQuest } = useQuests();
     const [saveJson, setSaveJson] = useState<string>();
     let insecurityQuest = acceptedQuests.find((quest) => quest.name === "Insecurity");
 
@@ -32,14 +32,10 @@ export const SaveButton = () => {
     };
 
     const saveData = () => {
-
-        if (insecurityQuest && 
-            typeof insecurityQuest.itemCollected === 'number' &&
-            insecurityQuest.itemToCollect &&
-            insecurityQuest.itemCollected < insecurityQuest.itemToCollect){
-            ++insecurityQuest.itemCollected;
-            console.log("Saved", insecurityQuest.itemCollected, "times");
+        if (insecurityQuest) {
+            progressQuest(insecurityQuest);
         }
+
 
         // Convert playerData and quests to JSON
         const saveStr = JSON.stringify(gameData);

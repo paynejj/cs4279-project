@@ -30,7 +30,7 @@ export default function InfoTooltip({ name, description }: InfoProps) {
           <strong>{name}</strong>
           <br />
           {typeof description[1] === 'number' ? (
-            <div>{description[0]}: {description[1]}</div>
+            <span>{description[0]}: {description[1]}</span>
           ) : (
             <div>
               {Object.keys(description[1]).map((key) => (

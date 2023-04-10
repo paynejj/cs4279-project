@@ -8,31 +8,34 @@ import { python } from '@codemirror/lang-python';
 import { useQuests } from "./Object/QuestData";
 
 function TextEditor() {
-  const { acceptedQuests } = useQuests();
+  const { acceptedQuests, progressQuest } = useQuests();
   const [input, setInput] = useState('');
   const { runPython, stdout, stderr, isLoading, isRunning } = usePython();
 
   let persistencyQuest = acceptedQuests.find((quest) => quest.name === "Persistency");
   let chatgptQuest = acceptedQuests.find((quest) => quest.name === "CHATGPT");
 
-  function increaseQuestProgress(quest) {
-    if (quest &&
-      typeof quest.itemCollected === 'number' &&
-      quest.itemToCollect &&
-      quest.itemCollected < quest.itemToCollect) {
-      ++quest.itemCollected;
-      console.log("quest progress increased");
-    }
-  }
+  // function increaseQuestProgress(quest) {
+  //   if (quest &&
+  //     typeof quest.itemCollected === 'number' &&
+  //     quest.itemToCollect &&
+  //     quest.itemCollected < quest.itemToCollect) {
+  //     ++quest.itemCollected;
+  //     console.log("quest progress increased");
+  //   }
+  // }
 
   function saveFile() {
-    increaseQuestProgress(chatgptQuest); 
+    if (chatgptQuest) {
+      progressQuest(chatgptQuest);
+    }
+
     // not working because saveAs will cause the page to be re-rendered
 
     var blob = new Blob([input], { type: "text/plain;charset=utf-8" });
     saveAs(blob, "new.txt");
   }
-  
+
   const handleFiles = files => {
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -49,13 +52,13 @@ function TextEditor() {
     setInput(window.api.readFile("./sample.txt"))
   }
   useEffect(() => {
-    // console.log(input);
-  }, [input]);
+    if (stdout === "[0, 1, 2, 3, 4, 5]") {
+      progressQuest(persistencyQuest);
+    }
+  }, [stdout]);
 
 
-  if (stdout === "[0, 1, 2, 3, 4, 5]"){
-    increaseQuestProgress(persistencyQuest);
-  }
+
 
   return (
     <>

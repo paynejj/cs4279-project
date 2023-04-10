@@ -13,7 +13,7 @@ import { useQuests } from '../Object/QuestData';
 export default function CharacterUi() {
     const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
 
-    const { acceptedQuests } = useQuests();
+    const { acceptedQuests, progressQuest } = useQuests();
 
     let equipRows: [EquipmentType, Equipment][] = [];
     let inventoryRows: [string, Item][] = [];
@@ -45,12 +45,10 @@ export default function CharacterUi() {
 
             // for the WEAPON quest, if the player is equipping a weapon, 
             // set the itemCollected to 1
-            if (weaponQuest &&
-                typeof weaponQuest.itemCollected === "number" &&
-                weaponQuest.itemCollected < 1) {
+            if (weaponQuest) {
                 let currentWeapon = playerData.equipments.get(EquipmentType.Weapon)
                 if (currentWeapon && currentWeapon[0] !== "NOTHING") {
-                    weaponQuest.itemCollected = 1;
+                    progressQuest(weaponQuest);
                 }
             }
 
@@ -166,12 +164,13 @@ export default function CharacterUi() {
     };
 
     // handle "DESTROY" of an equipment in the inventory
-    const handleDestroyEquipment = () => {
+    const handleSellEquipment = () => {
         let newPlayerData = { ...playerData };
         let equipmentToDestroy = newPlayerData.inventory.get(
             equipInventory[equipInventoryMenuIdx][0]);
         if (equipmentToDestroy && typeof equipmentToDestroy.item_type[1] !== "number") {
             equipmentToDestroy.amount -= 1;
+            newPlayerData.gold += Math.ceil(equipmentToDestroy.value * 0.5);
             if (equipmentToDestroy.amount <= 0) {
                 newPlayerData.inventory.delete(equipmentToDestroy.name);
             } else {
@@ -355,11 +354,13 @@ export default function CharacterUi() {
                                                 name=
                                                 {equipInventory[equipInventoryMenuIdx][1].name}
                                                 description=
-                                                {equipInventory[equipInventoryMenuIdx][1].item_type} /> :
+                                                {equipInventory[equipInventoryMenuIdx][1].item_type}
+                                                value=
+                                                {equipInventory[equipInventoryMenuIdx][1].value} /> :
                                             <div></div>}
                                     </MenuItem>
-                                    <MenuItem onClick={handleDestroyEquipment}>
-                                        <Button sx={{ color: "white" }}>Destroy</Button>
+                                    <MenuItem onClick={handleSellEquipment}>
+                                        <Button sx={{ color: "white" }}>Sell</Button>
                                     </MenuItem>
                                 </Menu>
                                 <Grid item sm={1} textAlign="right"> {row[1].amount}</Grid>
@@ -405,7 +406,8 @@ export default function CharacterUi() {
                                         <MenuItem>
                                             <Info
                                                 name={inventory[PotionMenuIdx][1].name}
-                                                description={inventory[PotionMenuIdx][1].item_type} />
+                                                description={inventory[PotionMenuIdx][1].item_type}
+                                                value={inventory[PotionMenuIdx][1].value} />
                                         </MenuItem>
                                     </Menu>
                                     <Grid item sm={1} textAlign="right"> {row[1].amount}</Grid>

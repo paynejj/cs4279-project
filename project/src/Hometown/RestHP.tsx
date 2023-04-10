@@ -3,7 +3,7 @@ import { PlayerDataContext } from "../Player/PlayerDataContext";
 import { useQuests } from '../Object/QuestData';
 
 function HpBar() {
-    const { acceptedQuests } = useQuests();
+    const { acceptedQuests, progressQuest } = useQuests();
     const { playerData, setPlayerData } = useContext(PlayerDataContext);
     const [currentHp, setCurrentHp] = useState(playerData.stats.HP);
     const [currentMp, setCurrentMp] = useState(playerData.stats.MP);
@@ -13,7 +13,7 @@ function HpBar() {
 
 
     useEffect(() => {
-        let warmQuest = acceptedQuests.find((quest) => quest.name === "I LOVE WARM");
+        let warmQuest = acceptedQuests.find((quest) => quest.name === "WARM");
 
         const intervalId = setInterval(() => {
             let newPlayerData = { ...playerData };
@@ -23,13 +23,9 @@ function HpBar() {
             newPlayerData.stats.MP = currentMp;
             setPlayerData(newPlayerData);
 
-            // counting the time spent for the I LOVE WARM quest
-            if (warmQuest &&
-                typeof warmQuest.itemCollected === "number" &&
-                warmQuest.itemToCollect &&
-                warmQuest.itemCollected < warmQuest.itemToCollect) {
-                ++warmQuest.itemCollected;
-                console.log(warmQuest.itemCollected);
+            // counting the time spent for the WARM quest
+            if (warmQuest) {
+                progressQuest(warmQuest);
             }
 
         }, 1000);

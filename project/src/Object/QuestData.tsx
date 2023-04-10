@@ -61,6 +61,7 @@ interface QuestsContextValue {
     acceptQuest: (quest: QuestType) => void;
     completeQuest: (quest: QuestType) => void;
     setAcceptedQuestlist: (quest: QuestType[]) => void;
+    progressQuest: (quest: QuestType) => void;
 }
 
 const QuestsContext = createContext<QuestsContextValue>({
@@ -70,6 +71,7 @@ const QuestsContext = createContext<QuestsContextValue>({
     acceptQuest: () => { },
     completeQuest: () => { },
     setAcceptedQuestlist: () => { },
+    progressQuest: () => { },
 });
 
 export function useQuests() {
@@ -88,11 +90,31 @@ export function QuestsProvider({ children }: QuestsProviderProps) {
         setQuestBoardList(defaultQuests);
         setAcceptedQuests(defaultQuests2);
     }, []);
-    
+
 
     function acceptQuest(quest: QuestType) {
         setAcceptedQuests(prevAcceptedQuests => [...prevAcceptedQuests, quest]);
         setQuestBoardList(prevQuestBoardList => prevQuestBoardList.filter(q => q.name !== quest.name));
+    }
+
+    function progressQuest(quest: QuestType) {
+        if (quest) {
+            setAcceptedQuests(prevAcceptedQuests => prevAcceptedQuests.map(q => {
+                if (q.name === quest.name) {
+                    if (typeof q.itemCollected === 'number' &&
+                        q.itemToCollect &&
+                        q.itemCollected < q.itemToCollect) {
+                        console.log("quest progress");
+                        return {
+                            ...q,
+                            itemCollected: ++q.itemCollected,
+                        };
+                    }
+
+                }
+                return q;
+            }));
+        }
     }
 
     function newQuest(quest: QuestType) {
@@ -114,6 +136,7 @@ export function QuestsProvider({ children }: QuestsProviderProps) {
         newQuest,
         completeQuest,
         setAcceptedQuestlist,
+        progressQuest,
     };
 
     return <QuestsContext.Provider value={value}>{children}</QuestsContext.Provider>;

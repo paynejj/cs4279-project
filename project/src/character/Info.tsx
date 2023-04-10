@@ -21,9 +21,10 @@ const style = {
 interface InfoProps {
   name: string;
   description: Equipment | Potion;
+  value?: number;
 }
 
-export default function InfoModal({ name, description }: InfoProps) {
+export default function InfoModal({ name, description, value }: InfoProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -41,6 +42,7 @@ export default function InfoModal({ name, description }: InfoProps) {
             {name}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {value && <div>Value: {value}</div>}
             {typeof description[1] === "number" ? (<div>{description[0]}: {description[1]}</div>)
               :
               <div>
