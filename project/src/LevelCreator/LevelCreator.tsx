@@ -1,8 +1,17 @@
 import { useState } from 'react'
-import DungeonMap from '../Components/DungeonMap'
-import { Dungeon } from '../Scripts/Dungeon'
+import { Dungeon } from '../Dungeon/Scripts/Dungeon'
 import './LevelCreator.css'
+import CDButton from '../Components/CDButton'
+import internal from 'stream'
 
+export type Level = {
+    name: string
+    rows: number
+    cols: number
+    start: [number, number]
+    map: number[][]
+
+}
 function LevelCreator() {
     const dungeon = new Dungeon()
     const [map, setMap] = useState(dungeon.map)
@@ -28,8 +37,25 @@ function LevelCreator() {
                 setSelected({ ...defaultSelected, tunnel: true })
         }
     }
+
+    const saveLevel = () => {
+        const level: Level = {
+            name: "level1",
+            rows: 5,
+            cols: 5,
+            start: [0, 0],
+            map: [
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0]]
+        }
+        window.api.writeLevel(level)
+    }
     return (
         <>
+            <CDButton onClick={saveLevel}> Save Template Level </CDButton>
             <button className={`tile ${selected.void ? "active" : ""}`}
                 onClick={() => toggleSelected("void")}> Void </button>
             <button className={`tile ${selected.tunnel ? "active" : ""}`}

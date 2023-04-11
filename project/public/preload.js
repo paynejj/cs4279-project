@@ -2,6 +2,7 @@ process.once("loaded", () => {
     const { contextBridge } = require("electron")
     const fs = require("fs")
     const path = require("path")
+    const LEVELS = './levels/'
 
     contextBridge.exposeInMainWorld(
         "api", {
@@ -13,20 +14,26 @@ process.once("loaded", () => {
             return process.cwd()
         },
         /**
-         * write a file 
-         * @param {string} path 
-         * @param {string} text 
+         * save a level to LEVELS directory. Throws error if already exists.
+         * @param {string} name 
+         * @param {Level} level 
          */
-        writeFile: (path, text) => {
-            fs.writeFileSync(path, text)
+        writeLevel: (level) => {
+            fs.writeFileSync(path.join(__dirname, LEVELS, level.name + ".json"),
+                JSON.stringify(level), {flag: "ax"})
         },
         /**
-         * Read a file
+         * Read a Level from LEVELS directory. Throws error if not found
          * @param {string} path 
          * @returns file contents
          */
-        readFile: (path) => {
-            return fs.readFileSync(path, {encoding: "utf-8", flag: "r"} )
+        readLevel: (name) => {
+            const content = fs.readFileSync(path.join(__dirname, LEVELS, name + ".json"),
+                { encoding: "utf-8", flag: "r" })
+            return JSON.parse(content)
+        },
+        levelExists: (name) => {
+            return fs.existsSync(path.join(LEVELS, name))
         }
     }
     )

@@ -14,6 +14,7 @@
 }
 
 .choice-button {
+    all: unset;
     background-color: purple;
     color: black;
     font-size: xx-large;

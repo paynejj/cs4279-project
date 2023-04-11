@@ -8,7 +8,7 @@ function DungeonNodeDisplay({ node, hasPlayer, onClick }: DungeonNodeProps) {
     return (
         <div className='dungeon-node'
             style={{
-                backgroundColor: hasPlayer ? "red" : node.color
+                backgroundColor: hasPlayer ? "blue" : node.color
             }}>
         </div>
     )

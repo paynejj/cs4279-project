@@ -1,31 +1,34 @@
-import { DNodes, DTunnel, DungeonNode, DVoid } from "./DungeonNode";
+import { DEnemy, DNodes, DTunnel, DungeonNode, DVoid } from "./DungeonNode";
 
 //PlaceHolder level
-const LEVEL = [
-    [1, 1, 1, 1, 1],
-    [0, 0, 1, 0, 1],
-    [0, 0, 1, 0, 1],
-    [0, 0, 1, 1, 1],
-    [1, 1, 1, 0, 1]]
+const LEVELNAME = 'level1'
+const EMPTY_LEVEL: Level = {
+    name: "",
+    map: [],
+    start: [0, 0],
+    reward: "",
+    rows: 0,
+    cols: 0
+}
 /**
  * Controls the Dungeon game
  */
 export class Dungeon {
     private _player: [number, number]
     private _map: DungeonNode[][]
-    readonly level: number[][]
+    readonly level: Level
     readonly rows: number
     readonly cols: number
     /**
      * 
      * @param level a parseable array of numbers representing a level
      */
-    constructor(level = LEVEL) {
-        this._player = [0, 0]
-        this.level = level
-        this.rows = level.length
-        this.cols = level[0].length
-        this._map = this.loadLevel()
+    constructor(levelName = LEVELNAME) {
+        this.level = this.loadLevel(levelName)
+        this._player = this.level.start
+        this.rows = this.level.rows
+        this.cols = this.level.cols
+        this._map = this.loadMap()
     }
     /**Current map of Dungeon Nodes */
     public get map() {
@@ -48,15 +51,16 @@ export class Dungeon {
     }
 
     public setMap(map: DungeonNode[][]) {
-        if (this.rows == map.length && this.cols == map[0].length)
+        if (this.rows === map.length && this.cols === map[0].length)
             this._map = map
-    
+
     }
     /**
      * Instantiate DungeonNodes from level array
      */
-    private loadLevel(): DungeonNode[][] {
-        return this.level
+    private loadMap(): DungeonNode[][] {
+        if (!this.level) return []
+        return this.level.map
             //Map number[] to DNode[]
             .map(row =>
                 //Map numbers to DNodes based on the DNodes enum
@@ -66,9 +70,23 @@ export class Dungeon {
                             return new DVoid();
                         case DNodes.DTunnel:
                             return new DTunnel();
+                        case DNodes.DEnemy:
+                            return new DEnemy();
                         default: return new DVoid()
                     }
                 }))
+    }
+
+    private loadLevel(levelName: string) {
+        let level = EMPTY_LEVEL
+        try {
+            level = window.api.readLevel(levelName)
+        }
+        catch (error) {
+            console.log(error)
+            console.log("Level is Empty")
+        }
+        return level
     }
     /**
      * Checks if movement to row, col is legal

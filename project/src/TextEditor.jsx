@@ -5,6 +5,8 @@ import { saveAs } from 'file-saver';
 import ReactFileReader from 'react-file-reader';
 import { sublime } from '@uiw/codemirror-theme-sublime';
 import { python } from '@codemirror/lang-python';
+import CDButton from './Components/CDButton';
+import CDInput from './Components/CDInput';
 import { useQuests } from "./Object/QuestData";
 
 function TextEditor() {
@@ -38,7 +40,7 @@ function TextEditor() {
 
   }
   function handle() {
-    // console.log(window.api.readFile("./sample.txt"))
+    console.log(window.api.readFile("./sample.txt"))
     setInput(window.api.readFile("./sample.txt"))
   }
   useEffect(() => {
@@ -55,9 +57,9 @@ function TextEditor() {
       {isLoading ? <p>Loading...</p> : <p>Ready!</p>}
       <span style={{ display: "flex" }}>
         <ReactFileReader handleFiles={handleFiles} fileTypes={'.txt'}>
-          <button className='btn'>select load</button>
+          <CDButton >select load</CDButton>
         </ReactFileReader>
-        <button className='btn' onClick={handle}>preload</button>
+        <CDButton onClick={handle}>preload</CDButton>
       </span>
       <form>
         <CodeMirror
@@ -72,7 +74,7 @@ function TextEditor() {
           }}
         />
         <span style={{ display: "flex" }}>
-          <input
+          <CDInput
             type="submit"
             value={!isRunning ? 'Run' : 'Running...'}
             disabled={isLoading || isRunning}
@@ -81,7 +83,7 @@ function TextEditor() {
               runPython(input)
             }}
           />
-          <button className='btn' onClick={saveFile}>save</button>
+          <CDButton onClick={saveFile}>save</CDButton>
         </span>
       </form>
       <p>Output</p>
