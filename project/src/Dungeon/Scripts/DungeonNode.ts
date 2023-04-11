@@ -1,12 +1,17 @@
+import { BANDIT } from "../Interactables/Enemies"
+import { CHEST } from "../Interactables/Treasures"
 
-type Treasure = string | number
+export type Treasure = {
+    gold: 100
+    item?: string
+}
 
-type Enemy = {
+export type Enemy = {
+    type: string
     health: number,
     damage: number
 }
-
-export enum DNodes { DVoid = 0, DTunnel = 1 }
+export enum DNodes { DVoid , DTunnel, DChest, DEnemy, DPit, DGoblin, }
 export interface DungeonNode {
     treasure: Treasure,
     enemy: Enemy,
@@ -40,4 +45,18 @@ export class DVoid implements DungeonNode {
         this.isVoid = true
     }
 }
+
+export class DEnemy implements DungeonNode {
+    readonly treasure: Treasure;
+    readonly enemy: Enemy;
+    readonly color: string;
+    readonly isVoid?: boolean;
+
+    constructor() {
+        this.treasure = CHEST;
+        this.enemy = BANDIT;
+        this.color = "red"
+    }
+
+} 
 

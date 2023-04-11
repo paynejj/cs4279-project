@@ -1,7 +1,5 @@
 import json
 from Constants import *
-import Level
-
 
 class DungeonBoard:
 
