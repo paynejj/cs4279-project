@@ -26,27 +26,6 @@ function App() {
 
   return (
     <PythonProvider>
-      <BrowserRouter>
-        <div className="App">
-          <nav>
-            <SideBar />
-          </nav>
-          <main>
-            <Routes>
-              <Route path="/character" element={<CharacterUi />} />
-              <Route path="/dungeon-select" element={<DungeonSelect />} />
-              <Route path="/dungeon" element={<DungeonUI />} />
-              <Route path="/hometown" element={<Hometown />} />
-              <Route path="/shop" element={<Shop />} />
-              <Route path="/rest" element={<Rest />} />
-              <Route path="/quest" element={<Quest />} />
-              <Route path="/level-creator" element={<LevelCreator />} />
-              <Route path="/text-editor" element={<TextEditor />} />
-              <Route path="/" element={<TitleScreen />} />
-            </Routes>
-          </main>
-        </div>
-      </BrowserRouter>
       <PlayerDataContext.Provider value={{ playerData, setPlayerData }}>
         <QuestsProvider>
           <BrowserRouter>
@@ -66,7 +45,8 @@ function App() {
                   <Route path="/quest" element={<Quest />} />
                   <Route path="/level-creator" element={<LevelCreator />} />
                   <Route path="/text-editor" element={<TextEditor />} />
-                  <Route path="/" element={<CharacterCreation />} />
+                  <Route path="/creation" element={<CharacterCreation />} />
+                  <Route path="/" element={<TitleScreen />} />
                 </Routes>
               </main>
             </div>
