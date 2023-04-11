@@ -2,6 +2,7 @@
     height: 100%;
     outline: purple;
     outline-style: solid;
+    max-height: 90%;
 }
 
 ul {

@@ -15,33 +15,33 @@ function Hometown() {
     cursor: pointer;
     justify-content: center;
   `;
-  let navigate = useNavigate(); 
-  const routeChange1 = () =>{ 
-    let path = `/shop`; 
+  let navigate = useNavigate();
+  const routeChange1 = () => {
+    let path = `/shop`;
     navigate(path);
   }
-  const routeChange2 = () =>{ 
-    let path = `/quest`; 
+  const routeChange2 = () => {
+    let path = `/quest`;
     navigate(path);
   }
-  const routeChange3 = () =>{ 
-    let path = `/rest`; 
+  const routeChange3 = () => {
+    let path = `/rest`;
     navigate(path);
   }
 
   return (
-      <div
-        className="Hometown"
-        style={{ display: "flex", flexDirection: "row", height: "100%" }}
+    <div
+      className="Hometown"
+      style={{ display: "flex", flexDirection: "row", height: "100%" }}
+    >
+      <section
+        className="section"
+        style={{
+          paddingTop: "60px",
+          paddingBottom: "40px",
+          flex: "1 0 auto",
+        }}
       >
-        <section
-          className="section"
-          style={{
-            paddingTop: "60px",
-            paddingBottom: "40px",
-            flex: "1 0 auto",
-          }}
-        >
         <div className="backgroundImage">
           <Container>
             <div className="row">
@@ -109,9 +109,9 @@ function Hometown() {
               </div>
             </div>
           </Container>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
+    </div>
   );
 }
 

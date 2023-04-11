@@ -1,13 +1,16 @@
 import "./SideBarUI.css"
+import { Link } from 'react-router-dom';
+import { SaveButton } from "../Player/SaveButton";
 function SideBar() {
     return (
         <div className="sidebar">
             <ul>
-                <li><a href="/dungeon-select">Dungeon</a></li>
-                <li><a href="/hometown">HomeTown</a></li>
-                <li><a href="/character">Character</a></li>
-                <li><a href="/text-editor">Text</a></li>
-                <li><a href="/level-creator"> Create Level </a></li>
+                <li><Link draggable="false" to="/dungeon-select">Dungeon</Link></li>
+                <li><Link draggable="false" to="/hometown">HomeTown</Link></li>
+                <li><Link draggable="false" to="/character">Character</Link></li>
+                <li><Link draggable="false" to="/text-editor">Text</Link></li>
+                <li><Link draggable="false" to="?"> Create Level </Link></li>
+                <SaveButton/>
             </ul>
         </div>
     );
