@@ -15,16 +15,6 @@ function TextEditor() {
   let persistencyQuest = acceptedQuests.find((quest) => quest.name === "Persistency");
   let chatgptQuest = acceptedQuests.find((quest) => quest.name === "CHATGPT");
 
-  // function increaseQuestProgress(quest) {
-  //   if (quest &&
-  //     typeof quest.itemCollected === 'number' &&
-  //     quest.itemToCollect &&
-  //     quest.itemCollected < quest.itemToCollect) {
-  //     ++quest.itemCollected;
-  //     console.log("quest progress increased");
-  //   }
-  // }
-
   function saveFile() {
     if (chatgptQuest) {
       progressQuest(chatgptQuest);

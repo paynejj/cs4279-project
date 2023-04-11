@@ -8,8 +8,6 @@ import { shopData } from "./ShopHelper"
 import InfoTooltip from './InfoTooltip';
 import './Shop.css';
 
-
-import './Shop.css';
 function Shop() {
 
   const Button = styled.button`
@@ -117,6 +115,10 @@ textAlign: 'right'
     let path = `/hometown`;
     navigate(path);
   }
+  const routeChange2 = () => {
+    let path = `/sell`;
+    navigate(path);
+  }
 
   return (
     <div
@@ -124,7 +126,7 @@ textAlign: 'right'
       style={{ flexDirection: "column", height: "100%" }}
     >
       <Button onClick={routeChange}>Back</Button>
-
+      <Button onClick={routeChange2}>To Sell</Button>
       <div className="shop-list">
         <h1>Shop</h1>
         <div className="node">

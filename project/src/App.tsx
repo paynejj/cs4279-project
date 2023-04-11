@@ -6,6 +6,7 @@ import DungeonUI from './Dungeon/UI/DungeonUI';
 import Hometown from './Hometown/Hometown';
 import SideBar from "./SideBar/SideBarUI";
 import Shop from "./Hometown/Shop";
+import ShopSell from "./Hometown/ShopSell";
 import Rest from "./Hometown/Rest";
 import Quest from "./Hometown/Quest";
 import DungeonSelect from "./Dungeon/UI/DungeonSelect";
@@ -38,6 +39,7 @@ function App() {
                   <Route path="/dungeon" element={<DungeonUI />} />
                   <Route path="/hometown" element={<Hometown />} />
                   <Route path="/shop" element={<Shop />} />
+                  <Route path="/sell" element={<ShopSell />} />
                   <Route path="/rest" element={<Rest />} />
                   <Route path="/quest" element={<Quest />} />
                   <Route path="/level-creator" element={<LevelCreator />} />
