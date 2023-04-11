@@ -42,7 +42,7 @@ export default function InfoTooltip({ name, description }: InfoProps) {
           )}
         </Typography>
       }>
-      <Typography sx={{ color: 'purple', textAlign: 'left' }}> <InfoIcon /> </Typography>
+      <Typography sx={{ color: 'purple', display: 'flex', alignItems: 'center' }}> <InfoIcon /> </Typography>
     </Tooltip>
   );
 }

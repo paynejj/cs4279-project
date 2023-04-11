@@ -89,27 +89,39 @@ textAlign: 'right'
     }
   }
 
-  function displayArrayInRow(objArray: ShopData) {
-
+  function displayArrayInTable(objArray: ShopData) {
     return (
-      <div>
-        {objArray.map((obj) => (
-          <span key={obj.name} style={containerStyle}>
-              <strong>&nbsp;{obj.name}&nbsp;</strong>
-              --  Stock: {obj.amount}  --  ${obj.value}
-              <InfoTooltip
-                name={obj.name}
-                description={obj.item_type}
-              />
-            {obj.amount > 0 ?
-              <Button2
-                onClick={() => buyItem(obj, 1)}
-              >Buy</Button2> : <span></span>}
-          </span>
-        ))}
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Stock</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {objArray.map((obj) => (
+            <tr key={obj.name}>
+              <td><InfoTooltip name={obj.name} description={obj.item_type} /></td>
+              <td>{obj.name}</td>
+              <td>{obj.amount}</td>
+              <td>${obj.value}</td>
+              <td>
+                {obj.amount > 0 ? (
+                  <Button2 onClick={() => buyItem(obj, 1)}>Buy</Button2>
+                ) : (
+                  <span></span>
+                )}
+
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
+
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/hometown`;
@@ -130,7 +142,7 @@ textAlign: 'right'
       <div className="shop-list">
         <h1>Shop</h1>
         <div className="node">
-          {displayArrayInRow(shopStockArray)}
+          {displayArrayInTable(shopStockArray)}
         </div>
       </div>
     </div>

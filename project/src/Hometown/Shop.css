@@ -1,3 +1,7 @@
 strong {
     display: inline;
 }
+
+td {
+    text-align: center;
+  }

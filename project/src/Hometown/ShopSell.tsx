@@ -2,7 +2,9 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Item } from "../Object/Item"
 import { PlayerDataContext } from "../Player/PlayerDataContext"
+import InfoTooltip from './InfoTooltip';
 import styled from "styled-components";
+import './Shop.css';
 
 const Button = styled.button`
 background-color: black;
@@ -84,12 +86,14 @@ const ShopSellScreen: React.FC = () => {
             <Button onClick={routeChange}>To Buy</Button>
             <h1>Sell</h1>
             <p>Gold: {playerData.gold}</p>
+            {inventory.length !== 0 ?
             <table>
                 <thead>
                     <tr>
                         <th>Item</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Info</th>
                         <th>ToSell</th>
                     </tr>
                 </thead>
@@ -99,6 +103,10 @@ const ShopSellScreen: React.FC = () => {
                             <td>{idx[1].name}</td>
                             <td>{idx[1].value}</td>
                             <td>{idx[1].amount}</td>
+                            <InfoTooltip
+                                name={idx[1].name}
+                                description={idx[1].item_type}
+                            />
                             <td>
                                 <input type="number" min={0} max={idx[1].amount} value={selectedItems.find(selectedItem => selectedItem.name === idx[1].name)?.amount || 0} onChange={(event) => handleItemSelect(idx[1], Number(event.target.value))} />
                             </td>
@@ -106,7 +114,7 @@ const ShopSellScreen: React.FC = () => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> : <p>Inventory is empty</p>}
             <div>
                 <button onClick={handleSell} disabled={!selectedItems.length}>Sell</button>
             </div>
