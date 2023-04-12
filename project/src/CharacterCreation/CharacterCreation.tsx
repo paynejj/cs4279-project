@@ -10,6 +10,12 @@ function CharacterCreation() {
     const navigate = useNavigate();
 
     const handleCharacterCreation = (name: string, characterClass: string) => {
+
+        if (!name.replace(/\s/g, '').length) {
+            console.log('Invalid Name');
+            return;
+        }
+
         const newPlayerData = { ...playerData };
         newPlayerData.name = name;
         newPlayerData.class = characterClass;

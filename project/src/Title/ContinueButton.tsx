@@ -20,12 +20,13 @@ function ContinueButton({onLoad}) {
             window.alert("window.api.readFile() is broken");
         }
         if (loadedSave) {
+            console.log(loadedSave);
             if (typeof loadedSave === "string") {
                 const data = JSON.parse(loadedSave);
                 onLoad(data.player, data.quests);
+                console.log(data);
+                navigate('/hometown');
             }
-            console.log("Save loaded");
-            navigate('/hometown');
         }
     };
 
