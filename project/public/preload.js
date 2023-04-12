@@ -55,7 +55,24 @@ process.once("loaded", () => {
         },
         levelExists: (name) => {
             return fs.existsSync(path.join(LEVELS, name))
-        }
+        },
+        /**
+        * Read a file
+        * @param {string} path 
+        * @returns file contents
+        */
+        readFile: (path) => {
+            return fs.readFileSync(path)
+        },
+
+        /**
+        * write a file 
+        * @param {string} path 
+        * @param {string} text 
+        */
+        writeFile: (path, text) => {
+            fs.writeFileSync(path, text)
+        },
     }
     )
 })
