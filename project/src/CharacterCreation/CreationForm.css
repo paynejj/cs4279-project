@@ -1,6 +1,7 @@
 #creation-form {
     outline: 2px solid purple;
     max-width: 500px;
+    min-height: 360px;
 }
 
 #upload-div {

@@ -10,8 +10,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '50%',
-    height: '50%',
+    width: '60%',
+    height: '60%',
     bgcolor: 'black',
     border: '2px solid purple',
     boxShadow: 24,
@@ -96,7 +96,7 @@ export default function QuestListModal() {
                     <Grid container sx={{ height: '80%' }}>
                         <Grid item xs={12}>
                             <Typography id="modal-modal-title" variant="h6" component="h2"
-                                sx={{ fontFamily: 'serif', fontSize: '36px' }}>
+                                sx={{ fontFamily: 'serif', fontSize: '50px' }}>
                                 QUEST LIST
                             </Typography>
                         </Grid>
@@ -110,7 +110,7 @@ export default function QuestListModal() {
                                                 id={row.name}
                                                 variant="h6"
                                                 lineHeight="2.5"
-                                                fontSize="18px"
+                                                fontSize="21px"
                                                 fontStyle="italic"
                                                 width="90%"
                                                 onClick={() => clickQuest(row.name, idx)}
@@ -127,7 +127,7 @@ export default function QuestListModal() {
                                             <Typography
                                                 key="selectedQuest"
                                                 text-align='justify'
-                                                sx={{ overflowX: 'hidden', }}>
+                                                sx={{ overflowX: 'hidden', fontSize: '18px' }}>
                                                 {selectedQuest?.description} <br />
                                                 <br />
                                                 Reward: {selectedQuest?.reward} gold<br />
@@ -143,7 +143,16 @@ export default function QuestListModal() {
                                                         <br />
                                                         <Button
                                                             onClick={handleComplete}
-                                                            color='secondary'>
+                                                            sx={{
+                                                                backgroundColor: "purple",
+                                                                color: "black",
+                                                                fontSize: "21px",
+                                                                ':hover': {
+                                                                    bgcolor: 'purple',
+                                                                    color: 'pink',
+                                                                },
+                                                            }}
+                                                        >
                                                             Complete
                                                         </Button>
                                                     </div>

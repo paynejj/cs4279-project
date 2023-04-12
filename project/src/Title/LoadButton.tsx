@@ -16,11 +16,11 @@ function LoadButton({ onLoad }) {
                 onLoad(data.player, data.quests);
             }
         };
-    
+
         if (file) {
             reader.readAsText(file);
         }
-    
+
         console.log("Uploaded");
         navigate('/hometown');
     };
@@ -28,7 +28,7 @@ function LoadButton({ onLoad }) {
     return (
         <React.Fragment>
             <CDButton>
-                <label htmlFor="upload-input"> Load </label>
+                <label htmlFor="upload-input" style={{ cursor: "pointer" }}> Load </label>
             </CDButton>
             <input
                 type="file"

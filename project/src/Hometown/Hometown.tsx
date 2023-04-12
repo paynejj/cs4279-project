@@ -68,7 +68,10 @@ function Hometown() {
                       height: "50%",
                     }}
                   >
-                    <img src={require("../images/store_icon.png")} />
+                    <img
+                      src={require("../images/store_icon.png")}
+                      onClick={routeChange1}
+                      style={{ cursor: "pointer" }} />
                     <CDButton onClick={routeChange1}>Shop</CDButton>
                   </div>
 
@@ -80,7 +83,9 @@ function Hometown() {
                       height: "50%",
                     }}
                   >
-                    <img src={require("../images/quest_board_icon.png")} />
+                    <img src={require("../images/quest_board_icon.png")}
+                      onClick={routeChange2}
+                      style={{ cursor: "pointer" }} />
                     <CDButton onClick={routeChange2}>Quest Board</CDButton>
                   </div>
 
@@ -92,7 +97,9 @@ function Hometown() {
                       height: "50%",
                     }}
                   >
-                    <img src={require("../images/fireplace_icon.png")} />
+                    <img src={require("../images/fireplace_icon.png")}
+                      onClick={routeChange3}
+                      style={{ cursor: "pointer" }} />
                     <CDButton onClick={routeChange3}>Rest Area</CDButton>
                   </div>
                 </div>

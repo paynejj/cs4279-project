@@ -38,10 +38,10 @@ export default function InfoModal({ name, description, value }: InfoProps) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-modal-title" variant="h4" component="h2">
             {name}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '19px' }}>
             {value && <div>Value: {value}</div>}
             {typeof description[1] === "number" ? (<span>{description[0]}: {description[1]}</span>)
               :

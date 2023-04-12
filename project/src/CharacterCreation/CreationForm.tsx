@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 import "./CreationForm.css"
 import CDinput from "../Components/CDInput";
-import { purple, red, green, blue } from '@mui/material/colors';
+import { grey, red, green, blue } from '@mui/material/colors';
 
 type CreationFormProps = {
     onSubmit: (name: string, characterClass: string) => void;
@@ -53,7 +53,7 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
                         <FormControlLabel
                             value="Warrior"
                             control={<Radio sx={{
-                                color: purple[500],
+                                color: grey[600],
                                 '&.Mui-checked': { color: red[600], },
                             }} />}
                             label={<Typography
@@ -62,7 +62,7 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
                         <FormControlLabel
                             value="Ranger"
                             control={<Radio sx={{
-                                color: purple[500],
+                                color: grey[600],
                                 '&.Mui-checked': { color: green[600], },
                             }} />}
                             label={<Typography variant="h5" 
@@ -70,7 +70,7 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
                         <FormControlLabel
                             value="Mage"
                             control={<Radio sx={{
-                                color: purple[500],
+                                color: grey[600],
                                 '&.Mui-checked': { color: blue[600], },
                             }} />}
                             label={<Typography variant="h5" 
@@ -79,11 +79,12 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
                 </FormControl>
                 <br />
                 <Button type="submit"
-                    color="secondary"
                     sx={{
+                        bgcolor: 'purple',
+                        color: 'black',
                         ':hover': {
                             bgcolor: 'purple',
-                            color: 'black',
+                            color: 'pink',
                         },
                     }}>
                     <Typography fontSize="x-large">Submit</Typography>

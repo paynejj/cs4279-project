@@ -40,10 +40,10 @@ function HpBar() {
         <div>
             <div
                 style={{
-                    backgroundColor: "red",
+                    backgroundColor: "rgba(0, 0, 0, 0)",
                     height: "40px",
                     width: "100%",
-                    outline: "3px solid black",
+                    outline: "3px solid purple",
                 }}
             >
                 <div
