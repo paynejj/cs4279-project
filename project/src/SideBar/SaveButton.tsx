@@ -44,21 +44,21 @@ export const SaveButton = () => {
         setSaveJson(saveStr);
 
         if (saveJson) {
-            // window.api.writeFile("./save.json", saveJson);
+            window.api.writeFile("./save.json", saveJson);
 
             // Convert the JSON strings to blobs
-            let saveUrl: string = '';
-            if (saveJson) {
-                const saveBlob = new Blob([saveJson], { type: 'application/json' });
-                saveUrl = URL.createObjectURL(saveBlob);
-            }
+            // let saveUrl: string = '';
+            // if (saveJson) {
+            //     const saveBlob = new Blob([saveJson], { type: 'application/json' });
+            //     saveUrl = URL.createObjectURL(saveBlob);
+            // }
 
-            // Create an <a> tag with the download attribute set
-            const link = document.createElement('a');
-            link.download = 'save.json';
-            link.href = saveUrl;
-            link.click();
-            // console.log('Successfully saved');
+            // // Create an <a> tag with the download attribute set
+            // const link = document.createElement('a');
+            // link.download = 'save.json';
+            // link.href = saveUrl;
+            // link.click();
+            console.log('Successfully saved');
             // window.alert('Successfully saved');
         }
     };
