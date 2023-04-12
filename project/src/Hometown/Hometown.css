@@ -7,8 +7,8 @@ img {
 }
 .backgroundImage {
   display: flex;
-  background-image: 
-  url('../images/hometown_background.png');
+  /* background-image: 
+  url('../images/hometown_background.png'); */
   background-size: 100% 100%;
   margin-top: -70px;  
   background-repeat:no-repeat; 
@@ -18,8 +18,6 @@ img {
 
 .backgroundImage2 {
   display: flex;
-  background-image: 
-  url('../images/campfire.png');
   background-size: 100% 120%;
   margin-top: 70px;  
   background-repeat:no-repeat; 

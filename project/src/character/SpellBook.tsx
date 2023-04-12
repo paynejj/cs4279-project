@@ -5,7 +5,7 @@ import { spellRow } from '../Object/Spell';
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
-    left: '60%',
+    left: '65%',
     transform: 'translate(-50%, -50%)',
     width: '50%',
     bgcolor: 'black',
@@ -61,7 +61,7 @@ export default function SpellBookModal() {
                 <Box sx={style}>
                     <Box sx={{}} m="10">
                         <Typography id="modal-modal-title" variant="h6" component="h2"
-                            sx={{ fontFamily: 'serif', fontSize: '36px' }}>
+                            sx={{ fontFamily: 'serif', fontSize: '44px' }}>
                             SPELLBOOK
                         </Typography>
                     </Box>
@@ -72,16 +72,17 @@ export default function SpellBookModal() {
                                     <Typography sx={{
                                         fontFamily: 'fantasy',
                                         fontStyle: 'italic',
-                                        fontSize: '24px'
+                                        fontSize: '30px',
+                                        color: 'purple'
                                     }}>{spell.Name}</Typography>
-                                    <Typography sx={{ fontFamily: 'sans-serif' }}>
+                                    <Typography sx={{ fontFamily: 'sans-serif', fontSize: '18px' }}>
                                         {spell.Description}
                                     </Typography>
-                                    <Typography sx={{ fontFamily: 'sans-serif' }}>
+                                    <Typography sx={{ fontFamily: 'sans-serif', fontSize: '18px' }}>
                                         Level: {spell.Level} &nbsp;
                                         Intelligence: {spell.Intelligence} &nbsp;
                                         Damage: {spell.Damage} &nbsp;
-                                        
+
                                     </Typography>
                                 </Grid>
                             ))}

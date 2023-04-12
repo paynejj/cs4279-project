@@ -65,7 +65,7 @@ process.once("loaded", () => {
         * @returns file contents
         */
         readFile: (path) => {
-            return fs.readFileSync(path)
+            return fs.readFileSync(path, { encoding: "utf-8", flag: "r" })
         },
 
         /**

@@ -1,9 +1,15 @@
 #creation-form {
     outline: 2px solid purple;
-    max-width: 300px;
+    max-width: 500px;
+    min-height: 360px;
 }
 
 #upload-div {
     outline: 2px solid purple;
     max-width: 300px;
 }
+
+h2 {
+    font-weight: bold;
+    font-size: clamp(1.7rem, 2vw, 2.5rem);
+  }

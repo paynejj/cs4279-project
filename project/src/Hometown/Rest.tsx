@@ -3,9 +3,23 @@ import Container from "react-bootstrap/esm/Container";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import HpBar from "./RestHP";
+import CDButton from "../Components/CDButton";
 
 function Rest() {
-
+  const asciiArt = `                          ,^.
+                         /||_\\
+      (                 /_____\\
+       )                /.,.\\\\\\
+      (  (               \\=__/
+          )              ,'-'.
+    (    (  ,,       _.__|/ /|
+     ) /\\ -((------((_|___/  |
+   (  // | (\`\'      ((   \`\'--|
+ _ -.;_/ \\\\--._      \\\\ \\-.__/.
+(_;-// | \\ \\\-'.\\    <_,\\_\\'--'|
+( \`.__ _  ___,')      <_,-'__,'
+ \`'(_ )_)(_)_)'
+`;
   const Button = styled.button`
     background-color: black;
     color: white;
@@ -23,31 +37,29 @@ function Rest() {
   return (
     <div
       className="Hometown"
-      style={{ display: "flex", flexDirection: "row", height: "100%" }}
+      style={{ display: "flex", height: "100%" }}
     >
+      <h2
+        className="overall-heading"
+        style={{ fontSize: "4em", color: "pink" }}
+      >
+        Bonfire
+      </h2>
       <section
         className="section"
         style={{
-          paddingTop: "40px",
+          paddingTop: "70px",
           paddingBottom: "40px",
-          flex: "1 0 auto",
-        }}
-      >
+        }}>
         <div className="backgroundImage2">
           <Container>
+            <pre style={{ color: "pink" }}>{asciiArt}</pre>
             <div className="row">
               <div className="col-md-12 text-center">
-                <h2
-                  className="overall-heading"
-                  style={{ fontSize: "4em", color: "black" }}
-                >
-                  Rest
-                </h2>
                 <HpBar />
-
               </div>
             </div>
-            <Button onClick={routeChange}>Back</Button>
+            <CDButton onClick={routeChange}>Back</CDButton>
           </Container>
         </div>
       </section>

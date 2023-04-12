@@ -2,4 +2,9 @@
     background-color: purple;
     color: black;
     font-size: xx-large;
+    cursor: pointer;
+}
+
+.cdbutton:hover {
+    color: pink;
 }

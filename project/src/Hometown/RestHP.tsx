@@ -40,10 +40,10 @@ function HpBar() {
         <div>
             <div
                 style={{
-                    backgroundColor: "red",
+                    backgroundColor: "rgba(0, 0, 0, 0)",
                     height: "40px",
                     width: "100%",
-                    outline: "3px solid black",
+                    outline: "3px solid purple",
                 }}
             >
                 <div
@@ -63,10 +63,12 @@ function HpBar() {
                     }}
                 />
             </div>
-            <h3 style={{ color: "black", backgroundColor: "white" }}>
+            <h3 style={{ display: "inline-block", color: "green" }}>
                 {currentHp}/{maxHp} HP
-                &nbsp;
-                {currentMp}/{maxMp} MP&nbsp;
+            </h3>
+            &emsp;
+            <h3 style={{ display: "inline-block", color: "blue" }}>
+                {currentMp}/{maxMp} MP
             </h3>
         </div>
     );

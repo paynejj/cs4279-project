@@ -1,39 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ShopData } from "../Object/Shop";
 import { Item } from "../Object/Item"
 import { PlayerDataContext } from "../Player/PlayerDataContext"
 import { shopData } from "./ShopHelper"
 import InfoTooltip from './InfoTooltip';
+import CDButton from "../Components/CDButton";
 import './Shop.css';
 
 function Shop() {
-
-  const Button = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 20px;
-  padding: 10px 60px;
-  border-radius: 10px;
-  margin: 20px 0px;
-  cursor: pointer;
-`;
-  const Button2 = styled.button`
-background-color: black;
-color: white;
-font-size: 10px;
-padding: 10px 60px;
-border-radius: 10px;
-margin: 5px 0px;
-cursor: pointer;
-textAlign: 'right'
-`;
-  const containerStyle = {
-    display: 'flex',
-    justifyContent: 'space-between'
-  };
-
   function getRandomShopItem() {
     let selectedShopItems: ShopData = [];
     // number of item to be displayed in the shop
@@ -91,25 +66,23 @@ textAlign: 'right'
 
   function displayArrayInTable(objArray: ShopData) {
     return (
-      <table>
+      <table style={{ fontSize: "clamp(22px, 2.5vw, 30px)" }}>
         <thead>
           <tr>
-            <th></th>
             <th>Item</th>
-            <th>Stock</th>
-            <th>Price</th>
+            <th>&emsp;Stock&emsp;</th>
+            <th>&emsp;Price&emsp;</th>
           </tr>
         </thead>
         <tbody>
           {objArray.map((obj) => (
             <tr key={obj.name}>
               <td><InfoTooltip name={obj.name} description={obj.item_type} /></td>
-              <td>{obj.name}</td>
-              <td>{obj.amount}</td>
-              <td>${obj.value}</td>
+              <td>&emsp;{obj.amount}&emsp;</td>
+              <td>&emsp;${obj.value}&emsp;</td>
               <td>
                 {obj.amount > 0 ? (
-                  <Button2 onClick={() => buyItem(obj, 1)}>Buy</Button2>
+                  <CDButton onClick={() => buyItem(obj, 1)}>Buy</CDButton>
                 ) : (
                   <span></span>
                 )}
@@ -123,11 +96,11 @@ textAlign: 'right'
   }
 
   let navigate = useNavigate();
-  const routeChange = () => {
+  const routeChangeTown = () => {
     let path = `/hometown`;
     navigate(path);
   }
-  const routeChange2 = () => {
+  const routeChangeSell = () => {
     let path = `/sell`;
     navigate(path);
   }
@@ -135,12 +108,12 @@ textAlign: 'right'
   return (
     <div
       className="Hometown"
-      style={{ flexDirection: "column", height: "100%" }}
-    >
-      <Button onClick={routeChange}>Back</Button>
-      <Button onClick={routeChange2}>To Sell</Button>
+      style={{ flexDirection: "column", height: "100%" }}>
+      <CDButton onClick={routeChangeTown}>Back</CDButton>
+      <CDButton onClick={routeChangeSell}>To Sell</CDButton>
       <div className="shop-list">
-        <h1>Shop</h1>
+        <h1 style={{ fontSize: "3rem", color: "pink" }}>Shop</h1>
+        <h3 style={{ color: "gold" }}>Gold: {playerData.gold}</h3>
         <div className="node">
           {displayArrayInTable(shopStockArray)}
         </div>

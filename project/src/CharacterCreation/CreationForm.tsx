@@ -4,6 +4,8 @@ import {
     FormControl, Typography
 } from "@mui/material";
 import "./CreationForm.css"
+import CDinput from "../Components/CDInput";
+import { grey, red, green, blue } from '@mui/material/colors';
 
 type CreationFormProps = {
     onSubmit: (name: string, characterClass: string) => void;
@@ -25,45 +27,70 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
     return (
         <div>
             <Typography id="creation-form-title" variant="h6" component="h2"
-                sx={{ fontFamily: 'serif', fontSize: '36px' }}> Character Creation</Typography>
+                sx={{
+                    fontFamily: 'serif',
+                    fontSize: 'max(5vw, 40px)',
+                }}> Character Creation</Typography>
             <form
                 id="creation-form"
-                onSubmit={handleSubmit}>
-                <h4>Enter your character's name:</h4>
-                <input
+                onSubmit={handleSubmit}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <h2>Enter your character's name:</h2>
+                <CDinput
                     type="text"
-                    id="name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
+                    required
                 /><br />
-                <FormControl>
-                    <h4>Pick your character's class:</h4>
+                <h2>Pick your character's class:</h2>
+                <FormControl >
                     <RadioGroup
                         row
                         aria-labelledby="character-class"
                         name="character-class-row-radio-buttons-group"
-                        color="secondary"
                         value={characterClass}
-                        onChange={handleOptionChange}
-                    >
-                        <FormControlLabel value="Warrior"
-                            control={<Radio color="secondary" />} label="Warrior" />
-                        <FormControlLabel value="Ranger"
-                            control={<Radio color="secondary" />} label="Ranger" />
-                        <FormControlLabel value="Mage"
-                            control={<Radio color="secondary" />} label="Mage" />
+                        onChange={handleOptionChange}>
+                        <FormControlLabel
+                            value="Warrior"
+                            control={<Radio required
+                                sx={{
+                                    color: grey[600],
+                                    '&.Mui-checked': { color: red[600], },
+                                }} />}
+                            label={<Typography
+                                variant="h5"
+                                sx={{ color: red[800] }}>Warrior</Typography>} />
+                        <FormControlLabel
+                            value="Ranger"
+                            control={<Radio
+                                sx={{
+                                    color: grey[600],
+                                    '&.Mui-checked': { color: green[600], },
+                                }} />}
+                            label={<Typography variant="h5"
+                                sx={{ color: green[800] }}>Ranger</Typography>} />
+                        <FormControlLabel
+                            value="Mage"
+                            control={<Radio
+                                sx={{
+                                    color: grey[600],
+                                    '&.Mui-checked': { color: blue[600], },
+                                }} />}
+                            label={<Typography variant="h5"
+                                sx={{ color: blue[800] }}>Mage</Typography>} />
                     </RadioGroup>
                 </FormControl>
                 <br />
                 <Button type="submit"
-                    color="secondary"
                     sx={{
+                        bgcolor: 'purple',
+                        color: 'black',
                         ':hover': {
                             bgcolor: 'purple',
-                            color: 'black',
+                            color: 'pink',
                         },
                     }}>
-                    <Typography fontSize="large">Submit</Typography>
+                    <Typography fontSize="x-large">Submit</Typography>
                 </Button>
             </form>
         </div>

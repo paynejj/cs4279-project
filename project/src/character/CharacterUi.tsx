@@ -235,8 +235,8 @@ export default function CharacterUi() {
     return (
         <div>
             <Box m={2}>
-                <Typography variant="h4" fontWeight='bold'>{playerData?.name}</Typography>
-                <Typography variant="h5" fontStyle='italic'>{playerData?.class}</Typography>
+                <Typography variant="h4" fontWeight='bold' color="pink">{playerData?.name}</Typography>
+                <Typography variant="h5" fontStyle='italic' color="pink">{playerData?.class}</Typography>
             </Box>
             <Grid container alignItems="stretch">
                 <StatsRow />
@@ -247,7 +247,7 @@ export default function CharacterUi() {
                     borderColor: 'secondary.main',
                     m: 1
                 }}>
-                    <Typography variant="h6">Equipments</Typography>
+                    <Typography variant="h5">Equipments</Typography>
                     {equipments.map((row, idx) => (
                         <Grid container key={row[0]}>
                             <Grid item xs={4}> {row[0]}: </Grid>
@@ -304,13 +304,13 @@ export default function CharacterUi() {
                 <Box minWidth="200px" width="25vw" maxWidth="270px" m={1}>
                     <Grid container alignItems="center">
                         <Grid item xs={10}>
-                            <Typography variant="h6">&nbsp;&nbsp;INVENTORY</Typography>
+                            <Typography variant="h6" color="pink">&nbsp;&nbsp;INVENTORY</Typography>
                         </Grid>
                         <Grid item xs={2} textAlign="right">
-                            <Typography fontSize={15}>{inventoryCount}/20</Typography>
+                            <Typography fontSize={15} color="pink">{inventoryCount}/20</Typography>
                         </Grid>
                     </ Grid>
-                    <Grid container maxHeight="270px" sx={{ overflow: "hidden", overflowY: "auto" }}>
+                    <Grid container maxHeight="330px" sx={{ overflow: "hidden", overflowY: "auto" }}>
                         {equipInventory.map((row, idx) => (
                             <Grid container key={row[1].name}>
                                 <Grid item sm={11}>
@@ -363,7 +363,7 @@ export default function CharacterUi() {
                                         <Button sx={{ color: "white" }}>Sell</Button>
                                     </MenuItem>
                                 </Menu>
-                                <Grid item sm={1} textAlign="right"> {row[1].amount}</Grid>
+                                <Grid item sm={1} textAlign="right" color="pink">{row[1].amount}</Grid>
                             </Grid>
                         ))}
 
@@ -410,7 +410,7 @@ export default function CharacterUi() {
                                                 value={inventory[PotionMenuIdx][1].value} />
                                         </MenuItem>
                                     </Menu>
-                                    <Grid item sm={1} textAlign="right"> {row[1].amount}</Grid>
+                                    <Grid item sm={1} textAlign="right" color="pink"> {row[1].amount}</Grid>
                                 </Grid>
                                 : <div></div>
                         ))}

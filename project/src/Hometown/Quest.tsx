@@ -1,31 +1,12 @@
-import React from "react";
-import Container from "react-bootstrap/esm/Container";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { QuestType } from '../Object/Quest';
 import { useQuests } from '../Object/QuestData';
+import { Typography } from '@mui/material';
+import CDButton from "../Components/CDButton";
 
 function Quest() {
   const { acceptQuest, questBoardList, acceptedQuests } = useQuests();
-  const Button = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 20px;
-  padding: 10px 60px;
-  border-radius: 10px;
-  margin: 20px 0px;
-  cursor: pointer;
-`;
-  const Button2 = styled.button`
-background-color: black;
-color: white;
-font-size: 10px;
-padding: 10px 60px;
-border-radius: 10px;
-margin: 5px 0px;
-cursor: pointer;
-textAlign: 'right'
-`;
+
   const containerStyle = {
     display: 'flex',
     justifyContent: 'space-between'
@@ -49,19 +30,19 @@ textAlign: 'right'
     return newQuests;
   }
   let selectedQuested = getTwoQuests();
-  
+
 
   function displayArrayInRow(questList: QuestType[]) {
 
     return (
-      <div>
+      <div style={{ display: "table", minWidth: "300px", width: "60vw", maxWidth: "800px" }}>
         {questList.map((quest: QuestType) => (quest ?
-          <span key={quest.name} style={containerStyle}>&nbsp;{quest.name}&nbsp;
-            || &nbsp;{quest.description}
-            <Button2
+          <h3 key={quest.name} style={containerStyle}>&nbsp;{quest.name}&nbsp;
+            ----- &nbsp;{quest.description}
+            <CDButton
               onClick={() => acceptQuest(quest)}
-            >Start</Button2></span>
-          : <span>No Quests Available</span>))}
+            >Start</CDButton></h3>
+          : <h2>No Quests Available</h2>))}
       </div>
     );
   }
@@ -75,9 +56,9 @@ textAlign: 'right'
       className="Hometown"
       style={{ flexDirection: "column", height: "100%" }}
     >
-      <Button onClick={routeChange}>Back</Button>
+      <CDButton onClick={routeChange}>Back</CDButton>
       <div className="shop-list">
-        <h1>QuestBoard</h1>
+        <h1 style={{ fontSize: "3rem", color: "pink" }}>QuestBoard</h1>
         <div className="node">
           {displayArrayInRow(selectedQuested)}
         </div>

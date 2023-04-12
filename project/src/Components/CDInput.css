@@ -3,3 +3,11 @@
     color: black;
     font-size: xx-large;
 }
+
+.cdinput[type="submit"] {
+    cursor: pointer;
+}
+
+.cdinput[type="submit"]:hover {
+    color: pink;
+}
