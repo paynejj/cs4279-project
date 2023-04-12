@@ -9,7 +9,7 @@ function SideBar() {
                 <li><Link draggable="false" to="/hometown">HomeTown</Link></li>
                 <li><Link draggable="false" to="/character">Character</Link></li>
                 <li><Link draggable="false" to="/text-editor">Text</Link></li>
-                <li><Link draggable="false" to="?"> Create Level </Link></li>
+                <li><Link draggable="false" to="/level-creator"> Create Level </Link></li>
                 <SaveButton/>
             </ul>
         </div>

@@ -71,6 +71,7 @@ function TextEditor() {
           theme={sublime}
           onChange={(input, data, value) => {
             setInput(input);
+            console.log(input);
           }}
         />
         <span style={{ display: "flex" }}>
