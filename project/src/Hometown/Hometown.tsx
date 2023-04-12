@@ -1,8 +1,8 @@
-import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import styled from "styled-components";
 import "./Hometown.css";
 import { useNavigate } from "react-router-dom";
+import CDButton from "../Components/CDButton";
 
 function Hometown() {
   const Button = styled.button`
@@ -48,20 +48,10 @@ function Hometown() {
               <div className="col-md-12 text-center">
                 <h2
                   className="overall-heading"
-                  style={{ fontSize: "3em", color: "#cfae70" }}
+                  style={{ fontSize: "3em", color: "purple" }}
                 >
                   Hometown
                 </h2>
-                <div
-                  className="underline mx-auto"
-                  style={{
-                    height: "10px",
-                    width: "8rem",
-                    marginTop: "10px",
-                    marginBottom: "20px",
-                    backgroundColor: "#cfae70",
-                  }}
-                />
                 <div
                   className="Hometown"
                   style={{
@@ -79,7 +69,7 @@ function Hometown() {
                     }}
                   >
                     <img src={require("../images/store_icon.png")} />
-                    <Button onClick={routeChange1}>Shop</Button>
+                    <CDButton onClick={routeChange1}>Shop</CDButton>
                   </div>
 
                   <div
@@ -91,7 +81,7 @@ function Hometown() {
                     }}
                   >
                     <img src={require("../images/quest_board_icon.png")} />
-                    <Button onClick={routeChange2}>Quest Board</Button>
+                    <CDButton onClick={routeChange2}>Quest Board</CDButton>
                   </div>
 
                   <div
@@ -103,7 +93,7 @@ function Hometown() {
                     }}
                   >
                     <img src={require("../images/fireplace_icon.png")} />
-                    <Button onClick={routeChange3}>Rest Area</Button>
+                    <CDButton onClick={routeChange3}>Rest Area</CDButton>
                   </div>
                 </div>
               </div>

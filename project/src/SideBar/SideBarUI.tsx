@@ -1,6 +1,6 @@
 import "./SideBarUI.css"
 import { Link } from 'react-router-dom';
-import { SaveButton } from "../Player/SaveButton";
+import { SaveButton } from "./SaveButton";
 function SideBar() {
     return (
         <div className="sidebar">

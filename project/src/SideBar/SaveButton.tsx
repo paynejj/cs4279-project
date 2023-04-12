@@ -1,4 +1,4 @@
-import { PlayerDataContext } from "./PlayerDataContext";
+import { PlayerDataContext } from "../Player/PlayerDataContext";
 import { useQuests } from "../Object/QuestData";
 import { useContext, useState } from 'react';
 import "../SideBar/SideBarUI.css"
@@ -44,9 +44,22 @@ export const SaveButton = () => {
         setSaveJson(saveStr);
 
         if (saveJson) {
-            window.api.writeFile("./save.json", saveJson);
-            console.log('Successfully saved');
-            window.alert('Successfully saved');
+            // window.api.writeFile("./save.json", saveJson);
+
+            // Convert the JSON strings to blobs
+            let saveUrl: string = '';
+            if (saveJson) {
+                const saveBlob = new Blob([saveJson], { type: 'application/json' });
+                saveUrl = URL.createObjectURL(saveBlob);
+            }
+
+            // Create an <a> tag with the download attribute set
+            const link = document.createElement('a');
+            link.download = 'save.json';
+            link.href = saveUrl;
+            link.click();
+            // console.log('Successfully saved');
+            // window.alert('Successfully saved');
         }
     };
 

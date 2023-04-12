@@ -4,4 +4,10 @@ strong {
 
 td {
     text-align: center;
-  }
+}
+
+input[type="number"] {
+    background-color: purple;
+    color: black;
+    font-size: x-large;
+}

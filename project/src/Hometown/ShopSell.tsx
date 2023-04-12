@@ -3,18 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Item } from "../Object/Item"
 import { PlayerDataContext } from "../Player/PlayerDataContext"
 import InfoTooltip from './InfoTooltip';
-import styled from "styled-components";
+import CDButton from '../Components/CDButton';
+import CDInput from '../Components/CDInput';
 import './Shop.css';
 
-const Button = styled.button`
-background-color: black;
-color: white;
-font-size: 20px;
-padding: 10px 60px;
-border-radius: 10px;
-margin: 20px 0px;
-cursor: pointer;
-`;
 
 const ShopSellScreen: React.FC = () => {
     let inventoryRows: [string, Item][] = [];
@@ -58,7 +50,11 @@ const ShopSellScreen: React.FC = () => {
     }
 
     let navigate = useNavigate();
-    const routeChange = () => {
+    const routeChangeTown = () => {
+        let path = `/hometown`;
+        navigate(path);
+    }
+    const routeChangeBuy = () => {
         let path = `/shop`;
         navigate(path);
     }
@@ -83,40 +79,41 @@ const ShopSellScreen: React.FC = () => {
 
     return (
         <div>
-            <Button onClick={routeChange}>To Buy</Button>
-            <h1>Sell</h1>
-            <p>Gold: {playerData.gold}</p>
+            <CDButton onClick={routeChangeTown}>HomeTown</CDButton>
+            <CDButton onClick={routeChangeBuy}>To Buy</CDButton>
+            <h1 style={{ fontSize: "3.4rem", color: "pink" }}>Sell</h1>
+            <h3 style={{ color: "gold" }}>Gold: {playerData.gold}</h3>
             {inventory.length !== 0 ?
-            <table>
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Info</th>
-                        <th>ToSell</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {inventory.map(idx => (
-                        <tr key={idx[1].name}>
-                            <td>{idx[1].name}</td>
-                            <td>{idx[1].value}</td>
-                            <td>{idx[1].amount}</td>
-                            <InfoTooltip
-                                name={idx[1].name}
-                                description={idx[1].item_type}
-                            />
-                            <td>
-                                <input type="number" min={0} max={idx[1].amount} value={selectedItems.find(selectedItem => selectedItem.name === idx[1].name)?.amount || 0} onChange={(event) => handleItemSelect(idx[1], Number(event.target.value))} />
-                            </td>
-
+            <div style={{overflowX: "auto", maxHeight:"27vw"}}>
+                <table style={{ fontSize: "clamp(25px, 2.3vw, 30px)" }}>
+                    <thead>
+                        <tr>
+                            <th>&emsp;Item&emsp;</th>
+                            <th>&emsp;Total&emsp;</th>
+                            <th>&emsp;Price&emsp;</th>
+                            <th>ToSell</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table> : <p>Inventory is empty</p>}
+                    </thead>
+                    <tbody>
+                        {inventory.map(idx => (
+                            <tr key={idx[1].name}>
+                                <td>
+                                    <InfoTooltip
+                                        name={idx[1].name}
+                                        description={idx[1].item_type} />
+                                </td>
+                                <td>{idx[1].amount}</td>
+                                <td>{idx[1].value}</td>
+                                <td>
+                                    <input type="number" min={0} max={idx[1].amount} value={selectedItems.find(selectedItem => selectedItem.name === idx[1].name)?.amount || 0} onChange={(event) => handleItemSelect(idx[1], Number(event.target.value))} />
+                                </td>
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table></div> : <h3>Inventory is empty</h3>}
             <div>
-                <button onClick={handleSell} disabled={!selectedItems.length}>Sell</button>
+                {inventory.length !== 0 ? <CDButton onClick={handleSell}>Sell</CDButton> : null}
             </div>
         </div>
     );
