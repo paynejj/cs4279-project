@@ -33,18 +33,21 @@ function DungeonSelect() {
                 </button>
                 <div className={`levels ${isOpen.easy ? "" : "hidden"}`}>
                     <a className="level" href="/dungeon"> Level 1</a>
-                    {new Array(24).fill(undefined).map((_, idx) =>
-                        <a className="level" href="/dungeon-select">PlaceHolder{`${idx + 2}`}</a>)}
+                    {window.api.getLevelFilenames()
+                        .map((name, idx) =>
+                            <a className="level" href="/dungeon-select">{name}</a>)}
                 </div>
                 <div className={`levels ${isOpen.medium ? "" : "hidden"}`}>
-                    {new Array(25).fill(undefined).map((_, idx) =>
-                        <a className="level" href="/dungeon-select">PlaceHolder{`${idx + 1}`}</a>)}
+                    {window.api.getLevelFilenames()
+                        .map((name, idx) =>
+                            <a className="level" href="/dungeon-select">{name}</a>)}
                 </div>
 
 
                 <div className={`levels ${isOpen.hard ? "" : "hidden"}`}>
-                    {new Array(25).fill(undefined).map((_, idx) =>
-                        <a className="level" href="/dungeon-select">PlaceHolder{`${idx + 1}`}</a>)}
+                    {window.api.getLevelFilenames()
+                        .map((name, idx) =>
+                            <a className="level" href="/dungeon-select">{name}</a>)}
                 </div>
             </div>
         </>

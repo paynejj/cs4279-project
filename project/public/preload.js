@@ -53,6 +53,9 @@ process.once("loaded", () => {
         getPyFilenames: () => {
             return fs.readdirSync(path.join(__dirname, "python"))
         },
+        getLevelFilenames: () => {
+            return fs.readdirSync(path.join(__dirname, LEVELS))
+        },
         levelExists: (name) => {
             return fs.existsSync(path.join(LEVELS, name))
         },
