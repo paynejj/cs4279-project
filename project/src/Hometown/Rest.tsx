@@ -6,9 +6,9 @@ import HpBar from "./RestHP";
 import CDButton from "../Components/CDButton";
 
 function Rest() {
-  const asciiArt = `
-                         _.-._
-      (                 (_____)
+  const asciiArt = `                          ,^.
+                         /||_\\
+      (                 /_____\\
        )                /.,.\\\\\\
       (  (               \\=__/
           )              ,'-'.

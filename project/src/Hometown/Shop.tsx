@@ -109,7 +109,7 @@ function Shop() {
     <div
       className="Hometown"
       style={{ flexDirection: "column", height: "100%" }}>
-      <CDButton onClick={routeChangeTown}>HomeTown</CDButton>
+      <CDButton onClick={routeChangeTown}>Back</CDButton>
       <CDButton onClick={routeChangeSell}>To Sell</CDButton>
       <div className="shop-list">
         <h1 style={{ fontSize: "3rem", color: "pink" }}>Shop</h1>

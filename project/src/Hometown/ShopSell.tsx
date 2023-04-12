@@ -76,7 +76,7 @@ const ShopSellScreen: React.FC = () => {
 
     return (
         <div>
-            <CDButton onClick={routeChangeTown}>HomeTown</CDButton>
+            <CDButton onClick={routeChangeTown}>Back</CDButton>
             <CDButton onClick={routeChangeBuy}>To Buy</CDButton>
             <h1 style={{ fontSize: "3.4rem", color: "pink" }}>Sell</h1>
             <h3 style={{ color: "gold" }}>Gold: {playerData.gold}</h3>
