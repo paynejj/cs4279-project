@@ -247,7 +247,7 @@ export default function CharacterUi() {
                     borderColor: 'secondary.main',
                     m: 1
                 }}>
-                    <Typography variant="h6">Equipments</Typography>
+                    <Typography variant="h5">Equipments</Typography>
                     {equipments.map((row, idx) => (
                         <Grid container key={row[0]}>
                             <Grid item xs={4}> {row[0]}: </Grid>

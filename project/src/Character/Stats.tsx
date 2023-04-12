@@ -30,8 +30,8 @@ export default function StatRow() {
 
     return (
         <div>
-            <Box sx={{ border: 1, minWidth: "110px", width: "15vw", maxWidth: "200px", borderColor: 'secondary.main', m: 1 }}>
-                <Typography variant="h6">Stats</Typography>
+            <Box sx={{ border: 1, minWidth: "110px", width: "15vw", maxWidth: "200px", minHeight:"370px", borderColor: 'secondary.main', m: 1 }}>
+                <Typography variant="h5">Stats</Typography>
                 {hpMpRows.map((row, idx) => (
                     <Tooltip key={row[0]} title={row[0]} disableInteractive>
                         <Grid container columns={2}>
