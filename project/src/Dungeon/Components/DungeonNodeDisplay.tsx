@@ -1,6 +1,7 @@
 import { DungeonNode } from "../Scripts/DungeonNode"
 interface DungeonNodeProps {
     node: DungeonNode
+    key?: string
     hasPlayer?: boolean
     onClick?: (e?: Event) => void
 }
