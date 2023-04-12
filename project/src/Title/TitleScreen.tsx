@@ -10,8 +10,10 @@ import { useQuests } from "../Object/QuestData";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
 
 function TitleScreen() {
+    
     const { setPlayerData } = React.useContext(PlayerDataContext);
     const { setAcceptedQuestlist } = useQuests();
+
     let navigate = useNavigate();
     const newGame = () => {
         let path = `/creation`;
@@ -19,7 +21,6 @@ function TitleScreen() {
     }
 
     const handleLoad = (uploadedPlayerData, questData: QuestType[]) => {
-
         const newInventory: Map<string, Item> = new Map(uploadedPlayerData.inventory);
         const newEquipments: Map<EquipmentType, Equipment> = new Map(uploadedPlayerData.equipments);
         const newPlayerData = {

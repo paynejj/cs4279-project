@@ -40,41 +40,44 @@ export const CreationForm = ({ onSubmit }: CreationFormProps) => {
                     type="text"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
+                    required
                 /><br />
-                <FormControl>
-                    <h2>Pick your character's class:</h2>
+                <h2>Pick your character's class:</h2>
+                <FormControl >
                     <RadioGroup
                         row
                         aria-labelledby="character-class"
                         name="character-class-row-radio-buttons-group"
-                        color="secondary"
                         value={characterClass}
                         onChange={handleOptionChange}>
                         <FormControlLabel
                             value="Warrior"
-                            control={<Radio sx={{
-                                color: grey[600],
-                                '&.Mui-checked': { color: red[600], },
-                            }} />}
+                            control={<Radio required
+                                sx={{
+                                    color: grey[600],
+                                    '&.Mui-checked': { color: red[600], },
+                                }} />}
                             label={<Typography
                                 variant="h5"
-                                sx={{ color: red[800] }}>Warrior</Typography>}/>
+                                sx={{ color: red[800] }}>Warrior</Typography>} />
                         <FormControlLabel
                             value="Ranger"
-                            control={<Radio sx={{
-                                color: grey[600],
-                                '&.Mui-checked': { color: green[600], },
-                            }} />}
-                            label={<Typography variant="h5" 
-                            sx={{ color: green[800] }}>Ranger</Typography>}/>
+                            control={<Radio
+                                sx={{
+                                    color: grey[600],
+                                    '&.Mui-checked': { color: green[600], },
+                                }} />}
+                            label={<Typography variant="h5"
+                                sx={{ color: green[800] }}>Ranger</Typography>} />
                         <FormControlLabel
                             value="Mage"
-                            control={<Radio sx={{
-                                color: grey[600],
-                                '&.Mui-checked': { color: blue[600], },
-                            }} />}
-                            label={<Typography variant="h5" 
-                            sx={{ color: blue[800] }}>Mage</Typography>}/>
+                            control={<Radio
+                                sx={{
+                                    color: grey[600],
+                                    '&.Mui-checked': { color: blue[600], },
+                                }} />}
+                            label={<Typography variant="h5"
+                                sx={{ color: blue[800] }}>Mage</Typography>} />
                     </RadioGroup>
                 </FormControl>
                 <br />

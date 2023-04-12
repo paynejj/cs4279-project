@@ -50,16 +50,14 @@ function TextEditor() {
   }, [stdout]);
 
 
-
-
   return (
     <>
       {isLoading ? <p>Loading...</p> : <p>Ready!</p>}
       <span style={{ display: "flex" }}>
         <ReactFileReader handleFiles={handleFiles} fileTypes={'.txt'}>
-          <CDButton >select load</CDButton>
+          <CDButton >Select Load</CDButton>
         </ReactFileReader>
-        <CDButton onClick={handle}>preload</CDButton>
+        <CDButton onClick={handle}>Preload</CDButton>
       </span>
       <form>
         <CodeMirror
@@ -83,7 +81,7 @@ function TextEditor() {
               runPython(input)
             }}
           />
-          <CDButton onClick={saveFile}>save</CDButton>
+          <CDButton onClick={saveFile}>Save</CDButton>
         </span>
       </form>
       <p>Output</p>

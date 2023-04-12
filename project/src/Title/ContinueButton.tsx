@@ -16,7 +16,7 @@ function ContinueButton({onLoad}) {
             setLoadedSave(loadedSave);
 
         } catch (error) {
-            console.log('No save file found');
+            console.log('No save.json file found');
             window.alert("window.api.readFile() is broken");
         }
         if (loadedSave) {

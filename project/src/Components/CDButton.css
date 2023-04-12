@@ -4,3 +4,7 @@
     font-size: xx-large;
     cursor: pointer;
 }
+
+.cdbutton:hover {
+    color: pink;
+}
