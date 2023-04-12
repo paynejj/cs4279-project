@@ -56,6 +56,8 @@ const ShopSellScreen: React.FC = () => {
 
     const handleItemSelect = (item: Item, sellQuantity: number) => {
         const itemIndex = selectedItems.findIndex(selectedItem => selectedItem.name === item.name);
+        const inventoryIdx = inventory.findIndex(selectedInv => selectedInv[0] === item.name);
+        if (inventory[inventoryIdx][1].amount < sellQuantity) { console.log("HAHA Got U"); return; }
         if (itemIndex === -1) {
             setSelectedItems([...selectedItems, { ...item, amount: sellQuantity }]);
         } else {
