@@ -7,7 +7,7 @@ interface DungeonMapProps {
 }
 function DungeonMap({ dungeon }: DungeonMapProps) {
 
-    /**enables re-render when player playerition changes */ 
+    /**enables re-render when player playerition changes */
     const [player, setPlayer] = useState(dungeon.player)
     /**
      * Handles keyboard controls for Dungeon Map
@@ -32,7 +32,8 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
                 break
             default: {/**do nothing */ }
         }
-        
+        console.log(player)
+
     }
     /**
      * Checks if the given index corresponds to the player coordinate in the dungeon
@@ -50,7 +51,13 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
     //Convert the Dungeon.map to html. 
     return (
         //tabindex required for key detection
-        <div tabIndex={0} className="dungeon-map" onKeyDown={e => handleKeyDown(e, dungeon)} >
+        <div tabIndex={0}
+            className="dungeon-map"
+            onKeyDown={e => handleKeyDown(e, dungeon)}
+            style={{ display: "grid", 
+            gridTemplateColumns: `repeat(${dungeon.cols}, auto)`, 
+            gridTemplateRows: `repeat(${dungeon.rows}, auto`,
+            aspectRatio: `${dungeon.cols / dungeon.rows}` }}>
             {dungeon.map
                 //flatten 2d array to 1d
                 .flat()

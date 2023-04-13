@@ -39,19 +39,7 @@ function LevelCreator() {
     }
 
     const saveLevel = () => {
-        const level: Level = {
-            name: "level1",
-            rows: 5,
-            cols: 5,
-            start: [0, 0],
-            map: [
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0]]
-        }
-        window.api.writeLevel(level)
+  
     }
     return (
         <>

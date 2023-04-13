@@ -32,22 +32,33 @@ function DungeonSelect() {
                     Hard
                 </button>
                 <div className={`levels ${isOpen.easy ? "" : "hidden"}`}>
-                    <a className="level" href="/dungeon"> Level 1</a>
                     {window.api.getLevelFilenames()
-                        .map((name, idx) =>
-                            <a className="level" href="/dungeon-select">{name}</a>)}
+                        .map((levelname: string, idx) => {
+                            return (
+                                <a className="level" href={`/dungeon/${levelname}`}>
+                                    {levelname}
+                                </a>)
+                        })}
                 </div>
                 <div className={`levels ${isOpen.medium ? "" : "hidden"}`}>
-                    {window.api.getLevelFilenames()
-                        .map((name, idx) =>
-                            <a className="level" href="/dungeon-select">{name}</a>)}
+                {window.api.getLevelFilenames()
+                        .map((levelname: string, idx) => {
+                            return (
+                                <a className="level" href={`/dungeon/${levelname}`}>
+                                    {levelname}
+                                </a>)
+                        })}
                 </div>
 
 
                 <div className={`levels ${isOpen.hard ? "" : "hidden"}`}>
-                    {window.api.getLevelFilenames()
-                        .map((name, idx) =>
-                            <a className="level" href="/dungeon-select">{name}</a>)}
+                {window.api.getLevelFilenames()
+                        .map((levelname: string, idx) => {
+                            return (
+                                <a className="level" href={`/dungeon/${levelname}`}>
+                                    {levelname}
+                                </a>)
+                        })}
                 </div>
             </div>
         </>

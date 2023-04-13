@@ -1,7 +1,7 @@
-import { DEnemy, DNodes, DTunnel, DungeonNode, DVoid } from "./DungeonNode";
+import { DungeonNode, DNodes, DVoid, DTunnel, DEnemy, DExit, DGold } from "./DungeonNode";
 
 //PlaceHolder level
-const LEVELNAME = 'level1'
+const LEVELNAME = ""
 const EMPTY_LEVEL: Level = {
     name: "",
     map: [],
@@ -23,8 +23,8 @@ export class Dungeon {
      * 
      * @param level a parseable array of numbers representing a level
      */
-    constructor(levelName = LEVELNAME) {
-        this.level = this.loadLevel(levelName)
+    constructor(levelname = LEVELNAME) {
+        this.level = this.loadLevel(levelname)
         this._player = this.level.start
         this.rows = this.level.rows
         this.cols = this.level.cols
@@ -70,8 +70,13 @@ export class Dungeon {
                             return new DVoid();
                         case DNodes.DTunnel:
                             return new DTunnel();
+                        case DNodes.DExit:
+                            return new DExit();
+                        case DNodes.DGold:
+                            return new DGold()
                         case DNodes.DEnemy:
                             return new DEnemy();
+
                         default: return new DVoid()
                     }
                 }))
@@ -86,6 +91,7 @@ export class Dungeon {
             console.log(error)
             console.log("Level is Empty")
         }
+        console.log(level)
         return level
     }
     /**

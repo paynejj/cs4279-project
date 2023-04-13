@@ -2,19 +2,16 @@ import { Dungeon } from "../Scripts/Dungeon";
 import DungeonMap from "../Components/DungeonMap";
 
 import "./DungeonUI.css"
+import { useParams } from "react-router-dom";
 
 
 function DungeonUI() {
-    const dungeon = new Dungeon()
+    const { levelname } = useParams()
+    const dungeon = new Dungeon(levelname)
     return (
         <div className="dungeon-body">
             <h1>Dungeon</h1>
             <DungeonMap dungeon={dungeon} />
-            <div className="bottom-bar">
-                <button className="choice-button"> Choice 1</button>
-                <button className="choice-button"> Choice 2</button>
-                <button className="choice-button"> Choice 3</button>
-            </div>
         </div>
     );
 }

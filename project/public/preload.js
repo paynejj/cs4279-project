@@ -55,6 +55,7 @@ process.once("loaded", () => {
         },
         getLevelFilenames: () => {
             return fs.readdirSync(path.join(__dirname, LEVELS))
+                .map(filename => path.parse(filename).name)
         },
         levelExists: (name) => {
             return fs.existsSync(path.join(LEVELS, name))

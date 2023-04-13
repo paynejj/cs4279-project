@@ -37,7 +37,7 @@ function App() {
                 <Routes>
                   <Route path="/character" element={<CharacterUi />} />
                   <Route path="/dungeon-select" element={<DungeonSelect />} />
-                  <Route path="/dungeon" element={<DungeonUI />} />
+                  <Route path="/dungeon/:levelname" element={<DungeonUI />} />
                   <Route path="/hometown" element={<Hometown />} />
                   <Route path="/shop" element={<Shop />} />
                   <Route path="/sell" element={<ShopSell />} />

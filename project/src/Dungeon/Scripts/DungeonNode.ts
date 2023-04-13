@@ -11,12 +11,14 @@ export type Enemy = {
     health: number,
     damage: number
 }
-export enum DNodes { DVoid , DTunnel, DChest, DEnemy, DPit, DGoblin, }
+export enum DNodes { DVoid , DTunnel, DExit, DGold, DEnemy, DPit, DGoblin, }
 export interface DungeonNode {
-    treasure: Treasure,
-    enemy: Enemy,
-    color: string,
+    treasure?: Treasure,
+    enemy?: Enemy,
+    gold?: number,
     isVoid?: boolean,
+    isExit?: boolean,
+    color: string,
 }
 
 export class DTunnel implements DungeonNode {
@@ -25,22 +27,26 @@ export class DTunnel implements DungeonNode {
     readonly color
 
     constructor() {
-        this.treasure = undefined
-        this.enemy = undefined
         this.color = "purple"
     }
 
 }
 
+export class DExit implements DungeonNode {
+    readonly color
+    readonly isExit: boolean
+    constructor() {
+        this.isExit = true
+        this.color = "green"
+    }
+
+}
+
 export class DVoid implements DungeonNode {
-    readonly treasure
-    readonly enemy
     readonly color
     readonly isVoid
 
     constructor() {
-        this.treasure = undefined
-        this.enemy = undefined
         this.color = "black"
         this.isVoid = true
     }
@@ -50,12 +56,24 @@ export class DEnemy implements DungeonNode {
     readonly treasure: Treasure;
     readonly enemy: Enemy;
     readonly color: string;
-    readonly isVoid?: boolean;
 
     constructor() {
         this.treasure = CHEST;
         this.enemy = BANDIT;
         this.color = "red"
+    }
+
+} 
+
+export class DGold implements DungeonNode {
+    readonly treasure: Treasure;
+    readonly color: string;
+    readonly gold: number;
+
+    constructor() {
+        this.treasure = CHEST;
+        this.gold = 100;
+        this.color = "yellow"
     }
 
 } 
