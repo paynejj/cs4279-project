@@ -18,8 +18,9 @@ import CharacterCreation from "./CharacterCreation/CharacterCreation";
 import { PlayerDataContext } from './Player/PlayerDataContext';
 import { Player } from "./Object/Player";
 import { defaultPlayerData } from "./Player/DefaultPlayer";
-import { QuestsProvider } from "./Object/QuestData"
-import GeneratorScreen from "./PythonDungeon/GeneratorScreen"
+import { QuestsProvider } from "./Object/QuestData";
+import GeneratorScreen from "./PythonDungeon/GeneratorScreen";
+import PythonDungeonScreen from "./PythonDungeon/PythonDungeonScreen"
 function App() {
 
   const [playerData, setPlayerData] = useState<Player>(defaultPlayerData);
@@ -46,6 +47,7 @@ function App() {
                   <Route path="/level-creator" element={<GeneratorScreen />} />
                   <Route path="/text-editor" element={<TextEditor />} />
                   <Route path="/creation" element={<CharacterCreation />} />
+                  <Route path="/python-dungeon" element={<PythonDungeonScreen />} />
                   <Route path="/" element={<TitleScreen />} />
                 </Routes>
               </main>

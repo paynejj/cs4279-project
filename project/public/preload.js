@@ -37,7 +37,7 @@ process.once("loaded", () => {
         * @param {string} name 
         * @param {string} code 
         */
-        writePy: (name, code) => {
+         writePy: (name, code) => {
             fs.writeFileSync(path.join(__dirname, "python", name + ".py"), code)
         },
         /**
@@ -50,8 +50,29 @@ process.once("loaded", () => {
                 { encoding: "utf-8", flag: "r" })
             return content
         },
+        /**
+        * save a level to PYTHON directory. Throws error if already exists.
+        * @param {string} name 
+        * @param {string} code 
+        */
+        writeUserPy: (name, code) => {
+            fs.writeFileSync(path.join(__dirname, "userpython", name + ".py"), code)
+        },
+        /**
+         * Read a script from PYTHON directory. Throws error if not found
+         * @param {string} path 
+         * @returns file contents
+         */
+        readUserPy: (name) => {
+            const content = fs.readFileSync(path.join(__dirname, "userpython", name + ".py"),
+                { encoding: "utf-8", flag: "r" })
+            return content
+        },
         getPyFilenames: () => {
             return fs.readdirSync(path.join(__dirname, "python"))
+        },
+        getUserPyFilenames: () => {
+            return fs.readdirSync(path.join(__dirname, "userpython"))
         },
         getLevelFilenames: () => {
             return fs.readdirSync(path.join(__dirname, LEVELS))
