@@ -6,15 +6,8 @@ import CDButton from "../Components/CDButton";
 
 function Hometown() {
   const Button = styled.button`
-    background-color: black;
-    color: white;
-    font-size: 20px;
-    padding: 10px 60px;
-    border-radius: 10px;
-    margin: 20px 0px;
-    cursor: pointer;
-    justify-content: center;
   `;
+
   let navigate = useNavigate();
   const routeChange1 = () => {
     let path = `/shop`;
@@ -28,6 +21,52 @@ function Hometown() {
     let path = `/rest`;
     navigate(path);
   }
+
+  const asciiShop = `
+  ||================@
+     |___________|
+    |‾ S H O P   ‾|
+    |     __      |
+    |    |  |     |
+    |    |  |     |
+    |    |  |     |
+    |   /~~~~\\    |
+    |  /      \\   |
+    | /        \\  |
+    |(__________) |
+    |_____________|
+    '             '`;
+
+  const asciiQuestBoard = `
+   ___________________
+  |   QUEST BOARD     |
+  | ,________,        |
+  | | ------ |        |
+  | | ------ |        |
+  | | ----   |        |
+  | |       @|        |
+  | |________|        |
+  |(________()        |
+  |___________________|
+     ||          || 
+     ||\\         ||\\
+    /||\\\\       /||\\\\`;
+
+
+  const asciiRest = `
+    (‾)
+    |‾|
+    |-|
+ (‾‾\\‾/‾‾)
+  ‾‾|||‾‾
+    |||
+    |||
+    |||  (
+    |||(  )
+   )  ' ) \`.(
+  ( . )(.\`'  )
+   ) (  ) ()(
+  (_'__.\\\`./ )\\`;
 
   return (
     <div
@@ -68,10 +107,13 @@ function Hometown() {
                       height: "50%",
                     }}
                   >
-                    <img
-                      src={require("../images/store_icon.png")}
+                    <pre
                       onClick={routeChange1}
-                      style={{ cursor: "pointer" }} />
+                      style={{ cursor: "pointer" }}>
+                      <span
+                        style={{ color: "pink", fontSize: "16px" }}
+                      ><b>{asciiShop}</b></span>
+                    </pre>
                     <CDButton onClick={routeChange1}>Shop</CDButton>
                   </div>
 
@@ -83,9 +125,13 @@ function Hometown() {
                       height: "50%",
                     }}
                   >
-                    <img src={require("../images/quest_board_icon.png")}
+                    <pre
                       onClick={routeChange2}
-                      style={{ cursor: "pointer" }} />
+                      style={{ cursor: "pointer" }}>
+                      <span
+                        style={{ color: "pink", fontSize: "16px" }}
+                      ><b>{asciiQuestBoard}</b></span>
+                    </pre>
                     <CDButton onClick={routeChange2}>Quest Board</CDButton>
                   </div>
 
@@ -97,9 +143,13 @@ function Hometown() {
                       height: "50%",
                     }}
                   >
-                    <img src={require("../images/fireplace_icon.png")}
+                    <pre
                       onClick={routeChange3}
-                      style={{ cursor: "pointer" }} />
+                      style={{ cursor: "pointer" }}>
+                      <span
+                        style={{ color: "pink", fontSize: "16px" }}
+                      ><b>{asciiRest}</b></span>
+                    </pre>
                     <CDButton onClick={routeChange3}>Rest Area</CDButton>
                   </div>
                 </div>

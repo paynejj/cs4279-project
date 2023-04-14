@@ -43,7 +43,7 @@ function Rest() {
         className="overall-heading"
         style={{ fontSize: "4em", color: "pink" }}
       >
-        Bonfire
+        Rest
       </h2>
       <section
         className="section"
