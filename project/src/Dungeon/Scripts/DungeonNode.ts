@@ -11,7 +11,7 @@ export type Enemy = {
     health: number,
     damage: number
 }
-export enum DNodes { DVoid , DTunnel, DExit, DGold, DEnemy, DPit, DGoblin, }
+export enum DNodes { DVoid , DTunnel, DExit, DGold, DEnemy, DPit, DGoblin}
 export interface DungeonNode {
     treasure?: Treasure,
     enemy?: Enemy,

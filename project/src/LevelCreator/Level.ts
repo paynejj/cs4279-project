@@ -1,9 +1,16 @@
+import { Item } from "../Object/Item"
+import { Potion } from "../Object/Potion"
 
-type Level = {
+export type Level = {
     name: string,
     start: [number, number]
-    difficulty?: string
-    reward: string,
+    exit: [number, number]
+    difficulty: number
+    reward: {
+        gold: number
+        items?: Item
+        potions?: Potion
+    },
     rows: number,
     cols: number,
     map: number[][]

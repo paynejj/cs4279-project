@@ -2,16 +2,7 @@ import { useState } from 'react'
 import { Dungeon } from '../Dungeon/Scripts/Dungeon'
 import './LevelCreator.css'
 import CDButton from '../Components/CDButton'
-import internal from 'stream'
 
-export type Level = {
-    name: string
-    rows: number
-    cols: number
-    start: [number, number]
-    map: number[][]
-
-}
 function LevelCreator() {
     const dungeon = new Dungeon()
     const [map, setMap] = useState(dungeon.map)

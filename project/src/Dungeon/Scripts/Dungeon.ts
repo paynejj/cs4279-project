@@ -1,14 +1,20 @@
+import { Level } from "../../LevelCreator/Level";
+import { PlayerDataContext } from "../../Player/PlayerDataContext";
 import { DungeonNode, DNodes, DVoid, DTunnel, DEnemy, DExit, DGold } from "./DungeonNode";
 
 //PlaceHolder level
 const LEVELNAME = ""
 const EMPTY_LEVEL: Level = {
-    name: "",
+    name: "empty",
+    difficulty: 0,
     map: [],
     start: [0, 0],
-    reward: "",
-    rows: 0,
-    cols: 0
+    exit: [4, 4],
+    reward: {
+        gold: 0
+    },
+    rows: 5,
+    cols: 5
 }
 /**
  * Controls the Dungeon game
@@ -17,6 +23,7 @@ export class Dungeon {
     private _player: [number, number]
     private _map: DungeonNode[][]
     readonly level: Level
+    readonly exit: [number, number]
     readonly rows: number
     readonly cols: number
     /**
@@ -26,6 +33,7 @@ export class Dungeon {
     constructor(levelname = LEVELNAME) {
         this.level = this.loadLevel(levelname)
         this._player = this.level.start
+        this.exit = this.level.exit
         this.rows = this.level.rows
         this.cols = this.level.cols
         this._map = this.loadMap()
@@ -64,22 +72,7 @@ export class Dungeon {
             //Map number[] to DNode[]
             .map(row =>
                 //Map numbers to DNodes based on the DNodes enum
-                row.map(val => {
-                    switch (val) {
-                        case DNodes.DVoid:
-                            return new DVoid();
-                        case DNodes.DTunnel:
-                            return new DTunnel();
-                        case DNodes.DExit:
-                            return new DExit();
-                        case DNodes.DGold:
-                            return new DGold()
-                        case DNodes.DEnemy:
-                            return new DEnemy();
-
-                        default: return new DVoid()
-                    }
-                }))
+                row.map(val => this.valToNode(val)))
     }
 
     private loadLevel(levelName: string) {
@@ -103,6 +96,31 @@ export class Dungeon {
     private canMove(row: number, col: number) {
         if (row < 0 || col < 0) return false
         if (row >= this.rows || col >= this.cols) return false
-        return (!this._map[row][col].isVoid)
+        return (!this._map[row][col].isVoid && !this.isComplete())
+    }
+
+    public isComplete() {
+        return this._player[0] === this.exit[0] &&
+        this._player[1] === this.exit[1]
+
+    }
+
+    private valToNode(val: number): DungeonNode {
+
+        switch (val) {
+            case DNodes.DVoid:
+                return new DVoid();
+            case DNodes.DTunnel:
+                return new DTunnel();
+            case DNodes.DExit:
+                return new DExit();
+            case DNodes.DGold:
+                return new DGold()
+            case DNodes.DEnemy:
+                return new DEnemy();
+
+            default: return new DVoid()
+        }
+
     }
 }
