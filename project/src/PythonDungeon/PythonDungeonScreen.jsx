@@ -25,8 +25,7 @@ function PythonDungeonScreen() {
         input = window.api.readPy("Dungeon")
         level = JSON.stringify(window.api.readLevel(levelname))
         // Set the input variable in Python
-        const newcode = `filename = "${level}"
-${input}`
+        const newcode = `filename = '${level}'\n${input}\n${code}`
         console.log(newcode)
         runPython(newcode)
         console.log(stderr)
@@ -42,6 +41,7 @@ ${input}`
         <React.Fragment>
             <CDButton onClick={Back}>Back to Home Screen</CDButton>
             {isLoading ? <p>Loading...</p> : <p>Ready!</p>}
+            <CDButton onClick={Load}>Load Script</CDButton>
             <input
                 type="text"
                 name="name"
@@ -56,7 +56,6 @@ ${input}`
                 placeholder="Level Name"
                 onChange={(e) => setLevelname(e.target.value.trim())}
             />
-            <CDButton onClick={Load}>Load Script</CDButton>
             <CodeMirror
                 value={code}
                 height="300px"
@@ -70,11 +69,11 @@ ${input}`
                 }}
             />
             <CDButton onClick={async () => { run()} }>Run Code</CDButton>
+            <CDButton onClick={saveFile}>Save</CDButton>
             <p>Output</p>
             <pre>
                 <code>{stdout}</code>
             </pre>
-            <CDButton onClick={saveFile}>Save</CDButton>
             <ul>
                 <p>
                     Python Scripts

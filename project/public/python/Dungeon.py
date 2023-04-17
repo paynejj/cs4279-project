@@ -1,5 +1,3 @@
-
-print("asdasds")
 import json
 import random as rand
 class Game:
@@ -33,21 +31,24 @@ class Game:
         elif move == 'RIGHT' and self.player_col < 0:
           self.player_row += 1
         self.player_win()
-        
+
     def get_player_pos(self):
         return (self.player_row, self.player_col)
+  
     def player_win(self):
       self.player_row = self.exit[0]
       self.player_col = self.exit[1]
       if self.player_row == self.exit[0] and self.player_col == self.exit[1]:
         self.win = True
-        self.reward_count = rand.randint(1,int(self.rows * self.cols * self.difficulty))
-    
-game = Game(filename)
+        self.reward_count = rand.randint(int(self.rows * self.cols),int(self.rows * self.cols * self.difficulty))
+      else:
+        self.reward_count = -rand.randint(1,int(self.rows * self.cols * self.difficulty))
+
+game = Game(f"{filename}")
 game.print_board()
 game.player_win()
+#reward: [gold, stats, potions]
 if game.win:
-  print("Wins the game")
-  print(game.reward_count)
+  print(f"Wins the game|'reward': ['gold': {game.reward_count}]")
 else:
-  print("You lost")
+  print(f"Lose the game|'reward': ['gold': {game.reward_count}]")
