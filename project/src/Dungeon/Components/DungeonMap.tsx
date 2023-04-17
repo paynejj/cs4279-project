@@ -1,7 +1,7 @@
 import DungeonNodeDisplay from "./DungeonNodeDisplay"
 import { Dungeon } from "../Scripts/Dungeon"
 import { PlayerDataContext } from "../../Player/PlayerDataContext"
-import { KeyboardEvent, useContext, useEffect, useState } from "react"
+import { KeyboardEvent, useContext, useEffect, useRef, useState } from "react"
 import React from "react"
 import CDButton from "../../Components/CDButton"
 import { Link } from "react-router-dom"
@@ -10,15 +10,15 @@ interface DungeonMapProps {
     dungeon: Dungeon
 }
 function DungeonMap({ dungeon }: DungeonMapProps) {
-    let complete = dungeon.isComplete()
+    let complete = useRef(dungeon.isComplete())
     const { playerData, setPlayerData } = useContext(PlayerDataContext)
     useEffect(() => {
-        if (complete) {
-            console.log(playerData.gold += dungeon.level.reward.gold)
+        complete.current = dungeon.isComplete()
+
+        if (complete.current) {
             setPlayerData({ ...playerData, gold: (playerData.gold += dungeon.level.reward.gold) })
-            console.log(playerData.gold)
         }
-    }, [])
+    })
 
     /**enables re-render when player playerition changes */
     const [player, setPlayer] = useState(dungeon.player)
@@ -45,8 +45,6 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
                 break
             default: {/**do nothing */ }
         }
-        console.log(player)
-
     }
     /**
      * Checks if the given index corresponds to the player coordinate in the dungeon
@@ -65,22 +63,24 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
     return (
         <React.Fragment>
             {/** tabindex required for key detection */}
-            {(!complete) ? (<div tabIndex={0}
-                className="dungeon-map"
-                onKeyDown={e => handleKeyDown(e, dungeon)}
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: `repeat(${dungeon.cols}, auto)`,
-                    gridTemplateRows: `repeat(${dungeon.rows}, auto`,
-                    aspectRatio: `${dungeon.cols / dungeon.rows}`
-                }}>
-                {dungeon.map
-                    //flatten 2d array to 1d
-                    .flat()
-                    //create DungeonNode components for every internal dungeon node
-                    .map((node, idx) =>
-                        <DungeonNodeDisplay node={node} key={idx} hasPlayer={hasPlayer(idx)} />)}
-            </div>)
+            {(!complete.current)
+                ?
+                (<div tabIndex={0}
+                    className="dungeon-map"
+                    onKeyDown={e => handleKeyDown(e, dungeon)}
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: `repeat(${dungeon.cols}, auto)`,
+                        gridTemplateRows: `repeat(${dungeon.rows}, auto`,
+                        aspectRatio: `${dungeon.cols / dungeon.rows}`
+                    }}>
+                    {dungeon.map
+                        //flatten 2d array to 1d
+                        .flat()
+                        //create DungeonNode components for every internal dungeon node
+                        .map((node, idx) =>
+                            <DungeonNodeDisplay node={node} key={idx} hasPlayer={hasPlayer(idx)} />)}
+                </div>)
                 : (
                     <div className="victory">
                         <h1> YOU WIN! CONGRATULATIONS</h1>
