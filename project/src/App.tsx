@@ -21,6 +21,7 @@ import { defaultPlayerData } from "./Player/DefaultPlayer";
 import { QuestsProvider } from "./Object/QuestData";
 import GeneratorScreen from "./PythonDungeon/GeneratorScreen";
 import PythonDungeonScreen from "./PythonDungeon/PythonDungeonScreen"
+import StatusWindow from "./SideBar/StatusWindow";
 function App() {
 
   const [playerData, setPlayerData] = useState<Player>(defaultPlayerData);
@@ -51,6 +52,7 @@ function App() {
                   <Route path="/" element={<TitleScreen />} />
                 </Routes>
               </main>
+              <StatusWindow />
             </div>
           </BrowserRouter>
         </QuestsProvider>
