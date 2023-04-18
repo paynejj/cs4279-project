@@ -1,12 +1,15 @@
 import React from "react";
 import { CreationForm } from "./CreationForm";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
+import { defaultPlayerData } from "../Player/DefaultPlayer";
+import { useQuests, defaultQuests, defaultQuests2 } from "../Object/QuestData";
 import { useNavigate } from "react-router-dom";
 import "./CreationForm.css"
 
 
 function CharacterCreation() {
-    const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
+    const { setPlayerData } = React.useContext(PlayerDataContext);
+    const { setAcceptedQuestlist, resetQuestboard } = useQuests();
     const navigate = useNavigate();
 
     const handleCharacterCreation = (name: string, characterClass: string) => {
@@ -16,9 +19,12 @@ function CharacterCreation() {
             return;
         }
 
-        const newPlayerData = { ...playerData };
+        const newPlayerData = { ...defaultPlayerData };
         newPlayerData.name = name;
         newPlayerData.class = characterClass;
+
+        setAcceptedQuestlist(defaultQuests2);
+        resetQuestboard();
 
         if (characterClass === 'Warrior') {
             newPlayerData.stats.MaxHP += 10;

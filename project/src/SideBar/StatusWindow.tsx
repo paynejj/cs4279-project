@@ -4,7 +4,7 @@ import { PlayerDataContext } from "../Player/PlayerDataContext";
 
 function StatusWindow() {
 
-    const { playerData, setPlayerData } = useContext(PlayerDataContext)
+    const { playerData } = useContext(PlayerDataContext)
     return (
         <Window
             id="react-window"
