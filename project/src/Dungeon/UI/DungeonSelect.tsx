@@ -1,4 +1,5 @@
 import "./DungeonSelect.css"
+import { Link } from "react-router-dom"
 
 function DungeonSelect() {
 
@@ -11,9 +12,10 @@ function DungeonSelect() {
                     {window.api.getLevelFilenames()
                         .map((levelname: string, idx) => {
                             return (
-                                <a className="level" href={`/dungeon/${levelname}`}>
+                                <Link className="level" draggable="false" to={`/dungeon/${levelname}`}>
                                     {levelname}
-                                </a>)
+                                </Link>
+                            )
                         })}
                 </div>
             </div>

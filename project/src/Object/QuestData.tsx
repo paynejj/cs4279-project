@@ -28,8 +28,8 @@ const defaultQuests: QuestType[] = [
         reward: 30, itemCollected: 0, itemToCollect: 1
     },
     {
-        name: "MrDungeon", description: "Complete 20 HARD dungeons",
-        reward: 200, itemCollected: 0, itemToCollect: 20
+        name: "MrDungeon", description: "Complete 50 dungeons",
+        reward: 200, itemCollected: 0, itemToCollect: 50
     },
     {
         name: "CHATGPT", description: "Write 10 scripts",

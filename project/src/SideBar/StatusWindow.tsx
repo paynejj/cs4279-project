@@ -1,7 +1,6 @@
 import Window from "floating-window-ui";
 import { useContext } from "react";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
-import { purple } from "@mui/material/colors";
 
 function StatusWindow() {
 
@@ -18,7 +17,7 @@ function StatusWindow() {
                 title: "Status",
                 buttons: { minimize: true },
             }}>
-            <ul style={{color: purple[500], backgroundColor: "black", height: "100%"}}>
+            <ul style={{color: "purple", backgroundColor: "black", height: "100%"}}>
                 <li><h1>{playerData.name}</h1></li>
                 <li>Gold: {playerData.gold}</li>
                 {Object.entries(playerData.stats).map((e) => <li key={e[0]}>{e[0]}: {e[1]}</li>) }

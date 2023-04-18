@@ -57,3 +57,12 @@
     background-color: purple;
     color: black;
 }
+
+.level-text {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: x-large;
+    text-align: center;
+    color: purple;
+}

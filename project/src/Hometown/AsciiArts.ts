@@ -184,7 +184,7 @@ export const warriorRest2 = `      )
 
 
 export const shopArt = `                ____
-               /    \\\\
+WELCOME!       /    \\\\
                , ,  ##
                <   ###
                \\O ##/=
