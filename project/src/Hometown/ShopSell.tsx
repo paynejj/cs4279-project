@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Item } from "../Object/Item"
 import { PlayerDataContext } from "../Player/PlayerDataContext"
+import { useQuests } from "../Object/QuestData";
 import InfoTooltip from './InfoTooltip';
 import CDButton from '../Components/CDButton';
 import { Grid } from '@mui/material';
@@ -13,6 +14,8 @@ const ShopSellScreen: React.FC = () => {
     const [inventory, setInvertory] = React.useState(inventoryRows);
     const [selectedItems, setSelectedItems] = useState<Item[]>([]);
     const { playerData, setPlayerData } = useContext(PlayerDataContext);
+    const { acceptedQuests, progressQuest } = useQuests();
+    let bezosQuest = acceptedQuests.find((q) => q.name === "Bezos");
 
     React.useEffect(() => {
         let tempInventoryRows: [string, Item][] = [];
@@ -71,6 +74,9 @@ const ShopSellScreen: React.FC = () => {
     }
 
     const handleSell = () => {
+        if(bezosQuest){
+            progressQuest(bezosQuest);
+        }
         const totalValue = selectedItems.reduce((acc, item) => acc + item.value * item.amount, 0);
         onSell(selectedItems, totalValue);
         setSelectedItems([]);

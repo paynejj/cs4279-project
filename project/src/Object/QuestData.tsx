@@ -2,10 +2,10 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { QuestType } from "./Quest";
 
 // default quests on the quest board
-const defaultQuests: QuestType[] = [
+export const defaultQuests: QuestType[] = [
     {
-        name: "SlimeHunting", description: "Kill 10 Slimes",
-        reward: 100, itemCollected: 0, itemToCollect: 10
+        name: "SlimeHunting", description: "Kill 6 Slimes",
+        reward: 100, itemCollected: 0, itemToCollect: 6
     },
     {
         name: "WEAPON", description: "Equip a weapon",
@@ -20,8 +20,12 @@ const defaultQuests: QuestType[] = [
         reward: 10, itemCollected: 0, itemToCollect: 30
     },
     {
-        name: "Bezos", description: "Sell 30 items",
-        reward: 200, itemCollected: 0, itemToCollect: 30
+        name: "Bezos", description: "Sell 30 times",
+        reward: 1000, itemCollected: 0, itemToCollect: 30
+    },
+    {
+        name: "Shopaholic", description: "Buy 50 items",
+        reward: 300, itemCollected: 0, itemToCollect: 50
     },
     {
         name: "Beginner", description: "Complete 1 dungeon",
@@ -46,7 +50,7 @@ const defaultQuests: QuestType[] = [
 ];
 
 // default already accepted quests
-const defaultQuests2: QuestType[] = [
+export const defaultQuests2: QuestType[] = [
     {
         name: 'French Fries',
         description: `Go get ONE any-size french fries from \n BurgerQueen.\n`,
@@ -60,7 +64,8 @@ interface QuestsContextValue {
     newQuest: (quest: QuestType) => void;
     acceptQuest: (quest: QuestType) => void;
     completeQuest: (quest: QuestType) => void;
-    setAcceptedQuestlist: (quest: QuestType[]) => void;
+    setAcceptedQuestlist: (quests: QuestType[]) => void;
+    resetQuestboard: () => void;
     progressQuest: (quest: QuestType) => void;
 }
 
@@ -71,6 +76,7 @@ const QuestsContext = createContext<QuestsContextValue>({
     acceptQuest: () => { },
     completeQuest: () => { },
     setAcceptedQuestlist: () => { },
+    resetQuestboard: () => { },
     progressQuest: () => { },
 });
 
@@ -129,6 +135,10 @@ export function QuestsProvider({ children }: QuestsProviderProps) {
         setAcceptedQuests(questList);
     }
 
+    function resetQuestboard() {
+        setQuestBoardList(defaultQuests);
+    }
+
     const value: QuestsContextValue = {
         questBoardList,
         acceptedQuests,
@@ -136,6 +146,7 @@ export function QuestsProvider({ children }: QuestsProviderProps) {
         newQuest,
         completeQuest,
         setAcceptedQuestlist,
+        resetQuestboard,
         progressQuest,
     };
 

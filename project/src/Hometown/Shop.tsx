@@ -8,6 +8,7 @@ import InfoTooltip from './InfoTooltip';
 import CDButton from "../Components/CDButton";
 import { Grid } from "@mui/material";
 import { shopArt } from "./AsciiArts"
+import { useQuests } from "../Object/QuestData";
 import './Shop.css';
 
 function Shop() {
@@ -34,6 +35,8 @@ function Shop() {
 
   const [shopStockArray, setShopStockArray] = React.useState<ShopData>(selectedShopItems);
   const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
+  const { acceptedQuests, progressQuest } = useQuests();
+  let shopaholicQuest = acceptedQuests.find((q) => q.name === "Shopaholic");
 
   function buyItem(item: Item, amount: number) {
     const newPlayerData = { ...playerData };
@@ -56,6 +59,10 @@ function Shop() {
             newItem = { ...item };
             newItem.amount = amount;
           }
+
+          if(shopaholicQuest) {
+            progressQuest(shopaholicQuest);
+          }
           newPlayerData.inventory.set(item.name, newItem);
           setPlayerData(newPlayerData);
 
@@ -67,7 +74,7 @@ function Shop() {
   function displayArrayInTable(objArray: ShopData) {
     return (
       <Grid container>
-        <Grid item xs= {7}>
+        <Grid item xs={7}>
           <table style={{ fontSize: "clamp(22px, 2.5vw, 30px)" }}>
             <thead>
               <tr>
