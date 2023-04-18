@@ -154,7 +154,7 @@ export const rangerRest2 = `      )                    , .
 export const warriorRest1 = `                    
                          _____.
      (                   ____ |
-      )                  _  _'|
+      )                  ____'|
      (  (                _||__|
          )             ( ,'-'.,
     (   (     ,,     _./_|_/ )|
@@ -170,7 +170,7 @@ export const warriorRest1 = `
 export const warriorRest2 = `      )
      (   )    (          _____.
                )         ____ |
-         )               _  _'|
+         )               _,,_'|
      (    )              _||__|
       )       ''       ( ,'-'.,
     )           ''   _./_|_/ )|

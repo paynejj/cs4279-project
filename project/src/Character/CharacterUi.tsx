@@ -357,7 +357,7 @@ export default function CharacterUi() {
                                                 {equipInventory[equipInventoryMenuIdx][1].item_type}
                                                 value=
                                                 {equipInventory[equipInventoryMenuIdx][1].value} /> :
-                                            <div></div>}
+                                            <></>}
                                     </MenuItem>
                                     <MenuItem onClick={handleSellEquipment}>
                                         <Button sx={{ color: "white" }}>Sell</Button>
@@ -404,15 +404,17 @@ export default function CharacterUi() {
                                             <Button sx={{ color: "white" }}>Use</Button>
                                         </MenuItem>
                                         <MenuItem>
-                                            <Info
-                                                name={inventory[PotionMenuIdx][1].name}
-                                                description={inventory[PotionMenuIdx][1].item_type}
-                                                value={inventory[PotionMenuIdx][1].value} />
+                                            {inventory[PotionMenuIdx][1] ?
+                                                <Info
+                                                    name={inventory[PotionMenuIdx][1].name}
+                                                    description={inventory[PotionMenuIdx][1].item_type}
+                                                    value={inventory[PotionMenuIdx][1].value} /> : <></>}
+
                                         </MenuItem>
                                     </Menu>
                                     <Grid item sm={1} textAlign="right" color="pink"> {row[1].amount}</Grid>
                                 </Grid>
-                                : <div></div>
+                                : <></>
                         ))}
                     </Grid>
                 </Box>

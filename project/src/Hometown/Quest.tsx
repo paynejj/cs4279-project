@@ -47,7 +47,6 @@ function Quest() {
       }
       ++timeOut;
     }
-    console.log(newQuests);
     return newQuests;
   }
 
@@ -60,10 +59,7 @@ function Quest() {
 
   useEffect(() => {
     let newQuests = getQuests();
-    console.log(newQuests);
-    console.log("_________________");
     setDisplayingQuests(newQuests);
-    console.log(displayingQuests);
   }, []);
 
 
@@ -99,13 +95,11 @@ function Quest() {
       <CDButton onClick={routeChange}>Back</CDButton>
       <div className="shop-list">
         <h1 style={{ fontSize: "3rem", color: "pink" }}>QuestBoard</h1>
-        <div className="node">
+        <span className="node">
           {displayArrayInRow(displayingQuests)}
-        </div>
-
+        </span>
       </div>
     </div>
-
   );
 }
 
