@@ -3,7 +3,8 @@ import { useQuests } from "../Object/QuestData";
 import { useContext, useState } from 'react';
 import "../SideBar/SideBarUI.css"
 
-export const SaveButton = () => {
+
+export const SaveAsButton = () => {
     const { playerData } = useContext(PlayerDataContext);
     const { acceptedQuests, progressQuest } = useQuests();
     const [saveJson, setSaveJson] = useState<string>();
@@ -35,7 +36,6 @@ export const SaveButton = () => {
             progressQuest(insecurityQuest);
         }
 
-
         // Convert playerData and quests to JSON
         const saveStr = JSON.stringify(gameData);
 
@@ -43,16 +43,26 @@ export const SaveButton = () => {
         setSaveJson(saveStr);
 
         if (saveJson) {
-            window.api.writeFile("./save.json", saveJson);
+            //Convert the JSON strings to blobs
+            let saveUrl: string = '';
+            if (saveJson) {
+                const saveBlob = new Blob([saveJson], { type: 'application/json' });
+                saveUrl = URL.createObjectURL(saveBlob);
+            }
+
+            // Create an <a> tag with the download attribute set
+            const link = document.createElement('a');
+            link.download = 'save.json';
+            link.href = saveUrl;
+            link.click();
             console.log('Successfully saved');
-            // window.alert('Successfully saved');
         }
     };
 
     return (
         <li onClick={saveData}>
             <a className="not-selectable-pointer">
-                Save
+                Save As
             </a>
         </li>
     );

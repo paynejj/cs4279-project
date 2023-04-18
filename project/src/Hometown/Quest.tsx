@@ -12,13 +12,14 @@ function Quest() {
     justifyContent: 'space-between'
   };
 
-  // randomly get two of all quests from questBoardList and put them in a new array
-  function getTwoQuests() {
+  // randomly get numOfQuests of all quests from questBoardList and put them in a new array
+  function getQuests() {
     let newQuests: QuestType[] = [];
     // number of quests to be displayed on the quest board
+    let numOfQuests = 5;
     let i = 0;
     let timeOut = 0;
-    while (i < 2 && timeOut < 50) {
+    while (i < numOfQuests && timeOut < 50) {
       let randomIndex = Math.floor(Math.random() * questBoardList.length);
       let randomQuest = questBoardList[randomIndex];
       if (!newQuests.includes(randomQuest) && !acceptedQuests.includes(randomQuest)) {
@@ -29,7 +30,7 @@ function Quest() {
     }
     return newQuests;
   }
-  let selectedQuested = getTwoQuests();
+  let selectedQuested = getQuests();
 
 
   function displayArrayInRow(questList: QuestType[]) {
