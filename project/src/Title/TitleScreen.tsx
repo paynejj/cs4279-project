@@ -8,9 +8,10 @@ import { Item } from "../Object/Item";
 import { Equipment, EquipmentType } from "../Object/Equipment";
 import { useQuests } from "../Object/QuestData";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
+import { defaultPlayerData } from "../Player/DefaultPlayer";
 
 function TitleScreen() {
-    
+
     const { setPlayerData } = React.useContext(PlayerDataContext);
     const { setAcceptedQuestlist } = useQuests();
 
@@ -24,12 +25,14 @@ function TitleScreen() {
         const newInventory: Map<string, Item> = new Map(uploadedPlayerData.inventory);
         const newEquipments: Map<EquipmentType, Equipment> = new Map(uploadedPlayerData.equipments);
         const newPlayerData = {
+            ...defaultPlayerData,
             name: uploadedPlayerData.name,
             class: uploadedPlayerData.class,
             inventory: newInventory,
             stats: uploadedPlayerData.stats,
             gold: uploadedPlayerData.gold,
             equipments: newEquipments,
+
         };
 
         setPlayerData(newPlayerData);

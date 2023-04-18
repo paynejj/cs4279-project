@@ -8,4 +8,5 @@ export type Player = {
     stats: Stats;
     gold: number;
     equipments: Map<EquipmentType, Equipment>;
+    completedLevels: Record<string, number>;
   }

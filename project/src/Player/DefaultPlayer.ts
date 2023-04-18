@@ -47,6 +47,7 @@ export const defaultPlayerData: Player = {
         Vitality: 3,
         Agility: 3,
     },
+    completedLevels: {},
     inventory: defaultInventory,
     equipments: defaultEquipments,
 

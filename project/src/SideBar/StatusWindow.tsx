@@ -5,11 +5,22 @@ import { PlayerDataContext } from "../Player/PlayerDataContext";
 function StatusWindow() {
 
     const { playerData } = useContext(PlayerDataContext)
+    const levelCheck = () => {
+        console.log(Object.entries(playerData.completedLevels))
+        let goldInc = 0
+        for (const [name, reward] of Object.entries(playerData.completedLevels)) {
+            goldInc += reward
+        }
+        setTimeout(() => {
+            setPlayerData({...playerData, gold: playerData.gold + goldInc})
+        }, 1000);
+    }
+    levelCheck()
     return (
         <Window
             id="react-window"
-            height={300}
-            width={300}
+            height={350}
+            width={250}
             style={{backgroundColor: "black"}}
             resizable={true}
             titleBar={{
@@ -20,7 +31,7 @@ function StatusWindow() {
             <ul style={{color: "purple", backgroundColor: "black", height: "100%"}}>
                 <li><h1>{playerData.name}</h1></li>
                 <li>Gold: {playerData.gold}</li>
-                {Object.entries(playerData.stats).map((e) => <li key={e[0]}>{e[0]}: {e[1]}</li>) }
+                {Object.entries(playerData.stats).map(([key, value]) => <li key={key}>{key}: {value}</li>) }
             </ul>
         </Window>
     )
