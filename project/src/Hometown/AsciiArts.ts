@@ -44,9 +44,8 @@ export const warriorQuestArt = `
    \\______________/
 `
 
-export const rangerQuestArt = `
-              /'' 
-            \\|  |
+export const rangerQuestArt = `              /'' 
+             |  |
             .|  |
             /|  |
            .|   |
@@ -69,8 +68,8 @@ export const rangerQuestArt = `
            .|   |
             \\|  |
             .|  |
-            /|  |
-             \\..
+             |  |
+              \\..
 `
 
 export const defaultRestArt = `                  
@@ -184,8 +183,7 @@ export const warriorRest2 = `      )
 `;
 
 
-export const shopArt = `
-                ____
+export const shopArt = `                ____
                /    \\\\
                , ,  ##
                <   ###
@@ -196,10 +194,10 @@ export const shopArt = `
           /__/|  .   |\\__\\_______
           \\ \\ |  .   |  \\__.'\\ (
            \`.\\|______|        \\\\\\
-    _       /_|_[]___|
-    |         |      |
-   /~\\        |  |   |
- _/___\\_______|__|___|________
+    _    _  /_|_[]___|
+    |    |    |      |
+   /~\\  /~\\   |  |   |
+ _/___\\/___\\__|__|___|________
 |_________|___________________|
 ||       ||   \\_ |   |||   ||
 ||       ||   |  |   |||   ||
@@ -209,8 +207,7 @@ export const shopArt = `
 ||       || (____(___)||   ||
 `;
 
-export const sellArt =`
-                ____
+export const sellArt =`                ____
                /    \\\\
                , ,  ##
                <   ###
@@ -220,8 +217,8 @@ export const sellArt =`
            /  | \\./  \\  \\
           /__/|  .   |\\__\\
           \\ \\ |  .   |/ /
-           \`.\\|______| /
-     .,      /_|_[]___|-\\
+           \`.\\|______|.\' 
+     .,     /_|_[]___|\\
      %        |      |
    .' \`.      |  |   |
  _(__$__)_____|__|___|________

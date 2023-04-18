@@ -9,6 +9,7 @@ import { mageQuestArt, warriorQuestArt, rangerQuestArt } from "./AsciiArts";
 
 function Quest() {
   const { acceptQuest, questBoardList, acceptedQuests } = useQuests();
+  const [displayingQuests, setDisplayingQuests] = useState<QuestType[]>([]);
   const { playerData } = useContext(PlayerDataContext)
   const [art, setArt] = useState("");
   const [playerClass, setPlayerClass] = useState(playerData.class);
@@ -46,9 +47,24 @@ function Quest() {
       }
       ++timeOut;
     }
+    console.log(newQuests);
     return newQuests;
   }
-  let selectedQuested = getQuests();
+
+  function startQuest(quest: QuestType) {
+    acceptQuest(quest);
+    let newDisplayingQuests = [...displayingQuests];
+    newDisplayingQuests.splice(newDisplayingQuests.indexOf(quest), 1);
+    setDisplayingQuests(newDisplayingQuests);
+  }
+
+  useEffect(() => {
+    let newQuests = getQuests();
+    console.log(newQuests);
+    console.log("_________________");
+    setDisplayingQuests(newQuests);
+    console.log(displayingQuests);
+  }, []);
 
 
   function displayArrayInRow(questList: QuestType[]) {
@@ -57,13 +73,13 @@ function Quest() {
       <Grid container>
         <Grid item xs={9.5}>
           <div style={{ display: "table", minWidth: "300px", width: "60vw", maxWidth: "800px" }}>
-            {questList.map((quest: QuestType) => (quest ?
-              <h3 key={quest.name} style={containerStyle}>&nbsp;{quest.name}&nbsp;
-                ----- &nbsp;{quest.description}
-                <CDButton
-                  onClick={() => acceptQuest(quest)}
-                >Start</CDButton></h3>
-              : <h2>No Quests Available</h2>))}
+            {questList.length !== 0 ?
+              questList.map((quest: QuestType) => (quest ?
+                <h3 key={quest.name} style={containerStyle}>&nbsp;{quest.name}&nbsp;
+                  ----- &nbsp;{quest.description}
+                  <CDButton
+                    onClick={() => startQuest(quest)}
+                  >Start</CDButton></h3> : <h2>No Quests Available</h2>)) : <h2>No Quests Available</h2>}
           </div>
         </Grid >
         <Grid item><b><pre style={{ color: "pink" }}>{art}</pre></b></Grid>
@@ -84,7 +100,7 @@ function Quest() {
       <div className="shop-list">
         <h1 style={{ fontSize: "3rem", color: "pink" }}>QuestBoard</h1>
         <div className="node">
-          {displayArrayInRow(selectedQuested)}
+          {displayArrayInRow(displayingQuests)}
         </div>
 
       </div>
