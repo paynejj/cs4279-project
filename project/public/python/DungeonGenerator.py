@@ -47,7 +47,7 @@ def generate_levels():
     gold_reward = rand.randint(50, 100)
     gold_reward = gold_reward * difficulty
 
-    player_row, player_col = (rand.randint(1, 10), rand.randint(1, 10))
+    player_row, player_col = (rand.randint(0, size-1), rand.randint(0, size-1))
     board, exit_row, exit_col = populate_board(player_row, player_col, rows, cols, difficulty)
 
     valid_spaces = [0, 1, 2, 3, 4]

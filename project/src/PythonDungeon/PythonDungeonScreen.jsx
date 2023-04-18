@@ -4,15 +4,16 @@ import { python } from '@codemirror/lang-python';
 import React from "react";
 import CDButton from "../Components/CDButton";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { usePython } from 'react-py';
+import { PlayerDataContext } from '../Player/PlayerDataContext';
 
 function PythonDungeonScreen() {
-
+    const {playerData, setPlayerData} = useContext(PlayerDataContext);
     let navigate = useNavigate();
     let input = "";
     let level = "";
-
+    let finish = "";
     const Back = () => {
         let path = `/`;
         navigate(path);
@@ -21,14 +22,30 @@ function PythonDungeonScreen() {
     const [name, setName] = useState('');
     const [code, setCode] = useState('');
     const [levelname, setLevelname] = useState('');
+    const [output, setOutput] = useState('');
+    const  splitOutput = async () => {
+        while(isRunning) {
+            await new Promise(r => setTimeout(r, 5000));
+        }
+        console.log(stdout)
+        const [out, result] = stdout.split('|');
+        setOutput(out);
+        const res = JSON.parse(result);
+        if(res.win){
+            const updateCompletedLevels = playerData.completedLevels;
+            updateCompletedLevels[res.name] = res.reward.gold
+            console.log(updateCompletedLevels)
+            setPlayerData({...playerData, completedLevels: updateCompletedLevels});
+        } 
+    }
     async function run() {
-        input = window.api.readPy("Dungeon")
-        level = JSON.stringify(window.api.readLevel(levelname))
+        input = window.api.readPy("Dungeon");
+        finish = window.api.readPy("Finish");
+        level = JSON.stringify(window.api.readLevel(levelname));
         // Set the input variable in Python
-        const newcode = `filename = '${level}'\n${input}\n${code}`
-        console.log(newcode)
-        runPython(newcode)
-        console.log(stderr)
+        const newcode = `filename = '${level}'\n${input}\n${code}\n${finish}`
+        runPython(newcode);
+        splitOutput();
     }
     const saveFile = (e) => {
         window.api.writeUserPy(name, code)
@@ -65,14 +82,13 @@ function PythonDungeonScreen() {
                 theme={sublime}
                 onChange={(code, data, value) => {
                     setCode(code);
-                    console.log(code);
                 }}
             />
             <CDButton onClick={async () => { run()} }>Run Code</CDButton>
             <CDButton onClick={saveFile}>Save</CDButton>
             <p>Output</p>
             <pre>
-                <code>{stdout}</code>
+                <code>{output}</code>
             </pre>
             <ul>
                 <p>

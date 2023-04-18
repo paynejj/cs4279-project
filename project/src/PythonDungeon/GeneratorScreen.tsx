@@ -21,6 +21,7 @@ function GeneratorScreen() {
         input = window.api.readPy("DungeonGenerator")
         e.preventDefault()
         runPython(input)
+        console.log(stdout)
         window.api.writeLevel(JSON.parse(stdout))
         let readres = window.api.readLevel(name)
         console.log(readres)

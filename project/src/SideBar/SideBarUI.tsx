@@ -53,12 +53,12 @@ function SideBar() {
         <div className="sidebar">
             <ul>
                 <li><Link draggable="false" to="/">Title Menu</Link></li>
-                <li><Link draggable="false" to="/dungeon-select">Dungeon</Link></li>
-                <li><Link draggable="false" to="/python-dungeon">Dungeon Script</Link></li>
+                <li><Link draggable="false" to="/dungeon-select">Play Dungeon</Link></li>
+                <li><Link draggable="false" to="/python-dungeon">Script Dungeon</Link></li>
+                <li><Link draggable="false" to="/level-creator">Generate Level</Link></li>
                 <li><Link draggable="false" to="/hometown">HomeTown</Link></li>
                 <li><Link draggable="false" to="/character">Character</Link></li>
-                <li><Link draggable="false" to="/text-editor">Text</Link></li>
-                <li><Link draggable="false" to="/level-creator">Create Level</Link></li>
+                <li><Link draggable="false" to="/text-editor">Code Editor</Link></li>
                 <SaveButton/>
                 <SaveAsButton/>
             </ul>
