@@ -47,7 +47,7 @@ function SideBar() {
         }, 600000);   // 600000ms = 10min
         autoSave();
         return () => clearInterval(interval);
-    });
+    },[time]);
 
     return (
         <div className="sidebar">

@@ -1,5 +1,5 @@
 import Window from "floating-window-ui";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
 
 function StatusWindow() {
@@ -11,7 +11,8 @@ function StatusWindow() {
             goldInc += reward
         }
         setTimeout(() => {
-            setPlayerData({...playerData, gold: playerData.gold + goldInc})
+            // setPlayerData({...playerData, gold: playerData.gold + goldInc})
+            playerData.gold += goldInc;
         }, 1000);
         console.log(playerData.completedLevels)
     }
