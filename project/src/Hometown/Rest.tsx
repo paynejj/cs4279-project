@@ -4,105 +4,11 @@ import { useNavigate } from "react-router-dom";
 import HpBar from "./RestHP";
 import CDButton from "../Components/CDButton";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
+import { defaultRestArt, mageRest1, mageRest2, warriorRest1, warriorRest2, rangerRest1, rangerRest2 } from "./AsciiArts";
 
 function Rest() {
-  const mage1 = `                          ,^.
-                         /||_\\
-      (                 /_____\\
-       )                /.,.\\\\\\
-      (  (               \\=__/
-          )              ,'-'.
-    (    (  ,,       _.__|/ /|
-     ) /\\ -((------((_|___/  |
-   (  // |  \`\'      (    \`\'--|
- _ -.;_/ \\\\--._     /,  .-.__/.
-(_;-// | \\ \\\-'.\\    <_, _\\'--'|
-( \`.__ _  ___,')      <_,-'__,'
- \`'(_ )_)(_)_)'
-`;
-
-  const mage2 = `      )                   ,^.
-     (   )               /||_\\
-        (               /_____\\
-         )              /.,.\\\\\\
-     (    )              \\=__/
-      )  (    ''         ,'-'.
-    )           ''   _.__|/ /|
-       /\\ -((------((_|___/  |
-      // |  \`\'      (    \`\'--|
- _ -.;_/ \\\\--._     /,  .-.__/.
-(_;-// | \\ \\\-'.\\    <_, _\\'--'|
-( \`.__ _  ___,')      <_,-'__,'
- \`'(_ )_)(_)_)'
-`;
-
-
-  const ranger1 = `                           / |
-                        _./  |_//
-      (                (_/____//
-       )                (.,.)R)
-      (  (               \\=__/
-          )              ,'-'.
-    (    (  ,,       _.__|/ /|
-     ) /\\ -((------((_|___/  |
-   (  // |  \`\'      ((   \`\'--|
- _ -.;_/ \\\\--._      \\\\ \\-.__/.
-(_;-// | \\ \\\-'.\\    <_,\\_\\'--'|
-( \`.__ _  ___,')      <_,-'__,'
- \`'(_ )_)(_)_)'
-`;
-
-
-  const ranger2 = `      )                    / |
-     (   )              _./  |_//
-        (              (_/____//
-         )              (.,.)R)
-     (    )              \\=__/
-      )  (    ''         ,'-'.
-    )           ''   _.__|/ /|
-       /\\ -((------((_|___/  |
-      // |(         ((   \`\'--|
- _ -.;_/ \\\\--._\`\'    \\\\ \\-.__/.
-(_;-// | \\ \\\-'.\\    <_,\\_\\'--'|
-( \`.__ _  ___,')      <_,-'__,'
- \`'(_ )_)(_)_)'
-`;
-
-
-
-  const warrior1 = `                    
-                        _____.
-     (                  ____ |
-      )                 _  _'|
-     (  (               _||_ |
-         )             ( ,'-'.,
-    (   (     ,,     _./_|/ ) |
-    )  /\\ -((------((_|___/   |
-  (   // |          ((   \`\'---|
- _ -.;_/ \\\\--._      \\\\  \\.__/ .
-(_;-// | \\ \\\-'.\\    <_,\\_ \\'--'|
-( \`.__ _  ___,')      <__,''__,'
- \`'(_ )_)(_)_)'
-`;
-
-
-  const warrior2 = `      )
-     (   )    (         _____.
-               )        ____ |
-         )              _  _'|
-     (    )             _||_ |
-      )       ''       ( ,'-'.,
-    )           ''   _./_|/ ) |
-       /\\ -((------((_|___/   |
-      // |(         ((   \`\'---|
- _ -.;_/ \\\\--._\`\'    \\\\  \\.__/ .
-(_;-// | \\ \\\-'.\\    <_,\\_ \\'--'|
-( \`.__ _  ___,')      <__,''__,'
- \`'(_ )_)(_)_)'
-`;
-
   const { playerData } = React.useContext(PlayerDataContext)
-  const [art, setArt] = React.useState("");
+  const [art, setArt] = React.useState(defaultRestArt);
   // count down timer
   const [time, setTime] = React.useState(0);
   React.useEffect(() => {
@@ -112,27 +18,27 @@ function Rest() {
 
 
     if (playerData.class === "Mage") {
-      setArt(mage1);
+      setArt(mageRest1);
       console.log("mage")
     } else if (playerData.class === "Ranger") {
-      setArt(ranger1);
+      setArt(rangerRest1);
       console.log("ranger")
     } else {
-      setArt(warrior1);
+      setArt(warriorRest1);
     }
 
-    if (art === warrior1) {
-      setArt(warrior2);
-    } else if (art === warrior2) {
-      setArt(warrior1);
-    } else if (art === ranger1) {
-      setArt(ranger2);
-    } else if (art === ranger2) {
-      setArt(ranger1);
-    } else if (art === mage1) {
-      setArt(mage2);
-    } else if (art === mage2) {
-      setArt(mage1);
+    if (art === warriorRest1) {
+      setArt(warriorRest2);
+    } else if (art === warriorRest2) {
+      setArt(warriorRest1);
+    } else if (art === rangerRest1) {
+      setArt(rangerRest2);
+    } else if (art === rangerRest2) {
+      setArt(rangerRest1);
+    } else if (art === mageRest1) {
+      setArt(mageRest2);
+    } else if (art === mageRest2) {
+      setArt(mageRest1);
     }
 
     return () => clearInterval(interval);
@@ -162,7 +68,7 @@ function Rest() {
         }}>
         <div className="backgroundImage2">
           <Container>
-            <pre style={{ color: "pink" }}>{art}</pre>
+            <pre style={{ color: "pink", fontSize: "125%"}}>{art}</pre>
             <div className="row">
               <div className="col-md-12 text-center">
                 <HpBar />

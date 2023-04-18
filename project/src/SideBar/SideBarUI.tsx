@@ -2,13 +2,13 @@ import React from 'react';
 import "./SideBarUI.css"
 import { Link } from 'react-router-dom';
 import { SaveButton } from "./SaveButton";
+import { SaveAsButton } from './SaveAsButton';
 import { PlayerDataContext } from "../Player/PlayerDataContext";
 import { useQuests } from "../Object/QuestData";
 
 function SideBar() {
     const { playerData } = React.useContext(PlayerDataContext);
     const { acceptedQuests } = useQuests();
-
     // Convert the inventory map to an array of objects
     const inventoryArray =
         Array.from(playerData.inventory.entries()).map(([name, item]) =>
@@ -34,7 +34,7 @@ function SideBar() {
         // Convert playerData and quests to JSON
         const saveStr = JSON.stringify(gameData);
         if (saveStr) {
-            window.api.writeFile("./save.json", saveStr);
+            window.api.writeFile("./autosave.json", saveStr);
             console.log('Auto saved');
         }
     };
@@ -59,7 +59,8 @@ function SideBar() {
                 <li><Link draggable="false" to="/character">Character</Link></li>
                 <li><Link draggable="false" to="/text-editor">Text</Link></li>
                 <li><Link draggable="false" to="/level-creator">Create Level</Link></li>
-                <SaveButton />
+                <SaveButton/>
+                <SaveAsButton/>
             </ul>
         </div>
     );
