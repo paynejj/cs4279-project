@@ -106,17 +106,19 @@ export default function QuestListModal() {
                                     sx={{ width: '90%', height: '100%', overflowY: 'auto' }}>
                                     {acceptedQuests.map((row, idx) => (
                                         <Grid item xs={12} key={row.name}>
-                                            <Typography
-                                                id={row.name}
-                                                variant="h6"
-                                                lineHeight="2.5"
-                                                fontSize="21px"
-                                                fontStyle="italic"
-                                                width="90%"
-                                                onClick={() => clickQuest(row.name, idx)}
-                                                className="quest-notselected">
-                                                &nbsp;&#8226;&nbsp;{row.name}
-                                            </Typography>
+                                            <span style={{ cursor: "pointer" }}>
+                                                <Typography
+                                                    id={row.name}
+                                                    variant="h6"
+                                                    lineHeight="2.5"
+                                                    fontSize="21px"
+                                                    fontStyle="italic"
+                                                    width="90%"
+                                                    onClick={() => clickQuest(row.name, idx)}
+                                                    className="quest-notselected">
+                                                    &nbsp;&#8226;&nbsp;{row.name}
+                                                </Typography>
+                                            </span>
                                         </Grid>
                                     ))}
                                 </Grid>

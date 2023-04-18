@@ -11,13 +11,12 @@ function ContinueButton({onLoad}) {
     const loadSave = () => {
         try {
             // trying to read the file
-            let loadedSave = window.api.readFile("./save.json");
+            let loadedSave = window.api.readFile("./autosave.json");
             console.log(typeof loadedSave);
             setLoadedSave(loadedSave);
 
         } catch (error) {
-            console.log('No save.json file found');
-            window.alert("window.api.readFile() is broken");
+            console.log('No autoave.json file found');
         }
         if (loadedSave) {
             console.log(loadedSave);

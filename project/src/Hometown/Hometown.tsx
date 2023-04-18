@@ -1,13 +1,10 @@
 import Container from "react-bootstrap/esm/Container";
-import styled from "styled-components";
 import "./Hometown.css";
 import { useNavigate } from "react-router-dom";
 import CDButton from "../Components/CDButton";
 
 function Hometown() {
-  const Button = styled.button`
-  `;
-
+  
   let navigate = useNavigate();
   const routeChange1 = () => {
     let path = `/shop`;
@@ -49,24 +46,24 @@ function Hometown() {
   |(________()        |
   |___________________|
      ||          || 
-     ||\\         ||\\
-    /||\\\\       /||\\\\`;
+     ||          ||
+     ||          ||`;
 
 
   const asciiRest = `
-    (‾)
-    |‾|
-    |-|
- (‾‾\\‾/‾‾)
-  ‾‾|||‾‾
-    |||
-    |||
-    |||  (
-    |||(  )
-   )  ' ) \`.(
-  ( . )(.\`'  )
-   ) (  ) ()(
-  (_'__.\\\`./ )\\`;
+     (‾) 
+     |‾| 
+     |-| 
+  (‾‾\\‾/‾‾) 
+   ‾‾|||‾‾ 
+     ||| 
+     ||| 
+     |||  ( 
+     |||(  ) 
+    )  ' ) \`.( 
+   ( . )(.\`'  ) 
+    ) (  ) ()( 
+   (_'__.\\\`./ )\\,  `;
 
   return (
     <div

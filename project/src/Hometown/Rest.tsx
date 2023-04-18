@@ -1,34 +1,49 @@
 import React from "react";
 import Container from "react-bootstrap/esm/Container";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import HpBar from "./RestHP";
 import CDButton from "../Components/CDButton";
+import { PlayerDataContext } from "../Player/PlayerDataContext";
+import { defaultRestArt, mageRest1, mageRest2, warriorRest1, warriorRest2, rangerRest1, rangerRest2 } from "./AsciiArts";
 
 function Rest() {
-  const asciiArt = `                          ,^.
-                         /||_\\
-      (                 /_____\\
-       )                /.,.\\\\\\
-      (  (               \\=__/
-          )              ,'-'.
-    (    (  ,,       _.__|/ /|
-     ) /\\ -((------((_|___/  |
-   (  // | (\`\'      ((   \`\'--|
- _ -.;_/ \\\\--._      \\\\ \\-.__/.
-(_;-// | \\ \\\-'.\\    <_,\\_\\'--'|
-( \`.__ _  ___,')      <_,-'__,'
- \`'(_ )_)(_)_)'
-`;
-  const Button = styled.button`
-    background-color: black;
-    color: white;
-    font-size: 20px;
-    padding: 10px 60px;
-    border-radius: 10px;
-    margin: 20px 0px;
-    cursor: pointer;
-  `;
+  const { playerData } = React.useContext(PlayerDataContext)
+  const [art, setArt] = React.useState(defaultRestArt);
+  // count down timer
+  const [time, setTime] = React.useState(0);
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(time => time + 1);
+    }, 1000);   // 600000ms = 10min
+
+
+    if (playerData.class === "Mage") {
+      setArt(mageRest1);
+      console.log("mage")
+    } else if (playerData.class === "Ranger") {
+      setArt(rangerRest1);
+      console.log("ranger")
+    } else {
+      setArt(warriorRest1);
+    }
+
+    if (art === warriorRest1) {
+      setArt(warriorRest2);
+    } else if (art === warriorRest2) {
+      setArt(warriorRest1);
+    } else if (art === rangerRest1) {
+      setArt(rangerRest2);
+    } else if (art === rangerRest2) {
+      setArt(rangerRest1);
+    } else if (art === mageRest1) {
+      setArt(mageRest2);
+    } else if (art === mageRest2) {
+      setArt(mageRest1);
+    }
+
+    return () => clearInterval(interval);
+  }, [time]);
+
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/hometown`;
@@ -53,7 +68,7 @@ function Rest() {
         }}>
         <div className="backgroundImage2">
           <Container>
-            <pre style={{ color: "pink" }}>{asciiArt}</pre>
+            <pre style={{ color: "pink", fontSize: "125%"}}>{art}</pre>
             <div className="row">
               <div className="col-md-12 text-center">
                 <HpBar />

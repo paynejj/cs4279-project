@@ -4,6 +4,8 @@ import { Item } from "../Object/Item"
 import { PlayerDataContext } from "../Player/PlayerDataContext"
 import InfoTooltip from './InfoTooltip';
 import CDButton from '../Components/CDButton';
+import { Grid } from '@mui/material';
+import { sellArt } from './AsciiArts';
 import './Shop.css';
 
 const ShopSellScreen: React.FC = () => {
@@ -80,43 +82,52 @@ const ShopSellScreen: React.FC = () => {
             <CDButton onClick={routeChangeBuy}>To Buy</CDButton>
             <h1 style={{ fontSize: "3.4rem", color: "pink" }}>Sell</h1>
             <h3 style={{ color: "gold" }}>Gold: {playerData.gold}</h3>
-            {inventory.length !== 0 ?
-                <div style={{ overflowX: "auto", maxHeight: "27vw" }}>
-                    <table style={{ fontSize: "clamp(25px, 2.3vw, 30px)" }}>
-                        <thead>
-                            <tr>
-                                <th>&emsp;Item&emsp;</th>
-                                <th>&emsp;Total&emsp;</th>
-                                <th>&emsp;Price&emsp;</th>
-                                <th>ToSell</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {inventory.map(idx => (
-                                <tr key={idx[1].name}>
-                                    <td>
-                                        <InfoTooltip
-                                            name={idx[1].name}
-                                            description={idx[1].item_type} />
-                                    </td>
-                                    <td>{idx[1].amount}</td>
-                                    <td>{idx[1].value}</td>
-                                    <td>
-                                        <input
-                                            type="number"
-                                            min={0}
-                                            max={idx[1].amount}
-                                            value={selectedItems.find(selectedItem => selectedItem.name === idx[1].name)?.amount || 0}
-                                            onChange={(event) => handleItemSelect(idx[1], Number(event.target.value))} />
-                                    </td>
+            <Grid container>
+                <Grid item xs={7}>
+                    {inventory.length !== 0 ?
+                        <div style={{ overflowX: "auto", maxHeight: "27vw" }}>
+                            <table style={{ fontSize: "clamp(25px, 2.3vw, 30px)" }}>
+                                <thead>
+                                    <tr>
+                                        <th>&emsp;Item&emsp;</th>
+                                        <th>&emsp;Total&emsp;</th>
+                                        <th>&emsp;Price&emsp;</th>
+                                        <th>ToSell</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {inventory.map(idx => (
+                                        <tr key={idx[1].name}>
+                                            <td>
+                                                <InfoTooltip
+                                                    name={idx[1].name}
+                                                    description={idx[1].item_type} />
+                                            </td>
+                                            <td>{idx[1].amount}</td>
+                                            <td>{idx[1].value}</td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    min={0}
+                                                    max={idx[1].amount}
+                                                    value={selectedItems.find(selectedItem =>
+                                                        selectedItem.name === idx[1].name)?.amount || 0}
+                                                    onChange={(event) =>
+                                                        handleItemSelect(idx[1], Number(event.target.value))} />
+                                            </td>
 
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table></div> : <h3>Inventory is empty</h3>}
-            <div>
-                {inventory.length !== 0 ? <CDButton onClick={handleSell}>Sell</CDButton> : null}
-            </div>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table></div> : <h3>Inventory is empty</h3>}
+                    <div>
+                        {inventory.length !== 0 ? <CDButton onClick={handleSell}>Sell</CDButton> : null}
+                    </div>
+                </Grid>
+                <Grid item>
+                    <b><pre style={{ color: "pink", fontSize: "107%" }}>{sellArt}</pre></b>
+                </Grid>
+            </Grid>
         </div>
     );
 }

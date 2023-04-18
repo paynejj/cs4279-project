@@ -6,13 +6,15 @@ import { PlayerDataContext } from "../Player/PlayerDataContext"
 import { shopData } from "./ShopHelper"
 import InfoTooltip from './InfoTooltip';
 import CDButton from "../Components/CDButton";
+import { Grid } from "@mui/material";
+import { shopArt } from "./AsciiArts"
 import './Shop.css';
 
 function Shop() {
   function getRandomShopItem() {
     let selectedShopItems: ShopData = [];
     // number of item to be displayed in the shop
-    let i = 2
+    let i = 4;
     let selectedIndices: Number[] = [];
     while (selectedIndices.length < i) {
       let randomIndex = Math.floor(Math.random() * shopData.length);
@@ -27,8 +29,6 @@ function Shop() {
     }
     return selectedShopItems;
   }
-
-
 
   let selectedShopItems = getRandomShopItem();
 
@@ -66,32 +66,39 @@ function Shop() {
 
   function displayArrayInTable(objArray: ShopData) {
     return (
-      <table style={{ fontSize: "clamp(22px, 2.5vw, 30px)" }}>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>&emsp;Stock&emsp;</th>
-            <th>&emsp;Price&emsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {objArray.map((obj) => (
-            <tr key={obj.name}>
-              <td><InfoTooltip name={obj.name} description={obj.item_type} /></td>
-              <td>&emsp;{obj.amount}&emsp;</td>
-              <td>&emsp;${obj.value}&emsp;</td>
-              <td>
-                {obj.amount > 0 ? (
-                  <CDButton onClick={() => buyItem(obj, 1)}>Buy</CDButton>
-                ) : (
-                  <span></span>
-                )}
+      <Grid container>
+        <Grid item xs= {7}>
+          <table style={{ fontSize: "clamp(22px, 2.5vw, 30px)" }}>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>&emsp;Stock&emsp;</th>
+                <th>&emsp;Price&emsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {objArray.map((obj) => (
+                <tr key={obj.name}>
+                  <td><InfoTooltip name={obj.name} description={obj.item_type} /></td>
+                  <td>&emsp;{obj.amount}&emsp;</td>
+                  <td>&emsp;${obj.value}&emsp;</td>
+                  <td>
+                    {obj.amount > 0 ? (
+                      <CDButton onClick={() => buyItem(obj, 1)}>Buy</CDButton>
+                    ) : (
+                      <span></span>
+                    )}
 
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Grid>
+        <Grid item>
+          <b><pre style={{ color: "pink", fontSize: "110%" }}>{shopArt}</pre></b>
+        </Grid>
+      </Grid>
     );
   }
 
