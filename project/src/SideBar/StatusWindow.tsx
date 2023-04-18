@@ -4,7 +4,7 @@ import { PlayerDataContext } from "../Player/PlayerDataContext";
 
 function StatusWindow() {
 
-    const { playerData } = useContext(PlayerDataContext)
+    const { playerData, setPlayerData } = useContext(PlayerDataContext)
     const levelCheck = () => {
         console.log(Object.entries(playerData.completedLevels))
         let goldInc = 0
