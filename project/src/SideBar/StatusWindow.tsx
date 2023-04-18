@@ -6,7 +6,6 @@ function StatusWindow() {
 
     const { playerData, setPlayerData } = useContext(PlayerDataContext)
     const levelCheck = () => {
-        console.log(Object.entries(playerData.completedLevels))
         let goldInc = 0
         for (const [name, reward] of Object.entries(playerData.completedLevels)) {
             goldInc += reward
@@ -14,6 +13,7 @@ function StatusWindow() {
         setTimeout(() => {
             setPlayerData({...playerData, gold: playerData.gold + goldInc})
         }, 1000);
+        console.log(playerData.completedLevels)
     }
     levelCheck()
     return (
