@@ -96,7 +96,7 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
                         <h1> YOU WIN! CONGRATULATIONS</h1>
                         <p> Current Gold: {playerData.gold} </p>
                         <Link to="/dungeon-select" children={<CDButton> Level Select</CDButton>} />
-                        <Link to="/text-editor" children={<CDButton> Script it! </CDButton>} />
+                        <Link to="/python-dungeon" children={<CDButton> Script it! </CDButton>} />
                         <Link to="/hometown" children={<CDButton> Home </CDButton>} />
                     </div>)}
         </React.Fragment>

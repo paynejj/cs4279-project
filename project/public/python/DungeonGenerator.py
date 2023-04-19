@@ -56,7 +56,7 @@ def generate_levels():
     name = "test" + str(rand.randint(50, 1000))
 
     dict = {"name": name, "start": [player_row, player_col], "difficulty": difficulty,
-            "reward": [gold_reward], "rows": rows, "cols": cols, "map": board, "exit": [exit_row, exit_col]}
+            "reward": {"gold": gold_reward}, "rows": rows, "cols": cols, "map": board, "exit": [exit_row, exit_col]}
 
     return json.dumps(dict)
 
