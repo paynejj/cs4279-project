@@ -12,7 +12,6 @@ import Quest from "./Hometown/Quest";
 import DungeonSelect from "./Dungeon/UI/DungeonSelect";
 import TextEditor from "./TextEditor";
 import { PythonProvider } from 'react-py';
-import LevelCreator from "./LevelCreator/LevelCreator";
 import TitleScreen from "./Title/TitleScreen";
 import CharacterCreation from "./CharacterCreation/CharacterCreation";
 import { PlayerDataContext } from './Player/PlayerDataContext';
@@ -22,6 +21,7 @@ import { QuestsProvider } from "./Object/QuestData";
 import GeneratorScreen from "./PythonDungeon/GeneratorScreen";
 import PythonDungeonScreen from "./PythonDungeon/PythonDungeonScreen"
 import StatusWindow from "./SideBar/StatusWindow";
+import VictoryScreen from "./Dungeon/Components/VictoryScreen";
 function App() {
 
   const [playerData, setPlayerData] = useState<Player>(defaultPlayerData);
@@ -49,6 +49,7 @@ function App() {
                   <Route path="/text-editor" element={<TextEditor />} />
                   <Route path="/creation" element={<CharacterCreation />} />
                   <Route path="/python-dungeon" element={<PythonDungeonScreen />} />
+                  <Route path="/victory-screen/:levelname/:gold" element={<VictoryScreen />} />
                   <Route path="/" element={<TitleScreen />} />
                 </Routes>
               </main>

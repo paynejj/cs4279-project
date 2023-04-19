@@ -10,9 +10,9 @@ function DungeonSelect() {
 
                 <div className="levels">
                     {window.api.getLevelFilenames()
-                        .map((levelname: string, idx) => {
+                        .map((levelname: string) => {
                             return (
-                                <Link className="level" draggable="false" to={`/dungeon/${levelname}`}>
+                                <Link className="level" key={levelname} draggable="false" to={`/dungeon/${levelname}`}>
                                     {levelname}
                                 </Link>
                             )
