@@ -33,21 +33,21 @@ function SideBar() {
     const autoSave = () => {
         // Convert playerData and quests to JSON
         const saveStr = JSON.stringify(gameData);
-        if (saveStr) {
+        if (saveStr && gameData.player.name !== '') {
             window.api.writeFile("./autosave.json", saveStr);
             console.log('Auto saved');
         }
     };
 
-    // count down timer
+    // timer
     const [time, setTime] = React.useState(0);
     React.useEffect(() => {
         const interval = setInterval(() => {
             setTime(time => time + 1);
-        }, 600000);   // 600000ms = 10min
+        }, 120000);   // 120000ms = 2min
         autoSave();
-        return () => clearInterval(interval);
-    },[time]);
+        return () => { clearInterval(interval); }
+    }, [time]);
 
     return (
         <div className="sidebar">
@@ -59,8 +59,8 @@ function SideBar() {
                 <li><Link draggable="false" to="/hometown">HomeTown</Link></li>
                 <li><Link draggable="false" to="/character">Character</Link></li>
                 <li><Link draggable="false" to="/text-editor">Code Editor</Link></li>
-                <SaveButton/>
-                <SaveAsButton/>
+                <SaveButton />
+                <SaveAsButton />
             </ul>
         </div>
     );

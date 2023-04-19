@@ -19,10 +19,8 @@ function Rest() {
 
     if (playerData.class === "Mage") {
       setArt(mageRest1);
-      console.log("mage")
     } else if (playerData.class === "Ranger") {
       setArt(rangerRest1);
-      console.log("ranger")
     } else {
       setArt(warriorRest1);
     }

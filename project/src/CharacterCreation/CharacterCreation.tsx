@@ -2,14 +2,14 @@ import React from "react";
 import { CreationForm } from "./CreationForm";
 import { PlayerDataContext } from "../Player/PlayerDataContext";
 import { defaultPlayerData } from "../Player/DefaultPlayer";
-import { useQuests, defaultQuests, defaultQuests2 } from "../Object/QuestData";
+import { useQuests, defaultQuests2 } from "../Object/QuestData";
 import { useNavigate } from "react-router-dom";
 import "./CreationForm.css"
 
 
 function CharacterCreation() {
-    const { setPlayerData } = React.useContext(PlayerDataContext);
-    const { setAcceptedQuestlist, resetQuestboard } = useQuests();
+    const { playerData, setPlayerData } = React.useContext(PlayerDataContext);
+    const { setAcceptedQuestlist, resetQuestboard, acceptedQuests } = useQuests();
     const navigate = useNavigate();
 
     const handleCharacterCreation = (name: string, characterClass: string) => {
@@ -39,7 +39,35 @@ function CharacterCreation() {
             newPlayerData.stats.Luck += 2;
         }
 
-        setPlayerData(newPlayerData);
+        // Convert the inventory map to an array of objects
+        const inventoryArray =
+            Array.from(newPlayerData.inventory.entries()).map(([name, item]) =>
+                ([name, item]));
+
+        const equipmentArray =
+            Array.from(newPlayerData.equipments.entries()).map(([equipType, equipment]) =>
+                ([equipType, equipment]));
+
+        const gameData = {
+            player: {
+                name: newPlayerData.name,
+                class: newPlayerData.class,
+                inventory: inventoryArray,
+                stats: newPlayerData.stats,
+                gold: newPlayerData.gold,
+                equipments: equipmentArray,
+            },
+            quests: defaultQuests2,
+        };
+
+        const saveStr = JSON.stringify(gameData);
+        if (saveStr) {
+            setPlayerData(newPlayerData);
+            window.api.writeFile("./autosave.json", saveStr);
+            console.log('New Character Saved');
+        }
+
+
         navigate('/hometown');
     };
 

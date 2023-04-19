@@ -31,8 +31,8 @@ let defaultEquipments = new Map<EquipmentType, Equipment>([
 ]);
 
 export const defaultPlayerData: Player = {
-    name: "Player123",
-    class: "Warrior",
+    name: "",
+    class: "",
     gold: 1000,
     stats: {
         Level: 1,
