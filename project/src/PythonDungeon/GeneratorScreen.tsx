@@ -57,7 +57,7 @@ function GeneratorScreen() {
             <span>
                 <pre>
                     <span
-                        style={{ color: "pink", fontSize: "16px" }}
+                        style={{ color: "pink", fontSize: "13px" }}
                     ><b>{dungeonASCII}</b></span>
                 </pre>
             </span>
