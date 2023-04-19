@@ -10,6 +10,7 @@ import ShopSell from "./Hometown/ShopSell";
 import Rest from "./Hometown/Rest";
 import Quest from "./Hometown/Quest";
 import DungeonSelect from "./Dungeon/UI/DungeonSelect";
+import DungeonVictory from "./Dungeon/Components/DungeonVictory";
 import TextEditor from "./TextEditor";
 import { PythonProvider } from 'react-py';
 import LevelCreator from "./LevelCreator/LevelCreator";
@@ -39,6 +40,7 @@ function App() {
                 <Routes>
                   <Route path="/character" element={<CharacterUi />} />
                   <Route path="/dungeon-select" element={<DungeonSelect />} />
+                  <Route path="/dungeon-victory" element={<DungeonVictory />} />
                   <Route path="/dungeon/:levelname" element={<DungeonUI />} />
                   <Route path="/hometown" element={<Hometown />} />
                   <Route path="/shop" element={<Shop />} />

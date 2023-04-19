@@ -4,7 +4,7 @@ import { PlayerDataContext } from "../../Player/PlayerDataContext"
 import { KeyboardEvent, useContext, useEffect, useRef, useState } from "react"
 import React from "react"
 import CDButton from "../../Components/CDButton"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useQuests } from "../../Object/QuestData";
 
 interface DungeonMapProps {
@@ -16,6 +16,7 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
     const { acceptedQuests, progressQuest } = useQuests(); // for quest progress
     let beginnerQuest = acceptedQuests.find((quest) => quest.name === "Beginner");
     let mrDungeonQuest = acceptedQuests.find((quest) => quest.name === "MrDungeon");
+    const navigate = useNavigate();
     useEffect(() => {
         complete.current = dungeon.isComplete()
 
@@ -27,8 +28,10 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
             if (mrDungeonQuest) {
                 progressQuest(mrDungeonQuest);
             }
+            navigate("/dungeon-victory");
         }
     })
+
     //
     /**enables re-render when player playerition changes */
     const [player, setPlayer] = useState(dungeon.player)
