@@ -12,11 +12,13 @@ function StatusWindow() {
         for (const [name, reward] of Object.entries(playerData.completedLevels)) {
             goldInc += reward
         }
+        // But yeah then it has the re-render problem when doing the visual
+        // dungeon maze
         //I move the setplayerdata out of the timeout to avoid it saving the old,
         //not updated playerdata
         const timeout = setTimeout(() => {
             setTime(time => time + 1);
-        }, 1000);
+        }, 5000);
         // check if playerData is still the default (I set the default name to "" now)
         // only setplayerdata if a save is loaded or a player is created
         if (playerData.name !== "") {
@@ -32,16 +34,17 @@ function StatusWindow() {
     return (
         <Window
             id="react-window"
-            height={350}
-            width={250}
-            style={{ backgroundColor: "black" }}
+            height={340}
+            width={230}
+            left={1030}
+            style={{ backgroundColor: "black", overflow: "hidden" }}
             resizable={true}
             titleBar={{
-                icon: "⚛",
+                icon: " ",
                 title: "Status",
                 buttons: { minimize: true },
             }}>
-            <ul style={{ color: "purple", backgroundColor: "black", height: "100%" }}>
+            <ul style={{ color: "purple", backgroundColor: "black", height: "100%", maxWidth: "50%" }}>
                 <li><h1>{playerData.name}</h1></li>
                 <li>Gold: {playerData.gold}</li>
                 {Object.entries(playerData.stats).map(([key, value]) => <li key={key}>{key}: {value}</li>)}

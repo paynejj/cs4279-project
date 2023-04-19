@@ -72,6 +72,7 @@ function CharacterCreation() {
                     stats: newPlayerData.stats,
                     gold: newPlayerData.gold,
                     equipments: equipmentArray,
+                    inDungeon: false,
                 },
                 quests: acceptedQuests,
             };

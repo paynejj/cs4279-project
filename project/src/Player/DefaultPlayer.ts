@@ -35,5 +35,5 @@ export const defaultPlayerData: Player = {
     completedLevels: {},
     inventory: new Map<string, Item>(),
     equipments: defaultEquipments,
-
+    inDungeon: false,
 };

@@ -9,4 +9,5 @@ export type Player = {
     gold: number;
     equipments: Map<EquipmentType, Equipment>;
     completedLevels: Record<string, number>;
+    inDungeon?: boolean;
   }
