@@ -161,7 +161,9 @@ export default function QuestListModal() {
                                                     : <div></div>}
                                             </div>
                                         </div>
-                                        : <div></div>}
+                                        : <div style={{fontSize: "24px"}}>
+                                            <b>No Quest. Go see the Questboard</b>
+                                        </div>}
                                 </Grid>
                             </Grid>
                         </Grid>

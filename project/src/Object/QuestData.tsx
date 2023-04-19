@@ -49,15 +49,6 @@ export const defaultQuests: QuestType[] = [
     },
 ];
 
-// default already accepted quests
-export const defaultQuests2: QuestType[] = [
-    {
-        name: 'French Fries',
-        description: `Go get ONE any-size french fries from \n BurgerQueen.\n`,
-        reward: 25, itemCollected: 1, itemToCollect: 1,
-    },
-];
-
 interface QuestsContextValue {
     questBoardList: QuestType[];
     acceptedQuests: QuestType[];
@@ -94,7 +85,7 @@ export function QuestsProvider({ children }: QuestsProviderProps) {
 
     useEffect(() => {
         setQuestBoardList(defaultQuests);
-        setAcceptedQuests(defaultQuests2);
+        setAcceptedQuests([]);
     }, []);
 
 
