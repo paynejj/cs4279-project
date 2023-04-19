@@ -13,12 +13,14 @@ function StatusWindow() {
             goldInc += reward
         }
         // But yeah then it has the re-render problem when doing the visual
-        // dungeon maze
+        // dungeon maze.
+        // For that problem I would put the winning screen in a separate component with a
+        // unique path.
         //I move the setplayerdata out of the timeout to avoid it saving the old,
         //not updated playerdata
         const timeout = setTimeout(() => {
             setTime(time => time + 1);
-        }, 5000);
+        }, 1000);
         // check if playerData is still the default (I set the default name to "" now)
         // only setplayerdata if a save is loaded or a player is created
         if (playerData.name !== "") {
