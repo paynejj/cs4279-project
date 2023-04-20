@@ -23,7 +23,7 @@ class Game:
         self.player_str = int(playerstats["Strength"])
         self.player_dex = int(playerstats["Dexterity"])
         self.player_luck = int(playerstats["Luck"])
-        self.player_int = int(playerstats["Intellegence"])
+        self.player_int = int(playerstats["Intelligence"])
         self.player_vit = int(playerstats["Vitality"])
         self.player_agil = int(playerstats["Agility"])
         

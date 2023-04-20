@@ -46,15 +46,17 @@ function PythonDungeonScreen() {
         input = window.api.readPy("Dungeon");
         finish = window.api.readPy("Finish");
         player = JSON.stringify(playerData.stats);
-        console.log(player)
         level = JSON.stringify(window.api.readLevel(levelname));
         // Set the input variable in Python
         const newcode = `filename = '${level}'\nnewstats = '${player}'\n${input}\n${code}\n${finish}`
         runPython(newcode);
         sleep(1000).then(() => {
             while(isRunning){
-                sleep(1000)
+                sleep(2000)
             }
+            console.log(stderr)
+            console.log(stdout)
+            console.log(isRunning)
             if(stdout != ""){
                 const [out, newstats, result] = stdout.split('|');
                 setOutput(out);
@@ -67,7 +69,7 @@ function PythonDungeonScreen() {
                 newPlayerData.stats.Strength = statsObj.Strength;
                 newPlayerData.stats.Dexterity = statsObj.Dexterity;
                 newPlayerData.stats.Luck = statsObj.Luck;
-                newPlayerData.stats.Intellegence = statsObj.Intellegence;
+                newPlayerData.stats.Intelligence = statsObj.Intelligence;
                 newPlayerData.stats.Vitality = statsObj.Vitality;
                 newPlayerData.stats.Agility = statsObj.Agility;
                 setPlayerData(newPlayerData);
