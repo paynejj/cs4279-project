@@ -46,11 +46,11 @@ function StatusWindow() {
                 title: "Status",
                 buttons: { minimize: true },
             }}>
-            <ul style={{ color: "purple", backgroundColor: "black", height: "100%", maxWidth: "50%" }}>
+            {playerData.name !== "" && (<ul style={{ color: "purple", backgroundColor: "black", height: "100%", maxWidth: "50%" }}>
                 <li><h1>{playerData.name}</h1></li>
                 <li>Gold: {playerData.gold}</li>
                 {Object.entries(playerData.stats).map(([key, value]) => <li key={key}>{key}: {value}</li>)}
-            </ul>
+            </ul>)}
         </Window>
     )
 }
