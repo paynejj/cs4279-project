@@ -1,7 +1,7 @@
 import json
 import random as rand
 class Game:
-    def __init__(self, board_file):
+    def __init__(self, board_file, hp):
         level = json.loads(board_file)
         self.board = level["map"]
         self.rows = level["rows"]
@@ -14,6 +14,7 @@ class Game:
         self.exit = level["exit"]
         self.win = False
         self.reward_count = 0
+        self.player_hp = int(hp)
         
     def print_board(self):
         for row in self.board:
@@ -24,6 +25,8 @@ class Game:
         if (self.canMove(row, col)):
             self.player_row = row
             self.player_col = col
+            if self.board[self.player_row][self.player_col] == 4 or self.board[self.player_row][self.player_col] == 6 or self.board[self.player_row][self.player_col] == 5:
+              self.player_hp = self.player_hp - 1
         return (self.player_row, self.player_col)
 
     def canMove(self, row, col):
@@ -37,12 +40,13 @@ class Game:
         return (self.player_row, self.player_col)
   
     def player_win(self):
-      if self.player_row == self.exit[0] and self.player_col == self.exit[1]:
+      if self.player_row == self.exit[0] and self.player_col == self.exit[1] and self.player_hp > 0:
         self.win = True
         self.reward_count = rand.randint(int(self.rows * self.cols),int(self.rows * self.cols * self.difficulty))
+        self.player_hp = self.player_hp - 1
         return True
       else:
         self.reward_count = -rand.randint(1,int(self.rows * self.cols * self.difficulty))
         return False
 
-game = Game(f"{filename}")
+game = Game(f"{filename}", f"{hp}")

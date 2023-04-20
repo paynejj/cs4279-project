@@ -23,6 +23,9 @@ function GeneratorScreen() {
 /____\\                 /____\\
     `;
 
+    const sleep = ms =>
+        new Promise(resolve => setTimeout(resolve, ms));
+
     let navigate = useNavigate();
     let input = "";
 
@@ -37,10 +40,15 @@ function GeneratorScreen() {
         input = window.api.readPy("DungeonGenerator")
         e.preventDefault()
         runPython(input)
-        console.log(stdout)
-        window.api.writeLevel(JSON.parse(stdout))
-        let readres = window.api.readLevel(name)
-        console.log(readres)
+        sleep(1000).then(() => {
+            while(isRunning){
+                sleep(1000)
+            }
+            if(stdout != ""){
+                window.api.writeLevel(JSON.parse(stdout))
+            }
+            console.log(stdout)
+        });
     }
 
     return (
