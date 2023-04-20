@@ -42,24 +42,34 @@ function PythonDungeonScreen() {
         } 
     }
     async function run() {
+        if(isRunning) return
         input = window.api.readPy("Dungeon");
         finish = window.api.readPy("Finish");
-        player = playerData.stats.HP;
+        player = JSON.stringify(playerData.stats);
+        console.log(player)
         level = JSON.stringify(window.api.readLevel(levelname));
         // Set the input variable in Python
-        const newcode = `filename = '${level}'\nhp = ${player}\n${input}\n${code}\n${finish}`
+        const newcode = `filename = '${level}'\nnewstats = '${player}'\n${input}\n${code}\n${finish}`
         runPython(newcode);
         sleep(1000).then(() => {
             while(isRunning){
                 sleep(1000)
             }
-            console.log(isRunning)
-            console.log(stderr)
-            console.log(stdout)
             if(stdout != ""){
-                const [out, newhp, result] = stdout.split('|');
+                const [out, newstats, result] = stdout.split('|');
                 setOutput(out);
-                newPlayerData.stats.HP = newhp;
+                let statsObj = JSON.parse(newstats)
+                newPlayerData.stats.Level = statsObj.Level;
+                newPlayerData.stats.HP = statsObj.HP;
+                newPlayerData.stats.MP = statsObj.MP;
+                newPlayerData.stats.MaxHP = statsObj.MaxHP;
+                newPlayerData.stats.MaxMP = statsObj.MaxMP;
+                newPlayerData.stats.Strength = statsObj.Strength;
+                newPlayerData.stats.Dexterity = statsObj.Dexterity;
+                newPlayerData.stats.Luck = statsObj.Luck;
+                newPlayerData.stats.Intellegence = statsObj.Intellegence;
+                newPlayerData.stats.Vitality = statsObj.Vitality;
+                newPlayerData.stats.Agility = statsObj.Agility;
                 setPlayerData(newPlayerData);
                 const res = JSON.parse(result);
                 if(res.win){
