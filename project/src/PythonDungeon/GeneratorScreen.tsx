@@ -37,15 +37,15 @@ function GeneratorScreen() {
     const [name, setName] = useState('Hello');
 
     const handleClick = (e?) => {
-        if(isRunning) return
+        if (isRunning) return
         input = window.api.readPy("DungeonGenerator")
         e.preventDefault()
         runPython(input)
         sleep(1000).then(() => {
-            while(isRunning){
+            while (isRunning) {
                 sleep(1000)
             }
-            if(stdout != ""){
+            if (stdout !== "") {
                 window.api.writeLevel(JSON.parse(stdout))
             }
             console.log(stdout)
