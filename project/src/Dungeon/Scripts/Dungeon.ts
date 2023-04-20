@@ -144,7 +144,7 @@ export class Dungeon {
                 + playerData.stats.Vitality * 0.2;
         }
 
-        let damage = Math.ceil(this.level.difficulty - attack / 3);
+        let damage = Math.ceil(this.level.difficulty * (1 + attack / 10) - attack / 3);
         console.log(damage);
         const newPlayerData = { ...playerData };
         const player_row = this._player[0];

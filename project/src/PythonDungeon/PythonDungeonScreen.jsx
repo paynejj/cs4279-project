@@ -4,7 +4,7 @@ import { python } from '@codemirror/lang-python';
 import React from "react";
 import CDButton from "../Components/CDButton";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { usePython } from 'react-py';
 import { PlayerDataContext } from '../Player/PlayerDataContext';
 
@@ -57,7 +57,7 @@ function PythonDungeonScreen() {
             console.log(stderr)
             console.log(stdout)
             console.log(isRunning)
-            if(stdout != ""){
+            if(stdout !== ""){
                 const [out, newstats, result] = stdout.split('|');
                 setOutput(out);
                 let statsObj = JSON.parse(newstats)
