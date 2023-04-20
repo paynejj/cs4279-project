@@ -14,6 +14,9 @@ function PythonDungeonScreen() {
     let input = "";
     let level = "";
     let finish = "";
+    let player = "";
+    const sleep = ms =>
+        new Promise(resolve => setTimeout(resolve, ms));
     const Back = () => {
         let path = `/`;
         navigate(path);
@@ -23,29 +26,51 @@ function PythonDungeonScreen() {
     const [code, setCode] = useState('');
     const [levelname, setLevelname] = useState('');
     const [output, setOutput] = useState('');
+    const newPlayerData = {...playerData};
+
     const  splitOutput = async () => {
-        while(isRunning) {
-            await new Promise(r => setTimeout(r, 5000));
-        }
         console.log(stdout)
-        const [out, result] = stdout.split('|');
+        const [out, newhp, result] = stdout.split('|');
         setOutput(out);
+        newPlayerData.stats.HP = newhp;
+        setPlayerData(newPlayerData);
         const res = JSON.parse(result);
         if(res.win){
             const updateCompletedLevels = playerData.completedLevels;
             updateCompletedLevels[res.name] = res.reward.gold
-            console.log(updateCompletedLevels)
             setPlayerData({...playerData, completedLevels: updateCompletedLevels});
         } 
     }
     async function run() {
         input = window.api.readPy("Dungeon");
         finish = window.api.readPy("Finish");
+        player = playerData.stats.HP;
         level = JSON.stringify(window.api.readLevel(levelname));
         // Set the input variable in Python
-        const newcode = `filename = '${level}'\n${input}\n${code}\n${finish}`
+        const newcode = `filename = '${level}'\nhp = ${player}\n${input}\n${code}\n${finish}`
         runPython(newcode);
-        splitOutput();
+        sleep(1000).then(() => {
+            while(isRunning){
+                sleep(1000)
+            }
+            console.log(isRunning)
+            console.log(stderr)
+            console.log(stdout)
+            if(stdout != ""){
+                const [out, newhp, result] = stdout.split('|');
+                setOutput(out);
+                newPlayerData.stats.HP = newhp;
+                setPlayerData(newPlayerData);
+                const res = JSON.parse(result);
+                if(res.win){
+                    const updateCompletedLevels = playerData.completedLevels;
+                    updateCompletedLevels[res.name] = res.reward.gold
+                    setPlayerData({...playerData, completedLevels: updateCompletedLevels});
+                } 
+            }
+            console.log(stdout)
+        });
+        //splitOutput();
     }
     const saveFile = (e) => {
         window.api.writeUserPy(name, code)
