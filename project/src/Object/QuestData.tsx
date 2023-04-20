@@ -4,7 +4,7 @@ import { QuestType } from "./Quest";
 // default quests on the quest board
 export const defaultQuests: QuestType[] = [
     {
-        name: "SlimeHunting", description: "Kill 6 Slimes",
+        name: "MonsterHunting", description: "Kill 6 Monsters",
         reward: 100, itemCollected: 0, itemToCollect: 6
     },
     {
@@ -13,7 +13,7 @@ export const defaultQuests: QuestType[] = [
     },
     {
         name: "FingerSnapping", description: "Fight 20 Monsters",
-        reward: 150, itemCollected: 0, itemToCollect: 20
+        reward: 200, itemCollected: 0, itemToCollect: 20
     },
     {
         name: "WARM", description: "Stay in the rest area for 30 seconds",

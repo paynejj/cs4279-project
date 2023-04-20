@@ -1,6 +1,7 @@
 import { Level } from "../../LevelCreator/Level";
 import { DungeonNode, DNodes, DVoid, DTunnel, DEnemy, DExit, DGold } from "./DungeonNode";
 import { Player } from "../../Object/Player";
+import { QuestType } from "../../Object/Quest";
 
 //PlaceHolder level
 const LEVELNAME = ""
@@ -124,18 +125,31 @@ export class Dungeon {
 
     }
 
-    public loseHealth(playerData: Player, setPlayerData: (player: Player) => void) {
-        let damage = Math.ceil(this.level.difficulty / 10 );
+    public loseHealth(playerData: Player, setPlayerData: (player: Player) => void,
+        acceptedQuests: QuestType[], processQuest: (quest: QuestType) => void) {
+
+        let monsterHuntingQuest = acceptedQuests.find((quest) => quest.name === "MonsterHunting");
+        let fingerSnappingQuest = acceptedQuests.find((quest) => quest.name === "FingerSnapping");
+
+        let damage = Math.ceil(this.level.difficulty / 10);
         console.log(damage);
         const newPlayerData = { ...playerData };
         const player_row = this._player[0];
         const player_col = this._player[1];
-        if (this._map[player_row][player_col].color === "red") {
-            if (newPlayerData.stats.HP >= damage) {
-                newPlayerData.stats.HP -= damage;
-            }
+        if (this._map[player_row][player_col].color === "red"
+            && newPlayerData.stats.HP >= damage) {
+
+            newPlayerData.stats.HP -= damage;
             console.log(newPlayerData.stats.HP);
             setPlayerData(newPlayerData);
+
+            if (monsterHuntingQuest) {
+                processQuest(monsterHuntingQuest);
+            }
+            if (fingerSnappingQuest) {
+                processQuest(fingerSnappingQuest);
+            }
+
         }
     }
 }

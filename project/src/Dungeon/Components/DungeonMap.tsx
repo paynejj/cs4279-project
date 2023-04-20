@@ -19,7 +19,7 @@ function DungeonMap({ dungeon }: DungeonMapProps) {
     let mrDungeonQuest = acceptedQuests.find((quest) => quest.name === "MrDungeon");
     useEffect(() => {
         complete.current = dungeon.isComplete()
-        dungeon.loseHealth(playerData, setPlayerData);
+        dungeon.loseHealth(playerData, setPlayerData, acceptedQuests, progressQuest);
 
         if (playerData.stats.HP <= 0) {
             navigate('/try-again-screen');
