@@ -67,7 +67,7 @@ export default function CharacterUi() {
             setEquipInvertory(tempEquipInventoryRows);
             setInventoryCount(tempInventoryRows.length + tempEquipInventoryRows.length);
         }
-    }, [playerData, inventoryCount]);
+    }, [playerData, inventoryCount, acceptedQuests, progressQuest]);
 
     // open a dropdown menu when clicking an item in the inventory
     const handleClickPotion = (event: React.MouseEvent<HTMLButtonElement>, idx: number) => {
