@@ -22,6 +22,7 @@ import GeneratorScreen from "./PythonDungeon/GeneratorScreen";
 import PythonDungeonScreen from "./PythonDungeon/PythonDungeonScreen"
 import StatusWindow from "./SideBar/StatusWindow";
 import VictoryScreen from "./Dungeon/Components/VictoryScreen";
+import TryAgainScreen from "./Dungeon/Components/TryAgainScreen";
 function App() {
 
   const [playerData, setPlayerData] = useState<Player>(defaultPlayerData);
@@ -50,6 +51,7 @@ function App() {
                   <Route path="/creation" element={<CharacterCreation />} />
                   <Route path="/python-dungeon" element={<PythonDungeonScreen />} />
                   <Route path="/victory-screen/:levelname/:gold" element={<VictoryScreen />} />
+                  <Route path="/try-again-screen" element={<TryAgainScreen />} />
                   <Route path="/" element={<TitleScreen />} />
                 </Routes>
               </main>

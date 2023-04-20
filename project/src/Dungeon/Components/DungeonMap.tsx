@@ -12,12 +12,18 @@ interface DungeonMapProps {
 }
 function DungeonMap({ dungeon }: DungeonMapProps) {
     let complete = useRef(dungeon.isComplete())
+    const { playerData, setPlayerData } = useContext(PlayerDataContext);
     const { acceptedQuests, progressQuest } = useQuests(); // for quest progress
     const navigate = useNavigate()
     let beginnerQuest = acceptedQuests.find((quest) => quest.name === "Beginner");
     let mrDungeonQuest = acceptedQuests.find((quest) => quest.name === "MrDungeon");
     useEffect(() => {
         complete.current = dungeon.isComplete()
+        dungeon.loseHealth(playerData, setPlayerData);
+
+        if (playerData.stats.HP <= 0) {
+            navigate('/try-again-screen');
+        }
 
         if (!complete.current) return
         if (beginnerQuest) {
