@@ -30,7 +30,7 @@ export const defaultStats = {
 export const defaultPlayerData: Player = {
     name: "",
     class: "",
-    gold: 1000,
+    gold: 100,
     stats: JSON.parse(JSON.stringify(defaultStats)),
     completedLevels: {},
     inventory: new Map<string, Item>(),

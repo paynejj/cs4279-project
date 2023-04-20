@@ -33,7 +33,7 @@ const ShopSellScreen: React.FC = () => {
     const onSell = (items: Item[], totalValue: number) => {
         const newPlayerData = { ...playerData };
         if (newPlayerData) {
-            newPlayerData.gold += Math.ceil(totalValue * 0.8);
+            newPlayerData.gold += Math.ceil(totalValue * 0.9);
             const newInventory = new Map(newPlayerData.inventory);
             items.forEach(item => {
                 const itemInInventory = newInventory.get(item.name);
@@ -88,6 +88,7 @@ const ShopSellScreen: React.FC = () => {
             <CDButton onClick={routeChangeBuy}>To Buy</CDButton>
             <h1 style={{ fontSize: "3.4rem", color: "pink" }}>Sell</h1>
             <h3 style={{ color: "gold" }}>Gold: {playerData.gold}</h3>
+            <h4>You can sell them here at 90% of the value</h4>
             <Grid container>
                 <Grid item xs={7}>
                     {inventory.length !== 0 ?
