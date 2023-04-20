@@ -22,7 +22,7 @@ export const defaultStats = {
     Strength: 3,
     Dexterity: 3,
     Luck: 3,
-    Intellegence: 3,
+    Intelligence: 3,
     Vitality: 3,
     Agility: 3,
 };

@@ -47,7 +47,7 @@ export const shopData: ShopData = [
             equipmentType: EquipmentType.Weapon,
             Agility: 1,
             Dexterity: 1,
-            Intellegence: 5,
+            Intelligence: 5,
             Luck: -3,
             MaxMP: 15,
         }]

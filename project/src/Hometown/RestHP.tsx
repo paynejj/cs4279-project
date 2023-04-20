@@ -7,7 +7,7 @@ function HpBar() {
     const { playerData, setPlayerData } = useContext(PlayerDataContext);
     const [currentHp, setCurrentHp] = useState(playerData.stats.HP);
     const [currentMp, setCurrentMp] = useState(playerData.stats.MP);
-    const healSpeed = 1;
+    const healSpeed = 2;
     const maxHp = playerData.stats.MaxHP;
     const maxMp = playerData.stats.MaxMP;
 
@@ -15,7 +15,7 @@ function HpBar() {
     useEffect(() => {
         let warmQuest = acceptedQuests.find((quest) => quest.name === "WARM");
 
-        const intervalId = setInterval(() => {
+        const interval = setInterval(() => {
             let newPlayerData = { ...playerData };
             setCurrentHp((prevHp) => Math.min(prevHp + healSpeed, maxHp));
             newPlayerData.stats.HP = currentHp;
@@ -30,7 +30,7 @@ function HpBar() {
 
         }, 1000);
 
-        return () => clearInterval(intervalId);
+        return () => clearInterval(interval);
     }, [currentHp, currentMp, healSpeed, maxHp, maxMp, playerData, setPlayerData]);
 
     const hpPercentage = (currentHp / maxHp) * 100;

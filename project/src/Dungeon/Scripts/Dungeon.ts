@@ -131,15 +131,31 @@ export class Dungeon {
         let monsterHuntingQuest = acceptedQuests.find((quest) => quest.name === "MonsterHunting");
         let fingerSnappingQuest = acceptedQuests.find((quest) => quest.name === "FingerSnapping");
 
-        let damage = Math.ceil(this.level.difficulty / 10);
+        let attack = 0;
+        if (playerData.class === "Warrior") {
+            attack = playerData.stats.Strength - 3 + playerData.stats.Vitality * 0.9;
+        } else if (playerData.class === "Mage") {
+            attack = playerData.stats.Intelligence + playerData.stats.Vitality * 0.2;
+        } else if (playerData.class === "Ranger") {
+            attack =
+                (playerData.stats.Dexterity +
+                    (playerData.stats.Luck * 0.4) +
+                    (playerData.stats.Agility * 0.6)) / 2
+                + playerData.stats.Vitality * 0.2;
+        }
+
+        let damage = Math.ceil(this.level.difficulty - attack / 3);
         console.log(damage);
         const newPlayerData = { ...playerData };
         const player_row = this._player[0];
         const player_col = this._player[1];
-        if (this._map[player_row][player_col].color === "red"
-            && newPlayerData.stats.HP >= damage) {
+        if (this._map[player_row][player_col].color === "red") {
 
-            newPlayerData.stats.HP -= damage;
+            if (newPlayerData.stats.HP >= damage) {
+                newPlayerData.stats.HP -= damage;
+            } else if (newPlayerData.stats.MaxHP > 0) {
+                newPlayerData.stats.HP = 0;
+            }
             console.log(newPlayerData.stats.HP);
             setPlayerData(newPlayerData);
 

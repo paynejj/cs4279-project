@@ -46,7 +46,7 @@ function CharacterCreation() {
             newPlayerData.stats.Strength += 3;
         } else if (characterClass === 'Mage') {
             newPlayerData.stats.MaxMP += 10;
-            newPlayerData.stats.Intellegence += 5;
+            newPlayerData.stats.Intelligence += 5;
         } else if (characterClass === 'Ranger') {
             newPlayerData.stats.Agility += 2;
             newPlayerData.stats.Dexterity += 2;

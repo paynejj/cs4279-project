@@ -5,7 +5,7 @@ type EquipmentStats = {
     Strength?: number;
     Dexterity?: number;
     Luck?: number;
-    Intellegence?: number;
+    Intelligence?: number;
     Vitality?: number;
     Agility?: number;
 };
